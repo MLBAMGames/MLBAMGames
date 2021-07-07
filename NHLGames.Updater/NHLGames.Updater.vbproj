@@ -81,13 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Updater.vb" />
-    <Compile Include="Utilities\CustomExceptions.vb" />
-    <Compile Include="Utilities\Web.vb" />
-    <Compile Include="Utilities\AssemblyInfo.vb" />
-    <Compile Include="Utilities\GitHub.vb" />
-    <Compile Include="Objects\GitHub\Asset.vb" />
-    <Compile Include="Objects\GitHub\Release.vb" />
-    <Compile Include="Objects\GitHub\User.vb" />
+    <Compile Include="GitHub.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -130,6 +124,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="nhlgames.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MLBAMGames.Library\MLBAMGames.Library.vbproj">
+      <Project>{2d251417-09ce-429d-bbe3-7111318266f4}</Project>
+      <Name>MLBAMGames.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

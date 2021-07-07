@@ -1,5 +1,5 @@
-﻿Imports NHLGames.Updater.Utilities
-Imports MLBAMGames.Library
+﻿Imports MLBAMGames.Library
+Imports MLBAMGames.Library.Utilities
 Imports Ionic.Zip
 Imports System.IO
 

@@ -1,15 +1,15 @@
-﻿Imports MLBGames.Updater.Utilities
-Imports MLBAMGames.Library
+﻿Imports MLBAMGames.Library
+Imports MLBAMGames.Library.Utilities
 Imports Ionic.Zip
 Imports System.IO
 
 Public Class Updater
     Public Const UPDATER_DIRECTORY = "updater"
     Public Const UPDATER_TMP_DIRECTORY = "tmp_updater"
-    Public Const NHL_GAMES_APP = "nhlgames.exe"
+    Public Const MLB_GAMES_APP = "mlbgames.exe"
     Public Shared ProjectDirectory As String = AppDomain.CurrentDomain.BaseDirectory + "..\"
     Public Shared UpdaterTempFullPath As String = $"{ProjectDirectory}{UPDATER_TMP_DIRECTORY}"
-    Public Shared NHLGamesFullPath As String = $"{ProjectDirectory}{NHL_GAMES_APP}"
+    Public Shared MLBGamesFullPath As String = $"{ProjectDirectory}{MLB_GAMES_APP}"
 
     Public Shared Async Function ProcessUpdateAsync() As Task
         DeleteTempFiles()
@@ -29,7 +29,7 @@ Public Class Updater
             Next
 
             Console.WriteLine("Successfully updated!")
-            Process.Start(New ProcessStartInfo(NHLGamesFullPath))
+            Process.Start(New ProcessStartInfo(MLBGamesFullPath))
         Catch ex As Exception
             Process.Start(New ProcessStartInfo(GitHub.LATEST_RELEASE_LINK))
             LeaveConsole()

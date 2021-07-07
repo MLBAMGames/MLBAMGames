@@ -1,9 +1,9 @@
-﻿Imports System.Globalization
+﻿Imports System.ComponentModel
+Imports System.Globalization
 Imports System.IO
 Imports System.Net
 Imports System.Text
 Imports System.Windows.Forms
-Imports MLBAMGames.Library.My.Resources
 Imports MLBAMGames.Library.NHLStats
 Imports MLBAMGames.Library.Objects.NHL
 Imports Newtonsoft.Json
@@ -13,6 +13,9 @@ Namespace Utilities
         Public Const UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
         Private Const s = "abcdefghijklmnopqrstuvwxyz0123456789"
         Private Shared r As New Random
+        Const BYTES_IN_MEGABYTE = 1_000_000
+
+        Shared WithEvents _wc As WebClient = New WebClient()
 
         Public Shared Function GetRandomString(intLength As Integer)
             Dim sb As New StringBuilder
@@ -138,5 +141,37 @@ Namespace Utilities
                 Instance.Form.Close()
             End If
         End Sub
+
+        Public Shared Async Function DownloadFileAsync(url As String, tag As String) As Task(Of String)
+            Dim uri As Uri = New Uri(url)
+            Console.WriteLine("Downloading update {0}...", tag)
+            Dim fileName = Updater.ProjectDirectory + "update-" + tag + ".zip"
+            Await _wc.DownloadFileTaskAsync(uri, fileName)
+            Return fileName
+        End Function
+
+        Private Shared Sub WebClient_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles _wc.DownloadProgressChanged
+            SyncLock e.UserState
+                Console.SetCursorPosition(0, Console.CursorTop - 1)
+                Console.WriteLine("{0} % completed ({1} of {2} Mo.)",
+                              e.ProgressPercentage,
+                              ToMo(e.BytesReceived),
+                              ToMo(e.TotalBytesToReceive))
+            End SyncLock
+        End Sub
+
+        Private Shared Sub WebClient_DownloadFileCompleted(ByVal sender As Object, ByVal e As AsyncCompletedEventArgs) Handles _wc.DownloadFileCompleted
+            If e.Cancelled Then
+                Console.WriteLine("File download cancelled.")
+            End If
+
+            If e.Error IsNot Nothing Then
+                Console.WriteLine(e.Error.ToString())
+            End If
+        End Sub
+
+        Private Shared Function ToMo(bytes As Long) As String
+            Return Math.Round((bytes / BYTES_IN_MEGABYTE), 2).ToString("0.00")
+        End Function
     End Class
 End Namespace

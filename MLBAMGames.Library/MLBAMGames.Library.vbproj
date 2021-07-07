@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="AdDetection.vb" />
     <Compile Include="AdDetectionConfigs.vb" />
+    <Compile Include="AssemblyInfo.vb" />
     <Compile Include="ConsoleRedirectStreamWriter.vb" />
     <Compile Include="Controls\BorderPanel.vb">
       <SubType>Component</SubType>
@@ -111,6 +112,7 @@
     <Compile Include="Controls\NHLStats\Badge.vb" />
     <Compile Include="Controls\NHLStats\TeamCell.vb" />
     <Compile Include="Controls\NHLStats\TeamColumn.vb" />
+    <Compile Include="CustomExceptions.vb" />
     <Compile Include="DateHelper.vb" />
     <Compile Include="Enums.vb" />
     <Compile Include="FileAccess.vb" />

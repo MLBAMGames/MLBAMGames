@@ -1,7 +1,7 @@
 ﻿Imports System.Text.RegularExpressions
 
 Public Class AssemblyInfo
-    Public Shared Function IsNewerVersionThanCurrent(name As String) As Boolean
+    Public Shared Function IsNewerVersionThanCurrent(name As String, appFullPath As String) As Boolean
         Dim m As Match = Regex.Match(name, "v(\.)?((?:\d+\.)*\d+?)")
         Dim version = m.Groups(m.Groups.Count - 1)
 
@@ -9,7 +9,7 @@ Public Class AssemblyInfo
             Dim availableVersion As Version = New Version(version.Value)
             Dim currentVersion As Version
             Try
-                currentVersion = New Version(FileVersionInfo.GetVersionInfo(Updater.NHLGamesFullPath).FileVersion)
+                currentVersion = New Version(FileVersionInfo.GetVersionInfo(appFullPath).FileVersion)
             Catch ex As Exception
                 Return True
             End Try
