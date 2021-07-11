@@ -12,7 +12,7 @@ Public Class InvokeElement
         Instance.Form.ClearGamePanel()
         Await Task.Run(Async Function()
                            InvokeElement.SetFormStatusLabel(Lang.RmText.GetString("msgLoadingGames"))
-                           If Await GameFetcher.LoadGames(gameDate) Then
+                           If Await GameFetcher.LoadGames(gameDate, SportsEnum.MLB) Then
                                InvokeElement.NewGamesFound(GameFetcher.Entries.Values.ToList())
                                InvokeElement.SetFormStatusLabel(String.Format(Lang.RmText.GetString("msgGamesFound"),
                                                            GameFetcher.Entries.Values.Count.ToString()))

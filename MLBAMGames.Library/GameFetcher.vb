@@ -59,7 +59,7 @@ Public Class GameFetcher
         Return gameTabControlsEnabled
     End Function
 
-    Public Shared Async Function LoadGames(gameDate As Date) As Task(Of Boolean)
+    Public Shared Async Function LoadGames(gameDate As Date, sportApp As SportsEnum) As Task(Of Boolean)
         Parameters.SpnLoadingValue = 1
         Parameters.SpnLoadingVisible = True
 
@@ -73,7 +73,7 @@ Public Class GameFetcher
 
         Dim games As Game()
 
-        Dim gm = New GameManager()
+        Dim gm = If(sportApp = SportsEnum.NHL, New NHLGameManager(), New MLBGameManager())
         Try
             games = Await gm.GetGamesAsync(gameDate)
 

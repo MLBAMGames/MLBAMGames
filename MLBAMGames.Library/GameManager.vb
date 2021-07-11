@@ -15,12 +15,12 @@ Public MustInherit Class GameManager
 
     Private Const MediaOff = "MEDIA_OFF"
 
+    Public Sub New()
+    End Sub
+
     Public MustOverride Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
 
-    Public MustOverride Function GetAPIGames(games As List(Of API.Game)) As List(Of API.Game)
-
     Public Async Function GetGamesAsync(gameDate As Date) As Task(Of Game())
-        'Dim schedule As Schedule = Await Web.GetScheduleAsync(gameDate)
         Dim schedule As Schedule = Await GetSchedule(gameDate)
 
         If schedule Is Nothing Then
@@ -47,7 +47,7 @@ Public MustInherit Class GameManager
         Dim progressPerGame = Convert.ToInt32(((Parameters.SpnLoadingMaxValue - 1) - Parameters.SpnLoadingValue) / numberOfGames)
         Dim currentGame As Game
 
-        For Each game As API.Game In GetAPIGames(schedule.date.games)
+        For Each game As API.Game In schedule.date.games
 
             currentGame = New Game With {
                 .GameDate = game.gameDate.ToUniversalTime(), ' Must use universal time to always get correct date for stream
@@ -59,7 +59,7 @@ Public MustInherit Class GameManager
                 .Away = If(game.teams?.away?.team?.locationName, String.Empty),
                 .AwayAbbrev = If(game.teams?.away?.team?.abbreviation, String.Empty),
                 .AwayTeam = If(game.teams?.away?.team?.teamName, String.Empty),
-                .GameState = game.status.gameState,
+                .GameState = GetGameStateFromStatus(game.status),
                 .GameStateDetailed = game.status.detailedState
             }
 
@@ -128,6 +128,8 @@ Public MustInherit Class GameManager
         Return gamesArray
     End Function
 
+    Public MustOverride Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
+
     Private Shared Function SetGameRecap(currentGame As API.Game)
         Dim recap = currentGame.RecapFeeds.First()
         Return New GameStream With {
@@ -137,10 +139,12 @@ Public MustInherit Class GameManager
         }
     End Function
 
-    Private Shared Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item,
-                                                   streamType As StreamTypeEnum, streamTypeSelected As String,
-                                                   sport As SportsEnum) As Task(Of GameStream)
-        Dim gs = New GameStream(currentGame, innerStream, streamType, streamTypeSelected, sport)
+
+    Public MustOverride ReadOnly Property SportApp() As SportsEnum
+
+    Private Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item,
+                                                   streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
+        Dim gs = New GameStream(currentGame, innerStream, streamType, streamTypeSelected, SportApp)
         gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
 
         If gs.StreamUrl.Equals(String.Empty) Then
@@ -196,4 +200,34 @@ Public MustInherit Class GameManager
     Protected Overrides Sub Finalize()
         Dispose(False)
     End Sub
+End Class
+
+Public Class NHLGameManager
+    Public Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
+        Return Await Web.GetScheduleAsync(gameDate)
+    End Function
+
+    Public Shared Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
+        Dim code = Convert.ToInt16(If(status.statusCode, 0).ToString())
+        Return If(code > 10, 11, code)
+    End Function
+
+    Public Function GetSportApp() As SportsEnum
+        Return SportsEnum.NHL
+    End Function
+End Class
+
+Public Class MLBGameManager
+    Public Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
+        Return Await Web.GetScheduleAsync(gameDate)
+    End Function
+
+    Public Shared Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
+        Dim code = Convert.ToInt16(If(status.statusCode, 0).ToString())
+        Return If(code > 10, 11, code)
+    End Function
+
+    Public Function GetSportApp() As SportsEnum
+        Return SportsEnum.NHL
+    End Function
 End Class
