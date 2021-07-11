@@ -4,7 +4,7 @@ Imports System.Windows.Forms
 Imports MLBAMGames.Library.My.Resources
 Imports MLBAMGames.Library.Utilities
 
-Namespace Objects.Modules
+Namespace Modules
     Public Class MediaAndSpotify
         Inherits AdDetection
         Implements IAdModule

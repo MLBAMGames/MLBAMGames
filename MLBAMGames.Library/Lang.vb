@@ -1,5 +1,4 @@
 ﻿Imports System.Resources
-Imports MLBAMGames.Library.My.Resources
 
 Public Class Lang
     Public Shared RmText As ResourceManager = Nothing

@@ -1,8 +1,8 @@
-﻿Namespace Objects.GitHub
+﻿Namespace GitHub
 
     Public Class Commit
         Public url As String
-        Public html_url As String 
+        Public html_url As String
         Public diff_url As String
         Public patch_url As String
     End Class

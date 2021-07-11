@@ -1,4 +1,4 @@
-﻿Namespace Objects.GitHub
+﻿Namespace GitHub
 
     Public Class Label
         Public id As Integer
@@ -9,5 +9,5 @@
         Public color As String
         Public [default] As Boolean
     End Class
-    
+
 End Namespace

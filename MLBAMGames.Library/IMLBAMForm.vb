@@ -1,6 +1,5 @@
 ﻿Imports System.Windows.Forms
 Imports MetroFramework.Controls
-Imports MLBAMGames.Library.Controls
 
 Public Interface IMLBAMForm
     Inherits IWin32Window
@@ -27,7 +26,7 @@ Public Interface IMLBAMForm
 
     Property lnkRelease As MetroLink
 
-    Property tbLiveRewind As MetroTrackBarNoMW
+    Property tbLiveRewind As MetroTrackBar
 
     Property chkSpotifyForceToStart As MetroCheckBox
     Property chkSpotifyPlayNextSong As MetroCheckBox
@@ -53,10 +52,10 @@ Public Interface IMLBAMForm
     Property txtMpvPath As TextBox
     Property txtPlayerArgs As TextBox
 
-    Property cbSeasons As MetroComboBoxNoMW
-    Property cbServers As MetroComboBoxNoMW
-    Property cbStreamQuality As MetroComboBoxNoMW
-    Property cbLiveReplay As MetroComboBoxNoMW
+    Property cbSeasons As MetroComboBox
+    Property cbServers As MetroComboBox
+    Property cbStreamQuality As MetroComboBox
+    Property cbLiveReplay As MetroComboBox
 
     Property btnDate As Button
     Property btnTomorrow As Button

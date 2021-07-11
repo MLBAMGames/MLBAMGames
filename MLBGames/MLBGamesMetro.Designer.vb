@@ -185,13 +185,13 @@ Partial Class MLBGamesMetro
         Me.bw = New System.ComponentModel.BackgroundWorker()
         Me.btnHelp = New MetroFramework.Controls.MetroLink()
         Me.pnlLogo = New System.Windows.Forms.Panel()
-        Me.cbSeasons = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
-        Me.cbStreamQuality = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
-        Me.cbLanguage = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
-        Me.cbServers = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
-        Me.tbProxyPort = New MLBAMGames.Library.Controls.MetroTrackBarNoMW()
-        Me.tbLiveRewind = New MLBAMGames.Library.Controls.MetroTrackBarNoMW()
-        Me.cbLiveReplay = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
+        Me.cbSeasons = New MLBGames.Controls.MetroComboBoxNoMW()
+        Me.cbStreamQuality = New MLBGames.Controls.MetroComboBoxNoMW()
+        Me.cbLanguage = New MLBGames.Controls.MetroComboBoxNoMW()
+        Me.cbServers = New MLBGames.Controls.MetroComboBoxNoMW()
+        Me.tbProxyPort = New MLBGames.Controls.MetroTrackBarNoMW()
+        Me.tbLiveRewind = New MLBGames.Controls.MetroTrackBarNoMW()
+        Me.cbLiveReplay = New MLBGames.Controls.MetroComboBoxNoMW()
         Me.tabMenu.SuspendLayout()
         Me.tabGames.SuspendLayout()
         Me.pnlGameBar.SuspendLayout()
@@ -2695,12 +2695,12 @@ Partial Class MLBGamesMetro
     Friend WithEvents btnHelp As MetroLink
     Friend WithEvents pnlLogo As Panel
     Friend WithEvents lblProxyPortNumber As MetroLabel
-    Friend WithEvents cbServers As MLBAMGames.Library.Controls.MetroComboBoxNoMW
-    Friend WithEvents cbLanguage As MLBAMGames.Library.Controls.MetroComboBoxNoMW
-    Friend WithEvents cbStreamQuality As MLBAMGames.Library.Controls.MetroComboBoxNoMW
-    Friend WithEvents tbLiveRewind As MLBAMGames.Library.Controls.MetroTrackBarNoMW
-    Friend WithEvents cbLiveReplay As MLBAMGames.Library.Controls.MetroComboBoxNoMW
-    Friend WithEvents tbProxyPort As MLBAMGames.Library.Controls.MetroTrackBarNoMW
+    Friend WithEvents cbServers As MLBGames.Controls.MetroComboBoxNoMW
+    Friend WithEvents cbLanguage As MLBGames.Controls.MetroComboBoxNoMW
+    Friend WithEvents cbStreamQuality As MLBGames.Controls.MetroComboBoxNoMW
+    Friend WithEvents tbLiveRewind As MLBGames.Controls.MetroTrackBarNoMW
+    Friend WithEvents cbLiveReplay As MLBGames.Controls.MetroComboBoxNoMW
+    Friend WithEvents tbProxyPort As MLBGames.Controls.MetroTrackBarNoMW
     Friend WithEvents tlpStatus As TableLayoutPanel
     Friend WithEvents lnkRelease As MetroLink
     Friend WithEvents lblTip As MetroLabel
@@ -2712,7 +2712,7 @@ Partial Class MLBGamesMetro
     Friend WithEvents lblShowStanding As MetroLabel
     Friend WithEvents tgShowStanding As MetroToggle
     Friend WithEvents tbStanding As MetroTabControl
-    Friend WithEvents cbSeasons As MLBAMGames.Library.Controls.MetroComboBoxNoMW
+    Friend WithEvents cbSeasons As MLBGames.Controls.MetroComboBoxNoMW
     Friend WithEvents lblSeason As MetroLabel
     Friend WithEvents tlpStandings As TableLayoutPanel
     Friend WithEvents tabStandings As MetroTabPage

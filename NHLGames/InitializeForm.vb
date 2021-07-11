@@ -3,9 +3,7 @@ Imports System.IO
 Imports MetroFramework
 Imports MetroFramework.Controls
 Imports MLBAMGames.Library
-Imports MLBAMGames.Library.Utilities
-Imports MLBAMGames.Library.Controls
-Imports MLBAMGames.Library.Objects
+Imports NHLGames.Controls
 
 Namespace Utilities
     Public Class InitializeForm
@@ -122,7 +120,7 @@ Namespace Utilities
 
             'Calendar
             Form.flpCalendarPanel.Controls.Clear()
-            Form.flpCalendarPanel.Controls.Add(New MLBAMGames.Library.Controls.CalendarControl())
+            Form.flpCalendarPanel.Controls.Add(New CalendarControl())
 
             'Tips
             MLBAMGames.Library.Parameters.Tips.Clear()

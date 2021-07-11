@@ -1,4 +1,4 @@
-﻿Namespace Objects.GitHub
+﻿Namespace GitHub
 
     Public Class Asset
         Public url As String
@@ -11,9 +11,9 @@
         Public state As String
         Public size As Integer?
         Public download_count As Integer?
-        Public created_at As DateTime? 
+        Public created_at As DateTime?
         Public updated_at As DateTime?
         Public browser_download_url As String
     End Class
-    
+
 End Namespace

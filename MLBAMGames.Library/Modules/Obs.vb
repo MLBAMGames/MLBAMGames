@@ -3,7 +3,7 @@ Imports System.Windows.Forms
 Imports MLBAMGames.Library.My.Resources
 Imports MLBAMGames.Library.Utilities
 
-Namespace Objects.Modules
+Namespace Modules
     Public Class Obs
         Implements IAdModule
         Public ReadOnly HotkeyAd As Hotkey = New Hotkey()

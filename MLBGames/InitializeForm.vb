@@ -3,9 +3,7 @@ Imports System.IO
 Imports MetroFramework
 Imports MetroFramework.Controls
 Imports MLBAMGames.Library
-Imports MLBAMGames.Library.Utilities
 Imports MLBAMGames.Library.Controls
-Imports MLBAMGames.Library.Objects
 
 Namespace Utilities
     Public Class InitializeForm
@@ -117,12 +115,12 @@ Namespace Utilities
             Form.lblResetDesc.Text = Lang.RmText.GetString("lblResetDesc")
 
             'Console
-            Form.btnCopyConsole.Text = MLBAMGames.Library.Lang.RmText.GetString("btnCopyConsole")
-            Form.btnClearConsole.Text = MLBAMGames.Library.Lang.RmText.GetString("btnClearConsole")
+            Form.btnCopyConsole.Text = Lang.RmText.GetString("btnCopyConsole")
+            Form.btnClearConsole.Text = Lang.RmText.GetString("btnClearConsole")
 
             'Calendar
             Form.flpCalendarPanel.Controls.Clear()
-            Form.flpCalendarPanel.Controls.Add(New MLBAMGames.Library.Controls.CalendarControl())
+            Form.flpCalendarPanel.Controls.Add(New Controls.CalendarControl())
 
             'Tips
             MLBAMGames.Library.Parameters.Tips.Clear()
@@ -216,9 +214,9 @@ Namespace Utilities
             Form.spnLoading.Maximum = Parameters.SpnLoadingMaxValue
             Form.spnStreaming.Value = Parameters.SpnStreamingValue
             Form.spnStreaming.Maximum = Parameters.SpnStreamingMaxValue
-            Form.lblDate.Text = DateHelper.GetFormattedDate(CalendarControl.GameDate)
+            Form.lblDate.Text = DateHelper.GetFormattedDate(Controls.CalendarControl.GameDate)
 
-            CalendarControl.LabelDate = Form.lblDate
+            Controls.CalendarControl.LabelDate = Form.lblDate
         End Sub
 
         Private Shared Function GetApplication(varSetting As SettingsEnum, currentPath As String)

@@ -1,4 +1,4 @@
-﻿Namespace Objects.GitHub
+﻿Namespace GitHub
 
     Public Class User
         Public login As String

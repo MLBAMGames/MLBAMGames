@@ -1,5 +1,4 @@
 ﻿Imports MLBAMGames.Library
-Imports MLBAMGames.Library.Utilities
 Imports Ionic.Zip
 Imports System.IO
 
@@ -15,11 +14,11 @@ Public Class Updater
         DeleteTempFiles()
 
         Try
-            Dim releases = Await GitHub.GetReleases()
+            Dim releases = Await GitHubAPI.GetReleases()
 
             If Not releases.Any() Then Return
 
-            For Each release As Objects.GitHub.Release In releases
+            For Each release As GitHub.Release In releases
                 Console.WriteLine("Updating to release {0}...", release.tag_name)
                 Dim fileName = Await DownloadUpdateAsync(release)
                 If fileName <> String.Empty Then
@@ -31,16 +30,16 @@ Public Class Updater
             Console.WriteLine("Successfully updated!")
             Process.Start(New ProcessStartInfo(NHLGamesFullPath))
         Catch ex As Exception
-            Process.Start(New ProcessStartInfo(GitHub.LATEST_RELEASE_LINK))
+            Process.Start(New ProcessStartInfo(GitHubAPI.LATEST_RELEASE_LINK))
             LeaveConsole()
         Finally
             Environment.Exit(0)
         End Try
     End Function
 
-    Shared Async Function DownloadUpdateAsync(release As Objects.GitHub.Release) As Task(Of String)
+    Shared Async Function DownloadUpdateAsync(release As GitHub.Release) As Task(Of String)
         Try
-            Dim asset = GitHub.GetZipAssetFromRelease(release)
+            Dim asset = GitHubAPI.GetZipAssetFromRelease(release)
             Return Await Web.DownloadFileAsync(asset.browser_download_url, release.tag_name)
         Catch ex As ReleaseAssetNotFoundException
             Return String.Empty

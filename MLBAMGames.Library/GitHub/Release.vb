@@ -1,4 +1,4 @@
-﻿Namespace Objects.GitHub
+﻿Namespace GitHub
 
     Public Class Release
         Public url As String

@@ -1,4 +1,4 @@
-﻿Imports MLBAMGames.Library.Objects
+﻿Imports MLBAMGames.Library.API
 
 Public Class Parameters
     Public Const DomainName As String = "mf.svc.nhl.com"

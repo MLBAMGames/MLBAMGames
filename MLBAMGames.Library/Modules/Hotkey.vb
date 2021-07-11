@@ -1,4 +1,4 @@
-﻿Namespace Objects.Modules
+﻿Namespace Modules
     Public Class Hotkey
         Public Property Key As Char
         Public Property Ctrl As Boolean

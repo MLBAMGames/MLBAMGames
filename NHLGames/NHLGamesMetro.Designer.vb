@@ -47,7 +47,7 @@ Partial Class NHLGamesMetro
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.tabStandings = New MetroFramework.Controls.MetroTabPage()
         Me.tlpStandings = New System.Windows.Forms.TableLayoutPanel()
-        Me.cbSeasons = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
+        Me.cbSeasons = New NHLGames.Controls.MetroComboBoxNoMW()
         Me.lblSeason = New MetroFramework.Controls.MetroLabel()
         Me.tbStanding = New MetroFramework.Controls.MetroTabControl()
         Me.tabSettings = New MetroFramework.Controls.MetroTabPage()
@@ -77,7 +77,7 @@ Partial Class NHLGamesMetro
         Me.flpSpotifyDescSettings = New System.Windows.Forms.FlowLayoutPanel()
         Me.tgMedia = New MetroFramework.Controls.MetroToggle()
         Me.lblMediaDesc = New MetroFramework.Controls.MetroLabel()
-        Me.cbStreamQuality = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
+        Me.cbStreamQuality = New NHLGames.Controls.MetroComboBoxNoMW()
         Me.lblStreamerArgs = New MetroFramework.Controls.MetroLabel()
         Me.lblPlayerArgs = New MetroFramework.Controls.MetroLabel()
         Me.lblOutput = New MetroFramework.Controls.MetroLabel()
@@ -107,7 +107,7 @@ Partial Class NHLGamesMetro
         Me.lnkGetVlc = New MetroFramework.Controls.MetroLink()
         Me.lblLanguage = New MetroFramework.Controls.MetroLabel()
         Me.flpLanguage = New System.Windows.Forms.FlowLayoutPanel()
-        Me.cbLanguage = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
+        Me.cbLanguage = New NHLGames.Controls.MetroComboBoxNoMW()
         Me.lblSlPath = New MetroFramework.Controls.MetroLabel()
         Me.lblMpvPath = New MetroFramework.Controls.MetroLabel()
         Me.lblMpcPath = New MetroFramework.Controls.MetroLabel()
@@ -116,10 +116,10 @@ Partial Class NHLGamesMetro
         Me.lblQuality = New MetroFramework.Controls.MetroLabel()
         Me.lblGamePanel = New MetroFramework.Controls.MetroLabel()
         Me.lblProxyPort = New MetroFramework.Controls.MetroLabel()
-        Me.cbServers = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
+        Me.cbServers = New NHLGames.Controls.MetroComboBoxNoMW()
         Me.flpHostsFile = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblProxyPortNumber = New MetroFramework.Controls.MetroLabel()
-        Me.tbProxyPort = New MLBAMGames.Library.Controls.MetroTrackBarNoMW()
+        Me.tbProxyPort = New NHLGames.Controls.MetroTrackBarNoMW()
         Me.tlpGamePanelSettings = New System.Windows.Forms.TableLayoutPanel()
         Me.tgShowStanding = New MetroFramework.Controls.MetroToggle()
         Me.tgShowTodayLiveGamesFirst = New MetroFramework.Controls.MetroToggle()
@@ -162,11 +162,11 @@ Partial Class NHLGamesMetro
         Me.lblModulesDesc = New MetroFramework.Controls.MetroLabel()
         Me.tlpReplay = New System.Windows.Forms.TableLayoutPanel()
         Me.lblLiveRewindDetails = New MetroFramework.Controls.MetroLabel()
-        Me.tbLiveRewind = New MLBAMGames.Library.Controls.MetroTrackBarNoMW()
+        Me.tbLiveRewind = New NHLGames.Controls.MetroTrackBarNoMW()
         Me.lblLiveRewind = New MetroFramework.Controls.MetroLabel()
         Me.lblCdn = New MetroFramework.Controls.MetroLabel()
         Me.lblLiveReplay = New MetroFramework.Controls.MetroLabel()
-        Me.cbLiveReplay = New MLBAMGames.Library.Controls.MetroComboBoxNoMW()
+        Me.cbLiveReplay = New NHLGames.Controls.MetroComboBoxNoMW()
         Me.tgDarkMode = New MetroFramework.Controls.MetroToggle()
         Me.lblDarkMode = New MetroFramework.Controls.MetroLabel()
         Me.lblReset = New MetroFramework.Controls.MetroLabel()
@@ -2595,12 +2595,13 @@ Partial Class NHLGamesMetro
     Friend WithEvents btnHelp As MetroLink
     Friend WithEvents pnlLogo As Panel
     Friend WithEvents lblProxyPortNumber As MetroLabel
-    Friend WithEvents cbServers As MLBAMGames.Library.Controls.MetroComboBoxNoMW
-    Friend WithEvents cbLanguage As MLBAMGames.Library.Controls.MetroComboBoxNoMW
-    Friend WithEvents cbStreamQuality As MLBAMGames.Library.Controls.MetroComboBoxNoMW
-    Friend WithEvents tbLiveRewind As MLBAMGames.Library.Controls.MetroTrackBarNoMW
-    Friend WithEvents cbLiveReplay As MLBAMGames.Library.Controls.MetroComboBoxNoMW
-    Friend WithEvents tbProxyPort As MLBAMGames.Library.Controls.MetroTrackBarNoMW
+    Friend WithEvents cbServers As NHLGames.Controls.MetroComboBoxNoMW
+    Friend WithEvents cbLanguage As NHLGames.Controls.MetroComboBoxNoMW
+    Friend WithEvents cbStreamQuality As NHLGames.Controls.MetroComboBoxNoMW
+    Friend WithEvents cbLiveReplay As NHLGames.Controls.MetroComboBoxNoMW
+    Friend WithEvents cbSeasons As NHLGames.Controls.MetroComboBoxNoMW
+    Friend WithEvents tbLiveRewind As NHLGames.Controls.MetroTrackBarNoMW
+    Friend WithEvents tbProxyPort As NHLGames.Controls.MetroTrackBarNoMW
     Friend WithEvents tlpStatus As TableLayoutPanel
     Friend WithEvents lnkRelease As MetroLink
     Friend WithEvents lblTip As MetroLabel
@@ -2612,7 +2613,6 @@ Partial Class NHLGamesMetro
     Friend WithEvents lblShowStanding As MetroLabel
     Friend WithEvents tgShowStanding As MetroToggle
     Friend WithEvents tbStanding As MetroTabControl
-    Friend WithEvents cbSeasons As MLBAMGames.Library.Controls.MetroComboBoxNoMW
     Friend WithEvents lblSeason As MetroLabel
     Friend WithEvents tlpStandings As TableLayoutPanel
     Friend WithEvents tabStandings As MetroTabPage

@@ -1,6 +1,6 @@
 ﻿Imports MLBAMGames.Library.Utilities
 
-Namespace Objects.Modules
+Namespace Modules
     Public Interface IAdModule
         ReadOnly Property Title As AdModulesEnum
         Sub Initialize()

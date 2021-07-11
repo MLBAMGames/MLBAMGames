@@ -6,12 +6,10 @@ Imports System.Security.Permissions
 Imports System.Threading
 Imports MetroFramework.Controls
 Imports MLBAMGames.Library
-Imports MLBAMGames.Library.Controls
-Imports MLBAMGames.Library.Objects
-Imports MLBAMGames.Library.Objects.Modules
-Imports MLBAMGames.Library.Utilities
 Imports NHLGames.My.Resources
 Imports NHLGames.Utilities
+Imports NHLGames.Controls
+Imports MLBAMGames.Library.Modules
 
 Public Class NHLGamesMetro
     Implements IMLBAMForm
@@ -65,7 +63,17 @@ Public Class NHLGamesMetro
             Proxy.MLBAMProxy = New Proxy()
         End If
 
-        Await Web.CheckAppCanRun()
+        InvokeElement.SetFormStatusLabel(Lang.RmText.GetString("msgChekingRequirements"))
+
+        Dim errorMessage = Await Web.CheckAppCanRun()
+        If errorMessage <> String.Empty Then
+            If InvokeElement.MsgBoxRed($"{Lang.RmText.GetString(errorMessage)} {Lang.RmText.GetString("msgNotStarting")}",
+                                   Lang.RmText.GetString("msgFailure"),
+                                   MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                Instance.Form.Close()
+            End If
+            Console.WriteLine($"Status: {Lang.EnglishRmText.GetString("errorMessage")}")
+        End If
 
         Parameters.UILoaded = True
         ResumeLayout(True)
@@ -95,7 +103,8 @@ Public Class NHLGamesMetro
         If Parameters.StreamStarted Then
             GameFetcher.StreamingProgress()
         Else
-            GameFetcher.LoadingProgress()
+            Dim gameTabEnabled = GameFetcher.LoadingProgress()
+            InvokeElement.SetGameTabControls(gameTabEnabled)
         End If
         InvokeElement.AnimateTipsTick += NHLGamesMetro.tmr.Interval
         InvokeElement.AnimateTips()
@@ -103,7 +112,7 @@ Public Class NHLGamesMetro
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         flpCalendarPanel.Visible = False
-        InvokeElement.LoadGames(MLBAMGames.Library.Controls.CalendarControl.GameDate)
+        InvokeElement.LoadGames(CalendarControl.GameDate)
         flpGames.Focus()
     End Sub
 
@@ -336,7 +345,7 @@ Public Class NHLGamesMetro
     End Sub
 
     Private Sub lnkRelease_Click(sender As Object, e As EventArgs) Handles lnkRelease.Click
-        GitHub.Update()
+        GitHubAPI.Update()
     End Sub
 
     Private Sub tgStreamer_CheckedChanged(sender As Object, e As EventArgs) Handles tgStreamer.CheckedChanged
@@ -770,7 +779,7 @@ Public Class NHLGamesMetro
     End Sub
 
     Private Sub cbSeasons_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbSeasons.SelectedIndexChanged
-        Dim season As NHLStats.Season = cbSeasons.Items(cbSeasons.SelectedIndex)
+        Dim season As API.Season = cbSeasons.Items(cbSeasons.SelectedIndex)
         StandingsHelper.GenerateStandings(tbStanding, season)
     End Sub
 
@@ -1059,20 +1068,20 @@ Public Class NHLGamesMetro
         End Set
     End Property
 
-    Private Property IMLBAMForm_cbSeasons As MetroComboBoxNoMW Implements IMLBAMForm.cbSeasons
+    Private Property IMLBAMForm_cbSeasons As MetroComboBox Implements IMLBAMForm.cbSeasons
         Get
             Return cbSeasons
         End Get
-        Set(value As MetroComboBoxNoMW)
+        Set(value As MetroComboBox)
             cbSeasons = value
         End Set
     End Property
 
-    Private Property IMLBAMForm_cbServers As MetroComboBoxNoMW Implements IMLBAMForm.cbServers
+    Private Property IMLBAMForm_cbServers As MetroComboBox Implements IMLBAMForm.cbServers
         Get
             Return cbServers
         End Get
-        Set(value As MetroComboBoxNoMW)
+        Set(value As MetroComboBox)
             cbServers = value
         End Set
     End Property
@@ -1137,11 +1146,11 @@ Public Class NHLGamesMetro
         End Set
     End Property
 
-    Private Property IMLBAMForm_tbLiveRewind As MetroTrackBarNoMW Implements IMLBAMForm.tbLiveRewind
+    Private Property IMLBAMForm_tbLiveRewind As MetroTrackBar Implements IMLBAMForm.tbLiveRewind
         Get
             Return tbLiveRewind
         End Get
-        Set(value As MetroTrackBarNoMW)
+        Set(value As MetroTrackBar)
             tbLiveRewind = value
         End Set
     End Property
@@ -1200,20 +1209,20 @@ Public Class NHLGamesMetro
         End Set
     End Property
 
-    Private Property IMLBAMForm_cbStreamQuality As MetroComboBoxNoMW Implements IMLBAMForm.cbStreamQuality
+    Private Property IMLBAMForm_cbStreamQuality As MetroComboBox Implements IMLBAMForm.cbStreamQuality
         Get
             Return cbStreamQuality
         End Get
-        Set(value As MetroComboBoxNoMW)
+        Set(value As MetroComboBox)
             cbStreamQuality = value
         End Set
     End Property
 
-    Private Property IMLBAMForm_cbLiveReplay As MetroComboBoxNoMW Implements IMLBAMForm.cbLiveReplay
+    Private Property IMLBAMForm_cbLiveReplay As MetroComboBox Implements IMLBAMForm.cbLiveReplay
         Get
             Return cbLiveReplay
         End Get
-        Set(value As MetroComboBoxNoMW)
+        Set(value As MetroComboBox)
             cbLiveReplay = value
         End Set
     End Property
