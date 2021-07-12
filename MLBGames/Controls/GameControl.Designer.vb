@@ -1,10 +1,7 @@
 ﻿Imports System.ComponentModel
-Imports System.Windows.Forms
-Imports MetroFramework
 Imports MetroFramework.Components
 Imports MetroFramework.Controls
 Imports Microsoft.VisualBasic.CompilerServices
-Imports NHLGames.Utilities
 
 Namespace Controls
     <DesignerGenerated()>
@@ -22,7 +19,7 @@ Namespace Controls
         Private Sub InitializeComponent()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GameControl))
             Me.tt = New MetroFramework.Components.MetroToolTip()
-            Me.bpGameControl = New MLBAMGames.Library.Controls.BorderPanel()
+            Me.bpGameControl = New Controls.BorderPanel()
             Me.btnRecap = New System.Windows.Forms.Button()
             Me.btnLiveReplay = New System.Windows.Forms.Button()
             Me.lblGameStatus = New MetroFramework.Controls.MetroLabel()

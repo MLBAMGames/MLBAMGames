@@ -3,7 +3,7 @@ Imports System.Windows.Forms
 Imports MetroFramework
 Imports MLBAMGames.Library
 Imports MLBAMGames.Library.Standings
-Imports NHLGames.Controls.NHLStats
+Imports MLBGames.Controls.NHLStats
 
 Namespace Controls
     Public Class GameControl

@@ -5,7 +5,7 @@ Imports MetroFramework.Controls
 Imports MLBAMGames.Library
 Imports MLBAMGames.Library.Standings
 Imports MLBAMGames.Library.API
-Imports NHLGames.Controls.NHLStats
+Imports MLBGames.Controls.NHLStats
 
 Public Class StandingsHelper
 
@@ -65,7 +65,7 @@ Public Class StandingsHelper
 
     Private Shared Function GeneratMetroTabPage(standingType As StandingTypeEnum, season As Season) As MetroTabPage
 
-        Dim standing As Standing = standing.GetCurrentStandings(standingType, season.seasonId)
+        Dim standing As Standing = Standing.GetCurrentStandings(standingType, season.seasonId)
 
         If (standing.records.Count <> 0) Then
             Dim metroTabPage As MetroTabPage = New MetroTabPage()

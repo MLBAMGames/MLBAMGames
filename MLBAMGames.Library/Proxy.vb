@@ -45,7 +45,7 @@ Public Class Proxy
             .EnableRaisingEvents = True
         }
 
-        InvokeElement.SetFormStatusLabel(Lang.RmText.GetString("msgProxyGettingReady"))
+        Instance.Form.lblStatus.SetPropertyThreadSafe(Function() Instance.Form.lblStatus.Text = Lang.RmText.GetString("msgProxyGettingReady"))
 
         If Not IsProxyFileFound() Then
             Console.WriteLine(Lang.EnglishRmText.GetString("errorMitmProxyNotFound"))
@@ -122,13 +122,13 @@ Public Class Proxy
 
     Public Shared Async Function WaitToBeReady() As Task(Of Boolean)
         If Await Ready() Then Return True
-        InvokeElement.SetFormStatusLabel(Lang.RmText.GetString("msgProxyGettingReady"))
+        Instance.Form.lblStatus.SetPropertyThreadSafe(Function() Instance.Form.lblStatus.Text = Lang.RmText.GetString("msgProxyGettingReady"))
 
         While Not Await Ready()
             Await Task.Delay(200)
         End While
 
-        InvokeElement.SetFormStatusLabel(String.Format(Lang.RmText.GetString("msgGamesFound"),
+        Instance.Form.lblStatus.SetPropertyThreadSafe(Function() Instance.Form.lblStatus.Text = String.Format(Lang.RmText.GetString("msgGamesFound"),
                                                            GameFetcher.Entries.Values.Count.ToString()))
         Return True
     End Function

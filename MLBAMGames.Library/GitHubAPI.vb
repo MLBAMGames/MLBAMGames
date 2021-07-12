@@ -42,10 +42,11 @@ Public Class GitHubAPI
         Dim dialogMessage = If(String.IsNullOrEmpty(changelog),
                 Lang.RmText.GetString("msgChangeLogNone"),
                 String.Format(Lang.RmText.GetString("msgChangeLog"), vbCrLf, changelog))
-        Dim dialogResult = InvokeElement.MsgBoxBlue(
+        Dim dialogResult = Instance.Form.MsgBox(
                 dialogMessage,
                 dialogTitle,
-                MessageBoxButtons.OKCancel)
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Information)
 
         If dialogResult = DialogResult.OK Then
             Update()
@@ -70,10 +71,11 @@ Public Class GitHubAPI
         Dim issueBodySplitted = issue.body.Split(New Char() {"\r\n", "\r", "\n"})
         Dim dialogMessage = issueBodySplitted.Take(5).Aggregate(Function(c, n) $"{c}\n{n}")
 
-        Dim dialogResult = InvokeElement.MsgBoxBlue(
+        Dim dialogResult = Instance.Form.MsgBox(
                 dialogMessage,
                 Lang.RmText.GetString("msgAnnouncement"),
-                MessageBoxButtons.OK)
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information)
     End Function
 
     Private Shared Function GetGitHubApiRequest(url As String) As HttpWebRequest

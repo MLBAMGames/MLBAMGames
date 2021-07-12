@@ -72,9 +72,8 @@ Public Interface IMLBAMForm
     Sub Close()
 #End Region
 #Region "Methods"
-    Sub ClearGamePanel()
     Function GetSetting(name As String) As Object
     Sub SetSetting(name As String, value As Object)
-
+    Function MsgBox(message As String, title As String, buttons As MessageBoxButtons, type As MessageBoxIcon) As DialogResult
 #End Region
 End Interface

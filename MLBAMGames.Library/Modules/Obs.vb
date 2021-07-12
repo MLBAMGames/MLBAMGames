@@ -1,7 +1,5 @@
 ﻿Imports System.Threading
 Imports System.Windows.Forms
-Imports MLBAMGames.Library.My.Resources
-Imports MLBAMGames.Library.Utilities
 
 Namespace Modules
     Public Class Obs
@@ -80,7 +78,7 @@ Namespace Modules
                     Try
                         Process.GetProcessById(_obsIdProcess)
                     Catch ex As Exception
-                        InvokeElement.ModuleObsOff()
+                        ModuleObsOff()
                     End Try
                 End If
 
@@ -104,6 +102,10 @@ Namespace Modules
                     _obsIdProcess = processes(0).Id
                 End If
             Next
+        End Sub
+
+        Private Sub ModuleObsOff()
+            Instance.Form.tgOBS.SetPropertyThreadSafe(Function() Instance.Form.tgOBS.Checked = False)
         End Sub
     End Class
 End Namespace

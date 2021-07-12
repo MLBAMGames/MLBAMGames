@@ -82,10 +82,11 @@ Public Class ConsoleRedirectStreamWriter
                     End If
 
                     If lastError <> Nothing Then
-                        InvokeElement.MsgBoxRed(
+                        Instance.Form.MsgBox(
                             String.Format(Lang.RmText.GetString("msgErrorGeneralText"), vbCrLf, lastError),
                             Lang.RmText.GetString("msgFailure"),
-                            MessageBoxButtons.OK)
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error)
                     End If
 
                     Return Nothing

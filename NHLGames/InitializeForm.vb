@@ -124,7 +124,7 @@ Namespace Utilities
 
             'Tips
             MLBAMGames.Library.Parameters.Tips.Clear()
-            For index As Integer = 1 To InvokeElement.TotalTipCount
+            For index As Integer = 1 To Parameters.TotalTipCount
                 MLBAMGames.Library.Parameters.Tips.Add(index, MLBAMGames.Library.Lang.RmText.GetString($"tipMessage{index}"))
             Next
             Form.lblTip.Text = MLBAMGames.Library.Parameters.Tips.First().Value

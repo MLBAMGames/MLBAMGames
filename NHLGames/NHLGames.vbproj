@@ -205,7 +205,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="InvokeElement.vb" />
     <Compile Include="NHLGamesMetro.Designer.vb">
       <DependentUpon>NHLGamesMetro.vb</DependentUpon>
     </Compile>

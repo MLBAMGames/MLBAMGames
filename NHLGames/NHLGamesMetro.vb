@@ -10,6 +10,7 @@ Imports NHLGames.My.Resources
 Imports NHLGames.Utilities
 Imports NHLGames.Controls
 Imports MLBAMGames.Library.Modules
+Imports MetroFramework
 
 Public Class NHLGamesMetro
     Implements IMLBAMForm
@@ -63,13 +64,14 @@ Public Class NHLGamesMetro
             Proxy.MLBAMProxy = New Proxy()
         End If
 
-        InvokeElement.SetFormStatusLabel(Lang.RmText.GetString("msgChekingRequirements"))
+        lblStatus.SetPropertyThreadSafe(Function() lblStatus.Text = Lang.RmText.GetString("msgChekingRequirements"))
 
         Dim errorMessage = Await Web.CheckAppCanRun()
         If errorMessage <> String.Empty Then
-            If InvokeElement.MsgBoxRed($"{Lang.RmText.GetString(errorMessage)} {Lang.RmText.GetString("msgNotStarting")}",
+            If Instance.Form.MsgBox($"{Lang.RmText.GetString(errorMessage)} {Lang.RmText.GetString("msgNotStarting")}",
                                    Lang.RmText.GetString("msgFailure"),
-                                   MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Error) = DialogResult.Yes Then
                 Instance.Form.Close()
             End If
             Console.WriteLine($"Status: {Lang.EnglishRmText.GetString("errorMessage")}")
@@ -79,11 +81,24 @@ Public Class NHLGamesMetro
         ResumeLayout(True)
 
         tmr.Enabled = True
-        InvokeElement.LoadGames(CalendarControl.GameDate)
+        Await LoadGames(CalendarControl.GameDate)
 
-        InvokeElement.LoadTeamsName()
-        InvokeElement.LoadStandings()
+        LoadTeamsName()
+        LoadStandings()
     End Sub
+
+    Private Async Function LoadGames(gameDate As Date) As Task
+        ClearGamePanel()
+        Await Task.Run(Async Function() As Task
+                           lblStatus.SetPropertyThreadSafe(Function() lblStatus.Text = Lang.RmText.GetString("msgLoadingGames"))
+                           If Await GameFetcher.LoadGames(gameDate, SportsEnum.NHL) Then
+                               ClearGamePanel()
+                               AddGamePanels(GameFetcher.Entries.Values.ToList())
+                               lblStatus.SetPropertyThreadSafe(Function() lblStatus.Text = String.Format(Lang.RmText.GetString("msgGamesFound"),
+                                                           GameFetcher.Entries.Values.Count.ToString()))
+                           End If
+                       End Function).ConfigureAwait(False)
+    End Function
 
     Public Sub ClearGamePanel()
         SyncLock flpGames.Controls
@@ -95,24 +110,79 @@ Public Class NHLGamesMetro
         End SyncLock
     End Sub
 
+    Public Function MsgBox(message As String, title As String, buttons As MessageBoxButtons, type As MessageBoxIcon) As DialogResult Implements IMLBAMForm.MsgBox
+        Instance.Form.tabMenu.SetPropertyThreadSafe(Function() Instance.Form.tabMenu.SelectedIndex = MainTabsEnum.Console)
+        Return MetroMessageBox.Show(Me,
+                                    message,
+                                    title,
+                                    buttons,
+                                    type)
+    End Function
+
+    Private Sub LoadStandings()
+        cbSeasons.SetPropertyThreadSafe(Sub()
+                                            cbSeasons.DataSource = API.Seasons.GetAllSeasons()
+                                            cbSeasons.SelectedIndex = 0
+                                        End Sub)
+    End Sub
+
+    Private Sub LoadTeamsName()
+        Dim teamRootobject As API.TeamRootobject = API.TeamRootobject.GetTeamRootobject()
+
+        For Each item As API.Team In teamRootobject.teams
+            API.Team.TeamAbbreviation.Add(item.name, item.abbreviation)
+        Next
+    End Sub
+
+    Public Sub AddGamePanels(gamesDict As List(Of Game))
+        flpGames.SetPropertyThreadSafe(Sub()
+                                           flpGames.Controls.AddRange((From game In gamesDict Select New GameControl(
+                                                                                              game,
+                                                                                              Instance.Form.GetSetting("ShowScores"),
+                                                                                              Instance.Form.GetSetting("ShowLiveScores"),
+                                                                                              Instance.Form.GetSetting("ShowSeriesRecord"),
+                                                                                              Instance.Form.GetSetting("ShowTeamCityAbr"),
+                                                                                              Instance.Form.GetSetting("ShowLiveTime"),
+                                                                                              Instance.Form.GetSetting("ShowStanding")
+                                                                                 )).ToArray())
+                                       End Sub)
+    End Sub
+
     Private Shared Sub _writeToConsoleSettingsChanged(key As String, value As String)
         If Parameters.UILoaded Then Console.WriteLine(Lang.EnglishRmText.GetString("msgSettingUpdated"), key, value)
     End Sub
 
-    Private Shared Sub tmrAnimate_Tick(sender As Object, e As EventArgs) Handles tmr.Tick
+    Private Sub tmrAnimate_Tick(sender As Object, e As EventArgs) Handles tmr.Tick
         If Parameters.StreamStarted Then
             GameFetcher.StreamingProgress()
         Else
             Dim gameTabEnabled = GameFetcher.LoadingProgress()
-            InvokeElement.SetGameTabControls(gameTabEnabled)
+            btnDate.SetPropertyThreadSafe(Function() btnDate.Enabled = gameTabEnabled)
+            btnTomorrow.SetPropertyThreadSafe(Function() btnTomorrow.Enabled = gameTabEnabled)
+            btnYesterday.SetPropertyThreadSafe(Function() btnYesterday.Enabled = gameTabEnabled)
         End If
-        InvokeElement.AnimateTipsTick += NHLGamesMetro.tmr.Interval
-        InvokeElement.AnimateTips()
+        Parameters.AnimateTipsTick += tmr.Interval
+        AnimateTips()
+    End Sub
+
+    Private Sub AnimateTips()
+        If Parameters.AnimateTipsTick Mod Parameters.AnimateTipsEveryTick <> 0 Then Return
+
+        Dim text = lblTip.GetPropertyThreadSafe(Function(x) x.Text)
+        If text.Contains(Lang.RmText.GetString("lnkNewVersionText")) Then Return
+
+        Dim currentTip = Parameters.Tips.FirstOrDefault(Function(x) x.Value = text)
+        If currentTip.Value Is Nothing Then Return
+
+        Dim nextTip = Parameters.Tips.FirstOrDefault(Function(x) If(currentTip.Key + 1 > Parameters.TotalTipCount, x.Key = 1, x.Key = currentTip.Key + 1))
+        If nextTip.Value Is Nothing Then Return
+
+        lblTip.SetPropertyThreadSafe(Function() lblTip.Text = nextTip.Value)
     End Sub
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         flpCalendarPanel.Visible = False
-        InvokeElement.LoadGames(CalendarControl.GameDate)
+        Task.Run(Function() LoadGames(CalendarControl.GameDate))
         flpGames.Focus()
     End Sub
 
@@ -246,7 +316,7 @@ Public Class NHLGamesMetro
         Dim cdn = If(tgAlternateCdn.Checked, CdnTypeEnum.L3C, CdnTypeEnum.Akc)
         Player.RenewArgs()
         _writeToConsoleSettingsChanged(lblCdn.Text, cdn.ToString())
-        InvokeElement.LoadGames(CalendarControl.GameDate)
+        Task.Run(Function() LoadGames(CalendarControl.GameDate))
     End Sub
 
     Private Sub txtOutputPath_TextChanged(sender As Object, e As EventArgs) Handles txtOutputArgs.TextChanged
@@ -304,7 +374,7 @@ Public Class NHLGamesMetro
 
     Private Sub lblDate_TextChanged(sender As Object, e As EventArgs) Handles lblDate.TextChanged
         flpCalendarPanel.Visible = False
-        InvokeElement.LoadGames(CalendarControl.GameDate)
+        Task.Run(Function() LoadGames(CalendarControl.GameDate))
         flpGames.Focus()
     End Sub
 
@@ -494,7 +564,7 @@ Public Class NHLGamesMetro
     Private Sub cbServers_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbServers.SelectedIndexChanged
         If Not Parameters.UILoaded Then Return
         Web.SetRedirectionServerInApp()
-        InvokeElement.LoadGames(CalendarControl.GameDate)
+        Task.Run(Function() LoadGames(CalendarControl.GameDate))
     End Sub
 
     Private Sub btnCopyConsole_Click(sender As Object, e As EventArgs) Handles btnCopyConsole.Click
@@ -656,7 +726,7 @@ Public Class NHLGamesMetro
         My.Settings.Save()
         _writeToConsoleSettingToggleChanged(lblShowTodayLiveGamesFirst.Text, tgShowTodayLiveGamesFirst.Checked)
         Parameters.TodayLiveGamesFirst = tgShowTodayLiveGamesFirst.Checked
-        InvokeElement.LoadGames(CalendarControl.GameDate)
+        Task.Run(Function() LoadGames(CalendarControl.GameDate))
     End Sub
 
     Private Async Sub CopyConsoleToClipBoard()
@@ -744,16 +814,19 @@ Public Class NHLGamesMetro
 
     Private Sub tgDarkMode_CheckedChanged(sender As Object, e As EventArgs) Handles tgDarkMode.CheckedChanged
         Dim darkMode = My.Settings.UseDarkMode
-        If Not darkMode.Equals(tgDarkMode.Checked) AndAlso InvokeElement.MsgBoxBlue(
+        If Not darkMode.Equals(tgDarkMode.Checked) AndAlso Instance.Form.MsgBox(
             Lang.RmText.GetString("msgAcceptToRestart"),
             Lang.RmText.GetString("lblDark"),
-            MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Information) = DialogResult.Yes Then
             RestartNHLGames()
         End If
         My.Settings.UseDarkMode = tgDarkMode.Checked
         My.Settings.Save()
         _writeToConsoleSettingToggleChanged(lblDarkMode.Text, tgDarkMode.Checked)
     End Sub
+
+
 
     Private Sub RestartNHLGames()
         Dim exeName = Process.GetCurrentProcess().MainModule.FileName
@@ -786,10 +859,11 @@ Public Class NHLGamesMetro
     Private Sub tgReset_CheckedChanged(sender As Object, e As EventArgs) Handles tgReset.CheckedChanged
         If tgReset.Checked = False Then Return
 
-        If InvokeElement.MsgBoxBlue(
+        If Instance.Form.MsgBox(
             Lang.RmText.GetString("msgAcceptToRestart"),
             Lang.RmText.GetString("lblReset"),
-            MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Information) = DialogResult.Yes Then
             My.Settings.Reset()
             My.Settings.Save()
             Dim x = My.Settings.LastBuildVersionSkipped
@@ -810,10 +884,6 @@ Public Class NHLGamesMetro
 
     Private Sub IMLBAMForm_Close() Implements IMLBAMForm.Close
         Close()
-    End Sub
-
-    Private Sub IMLBAMForm_ClearGamePanel() Implements IMLBAMForm.ClearGamePanel
-        ClearGamePanel()
     End Sub
 
     Private Property IMLBAMForm_tgModules As MetroToggle Implements IMLBAMForm.tgModules

@@ -1,8 +1,6 @@
 ﻿Imports System.IO
 Imports System.Threading
 Imports System.Windows.Forms
-Imports MLBAMGames.Library.My.Resources
-Imports MLBAMGames.Library.Utilities
 
 Namespace Modules
     Public Class MediaAndSpotify
@@ -104,7 +102,7 @@ Namespace Modules
             Try
                 Process.GetProcessById(_spotifyId)
             Catch ex As Exception
-                InvokeElement.ModuleSpotifyOff()
+                ModuleSpotifyOff()
                 _initialized = False
             End Try
             Return _initialized
@@ -129,7 +127,7 @@ Namespace Modules
         Public Sub Initialize() Implements IAdModule.Initialize
             If Not SpotifyIsInstalled() Then
                 _stopIt = True
-                InvokeElement.ModuleSpotifyOff()
+                ModuleSpotifyOff()
                 Console.WriteLine(Lang.EnglishRmText.GetString("msgSpotifyIsntInstalled"))
             End If
 
@@ -149,14 +147,14 @@ Namespace Modules
                     If ConnectInternal() Then Return
                 Catch ex As Exception
                     _stopIt = True
-                    InvokeElement.ModuleSpotifyOff()
+                    ModuleSpotifyOff()
                     Console.WriteLine(Lang.EnglishRmText.GetString("msgSpotifyException"), ex.Message)
                 End Try
                 Await Task.Delay(_connectSleep)
             End While
 
             If _spotifyId = 0 AndAlso Not _stopIt Then
-                InvokeElement.ModuleSpotifyOff()
+                ModuleSpotifyOff()
                 Console.WriteLine(Lang.EnglishRmText.GetString("msgSpotifyNotConnected"))
             End If
 
@@ -186,6 +184,10 @@ Namespace Modules
 
             Return False
         End Function
+
+        Private Sub ModuleSpotifyOff()
+            Instance.Form.tgMedia.SetPropertyThreadSafe(Function() Instance.Form.tgMedia.Checked = False)
+        End Sub
 
     End Class
 

@@ -6,7 +6,10 @@ Public Class Parameters
     Public Const LatestReleaseLink As String = "https://github.com/NHLGames/NHLGames/releases/latest"
 
     Public Const ResizeBorderWidth As Integer = 8
+    Public Const TotalTipCount As Integer = 10
+    Public Const AnimateTipsEveryTick As Integer = 10000
 
+    Public Shared AnimateTipsTick As Integer = 0
     Public Shared HostName As String = String.Empty
     Public Shared IsDarkMode As Boolean = False
     Public Shared IsServerUp As Boolean = Nothing

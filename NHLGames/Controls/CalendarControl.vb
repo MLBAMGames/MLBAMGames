@@ -2,8 +2,7 @@
 Imports System.Globalization
 Imports System.Windows.Forms
 Imports MetroFramework
-Imports MLBAMGames.Library.Utilities
-Imports NHLGames.Utilities
+Imports MLBAMGames.Library
 
 Namespace Controls
     Public Class CalendarControl

@@ -88,6 +88,7 @@
     <Compile Include="AdDetectionConfigs.vb" />
     <Compile Include="AssemblyInfo.vb" />
     <Compile Include="ConsoleRedirectStreamWriter.vb" />
+    <Compile Include="ControlExtensions.vb" />
     <Compile Include="CustomExceptions.vb" />
     <Compile Include="DateHelper.vb" />
     <Compile Include="Enums.vb" />
