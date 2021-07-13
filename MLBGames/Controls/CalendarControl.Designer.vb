@@ -94,7 +94,7 @@ Namespace Controls
             '
             Me.lnkToday.Anchor = CType(((AnchorStyles.Bottom Or AnchorStyles.Left) _
                 Or AnchorStyles.Right), AnchorStyles)
-            Me.lnkToday.BackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+            Me.lnkToday.BackColor = MetroColors.Red
             Me.lnkToday.FlatAppearance.BorderSize = 0
             Me.lnkToday.FlatAppearance.MouseOverBackColor = Color.DarkGray
             Me.lnkToday.FlatStyle = FlatStyle.Flat
@@ -111,7 +111,7 @@ Namespace Controls
             '
             Me.Su1.BackColor = Color.White
             Me.Su1.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Su1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Su1.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Su1.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Su1.FlatStyle = FlatStyle.Flat
             Me.Su1.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -125,7 +125,7 @@ Namespace Controls
             '
             Me.Mo1.BackColor = Color.White
             Me.Mo1.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Mo1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Mo1.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Mo1.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Mo1.FlatStyle = FlatStyle.Flat
             Me.Mo1.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -139,7 +139,7 @@ Namespace Controls
             '
             Me.Tu1.BackColor = Color.White
             Me.Tu1.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Tu1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Tu1.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Tu1.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Tu1.FlatStyle = FlatStyle.Flat
             Me.Tu1.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -153,7 +153,7 @@ Namespace Controls
             '
             Me.We1.BackColor = Color.White
             Me.We1.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.We1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.We1.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.We1.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.We1.FlatStyle = FlatStyle.Flat
             Me.We1.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -167,7 +167,7 @@ Namespace Controls
             '
             Me.Th1.BackColor = Color.White
             Me.Th1.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Th1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Th1.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Th1.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Th1.FlatStyle = FlatStyle.Flat
             Me.Th1.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -181,7 +181,7 @@ Namespace Controls
             '
             Me.Fr1.BackColor = Color.White
             Me.Fr1.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Fr1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Fr1.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Fr1.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Fr1.FlatStyle = FlatStyle.Flat
             Me.Fr1.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -195,7 +195,7 @@ Namespace Controls
             '
             Me.Sa1.BackColor = Color.White
             Me.Sa1.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Sa1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Sa1.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Sa1.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Sa1.FlatStyle = FlatStyle.Flat
             Me.Sa1.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -209,7 +209,7 @@ Namespace Controls
             '
             Me.Su2.BackColor = Color.White
             Me.Su2.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Su2.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Su2.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Su2.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Su2.FlatStyle = FlatStyle.Flat
             Me.Su2.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -223,7 +223,7 @@ Namespace Controls
             '
             Me.Mo2.BackColor = Color.White
             Me.Mo2.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Mo2.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Mo2.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Mo2.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Mo2.FlatStyle = FlatStyle.Flat
             Me.Mo2.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -237,7 +237,7 @@ Namespace Controls
             '
             Me.Tu2.BackColor = Color.White
             Me.Tu2.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Tu2.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Tu2.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Tu2.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Tu2.FlatStyle = FlatStyle.Flat
             Me.Tu2.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -251,7 +251,7 @@ Namespace Controls
             '
             Me.We2.BackColor = Color.White
             Me.We2.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.We2.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.We2.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.We2.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.We2.FlatStyle = FlatStyle.Flat
             Me.We2.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -265,7 +265,7 @@ Namespace Controls
             '
             Me.Th2.BackColor = Color.White
             Me.Th2.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Th2.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Th2.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Th2.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Th2.FlatStyle = FlatStyle.Flat
             Me.Th2.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -279,7 +279,7 @@ Namespace Controls
             '
             Me.Fr2.BackColor = Color.White
             Me.Fr2.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Fr2.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Fr2.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Fr2.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Fr2.FlatStyle = FlatStyle.Flat
             Me.Fr2.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -293,7 +293,7 @@ Namespace Controls
             '
             Me.Sa2.BackColor = Color.White
             Me.Sa2.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Sa2.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Sa2.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Sa2.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Sa2.FlatStyle = FlatStyle.Flat
             Me.Sa2.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -307,7 +307,7 @@ Namespace Controls
             '
             Me.Su3.BackColor = Color.White
             Me.Su3.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Su3.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Su3.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Su3.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Su3.FlatStyle = FlatStyle.Flat
             Me.Su3.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -321,7 +321,7 @@ Namespace Controls
             '
             Me.Mo3.BackColor = Color.White
             Me.Mo3.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Mo3.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Mo3.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Mo3.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Mo3.FlatStyle = FlatStyle.Flat
             Me.Mo3.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -335,7 +335,7 @@ Namespace Controls
             '
             Me.Tu3.BackColor = Color.White
             Me.Tu3.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Tu3.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Tu3.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Tu3.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Tu3.FlatStyle = FlatStyle.Flat
             Me.Tu3.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -349,7 +349,7 @@ Namespace Controls
             '
             Me.We3.BackColor = Color.White
             Me.We3.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.We3.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.We3.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.We3.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.We3.FlatStyle = FlatStyle.Flat
             Me.We3.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -363,7 +363,7 @@ Namespace Controls
             '
             Me.Th3.BackColor = Color.White
             Me.Th3.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Th3.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Th3.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Th3.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Th3.FlatStyle = FlatStyle.Flat
             Me.Th3.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -377,7 +377,7 @@ Namespace Controls
             '
             Me.Fr3.BackColor = Color.White
             Me.Fr3.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Fr3.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Fr3.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Fr3.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Fr3.FlatStyle = FlatStyle.Flat
             Me.Fr3.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -391,7 +391,7 @@ Namespace Controls
             '
             Me.Sa3.BackColor = Color.White
             Me.Sa3.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Sa3.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Sa3.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Sa3.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Sa3.FlatStyle = FlatStyle.Flat
             Me.Sa3.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -405,7 +405,7 @@ Namespace Controls
             '
             Me.Su4.BackColor = Color.White
             Me.Su4.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Su4.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Su4.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Su4.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Su4.FlatStyle = FlatStyle.Flat
             Me.Su4.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -419,7 +419,7 @@ Namespace Controls
             '
             Me.Mo4.BackColor = Color.White
             Me.Mo4.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Mo4.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Mo4.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Mo4.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Mo4.FlatStyle = FlatStyle.Flat
             Me.Mo4.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -433,7 +433,7 @@ Namespace Controls
             '
             Me.Tu4.BackColor = Color.White
             Me.Tu4.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Tu4.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Tu4.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Tu4.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Tu4.FlatStyle = FlatStyle.Flat
             Me.Tu4.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -447,7 +447,7 @@ Namespace Controls
             '
             Me.We4.BackColor = Color.White
             Me.We4.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.We4.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.We4.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.We4.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.We4.FlatStyle = FlatStyle.Flat
             Me.We4.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -461,7 +461,7 @@ Namespace Controls
             '
             Me.Th4.BackColor = Color.White
             Me.Th4.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Th4.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Th4.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Th4.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Th4.FlatStyle = FlatStyle.Flat
             Me.Th4.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -475,7 +475,7 @@ Namespace Controls
             '
             Me.Fr4.BackColor = Color.White
             Me.Fr4.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Fr4.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Fr4.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Fr4.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Fr4.FlatStyle = FlatStyle.Flat
             Me.Fr4.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -489,7 +489,7 @@ Namespace Controls
             '
             Me.Sa4.BackColor = Color.White
             Me.Sa4.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Sa4.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Sa4.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Sa4.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Sa4.FlatStyle = FlatStyle.Flat
             Me.Sa4.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -503,7 +503,7 @@ Namespace Controls
             '
             Me.Su5.BackColor = Color.White
             Me.Su5.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Su5.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Su5.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Su5.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Su5.FlatStyle = FlatStyle.Flat
             Me.Su5.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -517,7 +517,7 @@ Namespace Controls
             '
             Me.Mo5.BackColor = Color.White
             Me.Mo5.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Mo5.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Mo5.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Mo5.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Mo5.FlatStyle = FlatStyle.Flat
             Me.Mo5.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -531,7 +531,7 @@ Namespace Controls
             '
             Me.Tu5.BackColor = Color.White
             Me.Tu5.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Tu5.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Tu5.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Tu5.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Tu5.FlatStyle = FlatStyle.Flat
             Me.Tu5.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -545,7 +545,7 @@ Namespace Controls
             '
             Me.We5.BackColor = Color.White
             Me.We5.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.We5.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.We5.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.We5.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.We5.FlatStyle = FlatStyle.Flat
             Me.We5.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -559,7 +559,7 @@ Namespace Controls
             '
             Me.Th5.BackColor = Color.White
             Me.Th5.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Th5.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Th5.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Th5.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Th5.FlatStyle = FlatStyle.Flat
             Me.Th5.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -573,7 +573,7 @@ Namespace Controls
             '
             Me.Fr5.BackColor = Color.White
             Me.Fr5.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Fr5.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Fr5.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Fr5.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Fr5.FlatStyle = FlatStyle.Flat
             Me.Fr5.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -587,7 +587,7 @@ Namespace Controls
             '
             Me.Sa5.BackColor = Color.White
             Me.Sa5.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Sa5.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Sa5.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Sa5.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Sa5.FlatStyle = FlatStyle.Flat
             Me.Sa5.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -601,7 +601,7 @@ Namespace Controls
             '
             Me.Su6.BackColor = Color.White
             Me.Su6.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Su6.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Su6.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Su6.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Su6.FlatStyle = FlatStyle.Flat
             Me.Su6.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -615,7 +615,7 @@ Namespace Controls
             '
             Me.Mo6.BackColor = Color.White
             Me.Mo6.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Mo6.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Mo6.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Mo6.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Mo6.FlatStyle = FlatStyle.Flat
             Me.Mo6.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -629,7 +629,7 @@ Namespace Controls
             '
             Me.Tu6.BackColor = Color.White
             Me.Tu6.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Tu6.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Tu6.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Tu6.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Tu6.FlatStyle = FlatStyle.Flat
             Me.Tu6.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -643,7 +643,7 @@ Namespace Controls
             '
             Me.We6.BackColor = Color.White
             Me.We6.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.We6.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.We6.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.We6.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.We6.FlatStyle = FlatStyle.Flat
             Me.We6.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -657,7 +657,7 @@ Namespace Controls
             '
             Me.Th6.BackColor = Color.White
             Me.Th6.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Th6.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Th6.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Th6.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Th6.FlatStyle = FlatStyle.Flat
             Me.Th6.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -671,7 +671,7 @@ Namespace Controls
             '
             Me.Fr6.BackColor = Color.White
             Me.Fr6.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Fr6.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Fr6.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Fr6.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Fr6.FlatStyle = FlatStyle.Flat
             Me.Fr6.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -685,7 +685,7 @@ Namespace Controls
             '
             Me.Sa6.BackColor = Color.White
             Me.Sa6.FlatAppearance.BorderColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(230, Byte), Integer))
-            Me.Sa6.FlatAppearance.MouseDownBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(220, Byte), Integer))
+            Me.Sa6.FlatAppearance.MouseDownBackColor = MetroColors.Red
             Me.Sa6.FlatAppearance.MouseOverBackColor = Color.Silver
             Me.Sa6.FlatStyle = FlatStyle.Flat
             Me.Sa6.Font = New Font("Segoe UI", 8.25!, FontStyle.Regular, GraphicsUnit.Point, CType(0, Byte))
@@ -836,7 +836,7 @@ Namespace Controls
             Me.btnBeforeMonth.FlatAppearance.BorderSize = 0
             Me.btnBeforeMonth.FlatAppearance.CheckedBackColor = Color.White
             Me.btnBeforeMonth.FlatAppearance.MouseDownBackColor = Color.Gray
-            Me.btnBeforeMonth.FlatAppearance.MouseOverBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+            Me.btnBeforeMonth.FlatAppearance.MouseOverBackColor = MetroColors.Red
             Me.btnBeforeMonth.FlatStyle = FlatStyle.Flat
             Me.btnBeforeMonth.Font = New Font("Verdana", 20.0!, FontStyle.Bold)
             Me.btnBeforeMonth.Location = New Point(3, 16)
@@ -853,7 +853,7 @@ Namespace Controls
             Me.btnBeforeYear.FlatAppearance.BorderSize = 0
             Me.btnBeforeYear.FlatAppearance.CheckedBackColor = Color.White
             Me.btnBeforeYear.FlatAppearance.MouseDownBackColor = Color.Gray
-            Me.btnBeforeYear.FlatAppearance.MouseOverBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+            Me.btnBeforeYear.FlatAppearance.MouseOverBackColor = MetroColors.Red
             Me.btnBeforeYear.FlatStyle = FlatStyle.Flat
             Me.btnBeforeYear.Font = New Font("Verdana", 7.0!)
             Me.btnBeforeYear.Location = New Point(232, 12)
@@ -873,7 +873,7 @@ Namespace Controls
             Me.btnNextMonth.FlatAppearance.BorderSize = 0
             Me.btnNextMonth.FlatAppearance.CheckedBackColor = Color.White
             Me.btnNextMonth.FlatAppearance.MouseDownBackColor = Color.Gray
-            Me.btnNextMonth.FlatAppearance.MouseOverBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+            Me.btnNextMonth.FlatAppearance.MouseOverBackColor = MetroColors.Red
             Me.btnNextMonth.FlatStyle = FlatStyle.Flat
             Me.btnNextMonth.Font = New Font("Verdana", 20.0!, FontStyle.Bold)
             Me.btnNextMonth.Location = New Point(255, 16)
@@ -890,7 +890,7 @@ Namespace Controls
             Me.btnNextYear.FlatAppearance.BorderSize = 0
             Me.btnNextYear.FlatAppearance.CheckedBackColor = Color.White
             Me.btnNextYear.FlatAppearance.MouseDownBackColor = Color.Gray
-            Me.btnNextYear.FlatAppearance.MouseOverBackColor = Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+            Me.btnNextYear.FlatAppearance.MouseOverBackColor = MetroColors.Red
             Me.btnNextYear.FlatStyle = FlatStyle.Flat
             Me.btnNextYear.Font = New Font("Verdana", 7.0!)
             Me.btnNextYear.Location = New Point(232, 26)

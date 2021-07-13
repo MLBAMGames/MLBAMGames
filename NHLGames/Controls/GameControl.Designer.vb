@@ -92,7 +92,7 @@ Namespace Controls
             Me.btnRecap.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
             Me.btnRecap.FlatAppearance.BorderSize = 0
             Me.btnRecap.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
-            Me.btnRecap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+            Me.btnRecap.FlatAppearance.MouseOverBackColor = MetroColors.Blue
             Me.btnRecap.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnRecap.ForeColor = System.Drawing.Color.Black
             Me.btnRecap.Location = New System.Drawing.Point(286, 2)
@@ -106,7 +106,7 @@ Namespace Controls
             '
             Me.btnLiveReplay.BackColor = System.Drawing.Color.Red
             Me.btnLiveReplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-            Me.btnLiveReplay.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+            Me.btnLiveReplay.FlatAppearance.BorderColor = MetroColors.Blue
             Me.btnLiveReplay.FlatAppearance.BorderSize = 0
             Me.btnLiveReplay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
             Me.btnLiveReplay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))

@@ -70,6 +70,7 @@ Public Class StandingsHelper
         If (standing.records.Count <> 0) Then
             Dim metroTabPage As MetroTabPage = New MetroTabPage()
             metroTabPage.Padding = New Padding(5)
+            metroTabPage.Style = MetroColorStyle.Red
 
             If Parameters.IsDarkMode Then
                 metroTabPage.Theme = MetroThemeStyle.Dark
@@ -90,6 +91,7 @@ Public Class StandingsHelper
                     metroGrid.Theme = MetroThemeStyle.Dark
                 End If
 
+                metroGrid.Style = MetroColorStyle.Red
                 metroGrid.DefaultCellStyle.SelectionBackColor = metroGrid.DefaultCellStyle.BackColor
                 metroGrid.DefaultCellStyle.SelectionForeColor = metroGrid.DefaultCellStyle.ForeColor
                 metroGrid.Dock = DockStyle.Fill

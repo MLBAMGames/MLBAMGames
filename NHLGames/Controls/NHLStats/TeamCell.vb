@@ -115,14 +115,17 @@ Namespace Controls.NHLStats
             If paint AndAlso PaintContentForegroundCheck(paintParts) Then
 
                 Dim image = ImageFetcher.GetEmbeddedImage(teamName)
-                Dim width = 24
-                Dim height = 24
-                Dim scale = Math.Min(width / image.Width, height / image.Height)
 
-                Dim scaleWidth = CType(image.Width * scale, Int32)
-                Dim scaleHeight = CType(image.Height * scale, Int32)
+                If image IsNot Nothing Then
+                    Dim width = 24
+                    Dim height = 24
+                    Dim scale = Math.Min(width / image.Width, height / image.Height)
 
-                graphics.DrawImage(image, valBounds.X + 25, valBounds.Y, scaleWidth, scaleHeight)
+                    Dim scaleWidth = CType(image.Width * scale, Int32)
+                    Dim scaleHeight = CType(image.Height * scale, Int32)
+
+                    graphics.DrawImage(image, valBounds.X + 25, valBounds.Y, scaleWidth, scaleHeight)
+                End If
             End If
 
             Return resultBounds

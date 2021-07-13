@@ -718,7 +718,7 @@ Public Class NHLGamesMetro
     Private Sub flpCalendarPanel_VisibleChanged(sender As Object, e As EventArgs) _
         Handles flpCalendarPanel.VisibleChanged
         If flpCalendarPanel.Visible Then
-            btnDate.BackColor = Color.FromArgb(0, 170, 210)
+            btnDate.BackColor = MetroColors.Blue
         Else
             btnDate.BackColor = If(Parameters.IsDarkMode, Color.DarkGray, Color.FromArgb(80, 80, 80))
         End If

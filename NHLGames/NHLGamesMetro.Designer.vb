@@ -394,7 +394,7 @@ Partial Class NHLGamesMetro
         Me.btnTomorrow.FlatAppearance.BorderSize = 0
         Me.btnTomorrow.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnTomorrow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnTomorrow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.btnTomorrow.FlatAppearance.MouseOverBackColor = MetroColors.Blue
         Me.btnTomorrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTomorrow.Location = New System.Drawing.Point(310, 8)
         Me.btnTomorrow.Name = "btnTomorrow"
@@ -410,7 +410,7 @@ Partial Class NHLGamesMetro
         Me.btnYesterday.FlatAppearance.BorderSize = 0
         Me.btnYesterday.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnYesterday.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnYesterday.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.btnYesterday.FlatAppearance.MouseOverBackColor = MetroColors.Blue
         Me.btnYesterday.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnYesterday.Location = New System.Drawing.Point(8, 8)
         Me.btnYesterday.Name = "btnYesterday"
@@ -426,7 +426,7 @@ Partial Class NHLGamesMetro
         Me.btnDate.FlatAppearance.BorderSize = 0
         Me.btnDate.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnDate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnDate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.btnDate.FlatAppearance.MouseOverBackColor = MetroColors.Blue
         Me.btnDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.btnDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -445,7 +445,7 @@ Partial Class NHLGamesMetro
         Me.btnRefresh.FlatAppearance.BorderSize = 0
         Me.btnRefresh.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.btnRefresh.FlatAppearance.MouseOverBackColor = MetroColors.Blue
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefresh.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.btnRefresh.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -2267,7 +2267,7 @@ Partial Class NHLGamesMetro
         Me.lnkReddit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.lnkReddit.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lnkReddit.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lnkReddit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(155, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lnkReddit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(100, Byte), Integer), CType(CType(10, Byte), Integer))
         Me.lnkReddit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.lnkReddit.Location = New System.Drawing.Point(63, 0)
         Me.lnkReddit.Margin = New System.Windows.Forms.Padding(0, 0, 15, 0)

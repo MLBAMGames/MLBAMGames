@@ -48,9 +48,7 @@ Namespace Controls
                 _arrayButtons(row, fdate).BackColor = _btnBackColor
                 If idate = selected And ldate.Month = Date.Today.Month And ldate.Year = Date.Today.Year Then
                     _arrayButtons(row, fdate).ForeColor = Color.White
-                    _arrayButtons(row, fdate).BackColor = Color.FromArgb(CType(CType(0, Byte), Integer),
-                                                                         CType(CType(170, Byte), Integer),
-                                                                         CType(CType(210, Byte), Integer))
+                    _arrayButtons(row, fdate).BackColor = MetroColors.Red
                 End If
                 If fdate = DayOfWeek.Saturday Then
                     row += 1

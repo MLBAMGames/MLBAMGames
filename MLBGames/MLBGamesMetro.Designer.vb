@@ -30,14 +30,10 @@ Partial Class MLBGamesMetro
     'Do not modify it using the code editor.
     <DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MLBGamesMetro))
         Me.txtConsole = New System.Windows.Forms.RichTextBox()
         Me.tabMenu = New MetroFramework.Controls.MetroTabControl()
-        Me.tabStandings = New MetroFramework.Controls.MetroTabPage()
-        Me.tlpStandings = New System.Windows.Forms.TableLayoutPanel()
-        Me.cbSeasons = New MLBGames.Controls.MetroComboBoxNoMW()
-        Me.lblSeason = New MetroFramework.Controls.MetroLabel()
-        Me.tbStanding = New MetroFramework.Controls.MetroTabControl()
         Me.tabGames = New MetroFramework.Controls.MetroTabPage()
         Me.spnLoading = New MetroFramework.Controls.MetroProgressSpinner()
         Me.lblDate = New MetroFramework.Controls.MetroLabel()
@@ -49,6 +45,10 @@ Partial Class MLBGamesMetro
         Me.btnYesterday = New System.Windows.Forms.Button()
         Me.btnDate = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
+        Me.tabStandings = New MetroFramework.Controls.MetroTabPage()
+        Me.tlpStandings = New System.Windows.Forms.TableLayoutPanel()
+        Me.lblSeason = New MetroFramework.Controls.MetroLabel()
+        Me.tbStanding = New MetroFramework.Controls.MetroTabControl()
         Me.tabSettings = New MetroFramework.Controls.MetroTabPage()
         Me.tlpSettings = New System.Windows.Forms.TableLayoutPanel()
         Me.tlpOBSSettings = New System.Windows.Forms.TableLayoutPanel()
@@ -76,7 +76,6 @@ Partial Class MLBGamesMetro
         Me.flpSpotifyDescSettings = New System.Windows.Forms.FlowLayoutPanel()
         Me.tgMedia = New MetroFramework.Controls.MetroToggle()
         Me.lblMediaDesc = New MetroFramework.Controls.MetroLabel()
-        Me.cbStreamQuality = New MLBGames.Controls.MetroComboBoxNoMW()
         Me.lblStreamerArgs = New MetroFramework.Controls.MetroLabel()
         Me.lblPlayerArgs = New MetroFramework.Controls.MetroLabel()
         Me.lblOutput = New MetroFramework.Controls.MetroLabel()
@@ -106,7 +105,6 @@ Partial Class MLBGamesMetro
         Me.lnkGetVlc = New MetroFramework.Controls.MetroLink()
         Me.lblLanguage = New MetroFramework.Controls.MetroLabel()
         Me.flpLanguage = New System.Windows.Forms.FlowLayoutPanel()
-        Me.cbLanguage = New MLBGames.Controls.MetroComboBoxNoMW()
         Me.lblSlPath = New MetroFramework.Controls.MetroLabel()
         Me.lblMpvPath = New MetroFramework.Controls.MetroLabel()
         Me.lblMpcPath = New MetroFramework.Controls.MetroLabel()
@@ -115,10 +113,8 @@ Partial Class MLBGamesMetro
         Me.lblQuality = New MetroFramework.Controls.MetroLabel()
         Me.lblGamePanel = New MetroFramework.Controls.MetroLabel()
         Me.lblProxyPort = New MetroFramework.Controls.MetroLabel()
-        Me.cbServers = New MLBGames.Controls.MetroComboBoxNoMW()
         Me.flpHostsFile = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblProxyPortNumber = New MetroFramework.Controls.MetroLabel()
-        Me.tbProxyPort = New MLBGames.Controls.MetroTrackBarNoMW()
         Me.tlpGamePanelSettings = New System.Windows.Forms.TableLayoutPanel()
         Me.tgShowStanding = New MetroFramework.Controls.MetroToggle()
         Me.tgShowTodayLiveGamesFirst = New MetroFramework.Controls.MetroToggle()
@@ -161,11 +157,9 @@ Partial Class MLBGamesMetro
         Me.lblModulesDesc = New MetroFramework.Controls.MetroLabel()
         Me.tlpReplay = New System.Windows.Forms.TableLayoutPanel()
         Me.lblLiveRewindDetails = New MetroFramework.Controls.MetroLabel()
-        Me.tbLiveRewind = New MLBGames.Controls.MetroTrackBarNoMW()
         Me.lblLiveRewind = New MetroFramework.Controls.MetroLabel()
         Me.lblCdn = New MetroFramework.Controls.MetroLabel()
         Me.lblLiveReplay = New MetroFramework.Controls.MetroLabel()
-        Me.cbLiveReplay = New MLBGames.Controls.MetroComboBoxNoMW()
         Me.tgDarkMode = New MetroFramework.Controls.MetroToggle()
         Me.lblDarkMode = New MetroFramework.Controls.MetroLabel()
         Me.lblReset = New MetroFramework.Controls.MetroLabel()
@@ -176,7 +170,7 @@ Partial Class MLBGamesMetro
         Me.btnCopyConsole = New MetroFramework.Controls.MetroButton()
         Me.btnClearConsole = New MetroFramework.Controls.MetroButton()
         Me.ofd = New System.Windows.Forms.OpenFileDialog()
-        Me.tmr = New System.Windows.Forms.Timer()
+        Me.tmr = New System.Windows.Forms.Timer(Me.components)
         Me.tt = New MetroFramework.Components.MetroToolTip()
         Me.pnlBottom = New MetroFramework.Controls.MetroPanel()
         Me.tlpStatus = New System.Windows.Forms.TableLayoutPanel()
@@ -191,11 +185,18 @@ Partial Class MLBGamesMetro
         Me.bw = New System.ComponentModel.BackgroundWorker()
         Me.btnHelp = New MetroFramework.Controls.MetroLink()
         Me.pnlLogo = New System.Windows.Forms.Panel()
+        Me.cbSeasons = New MLBGames.Controls.MetroComboBoxNoMW()
+        Me.cbStreamQuality = New MLBGames.Controls.MetroComboBoxNoMW()
+        Me.cbLanguage = New MLBGames.Controls.MetroComboBoxNoMW()
+        Me.cbServers = New MLBGames.Controls.MetroComboBoxNoMW()
+        Me.tbProxyPort = New MLBGames.Controls.MetroTrackBarNoMW()
+        Me.tbLiveRewind = New MLBGames.Controls.MetroTrackBarNoMW()
+        Me.cbLiveReplay = New MLBGames.Controls.MetroComboBoxNoMW()
         Me.tabMenu.SuspendLayout()
-        Me.tabStandings.SuspendLayout()
-        Me.tlpStandings.SuspendLayout()
         Me.tabGames.SuspendLayout()
         Me.pnlGameBar.SuspendLayout()
+        Me.tabStandings.SuspendLayout()
+        Me.tlpStandings.SuspendLayout()
         Me.tabSettings.SuspendLayout()
         Me.tlpSettings.SuspendLayout()
         Me.tlpOBSSettings.SuspendLayout()
@@ -248,8 +249,8 @@ Partial Class MLBGamesMetro
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabMenu.CausesValidation = False
-        Me.tabMenu.Controls.Add(Me.tabStandings)
         Me.tabMenu.Controls.Add(Me.tabGames)
+        Me.tabMenu.Controls.Add(Me.tabStandings)
         Me.tabMenu.Controls.Add(Me.tabSettings)
         Me.tabMenu.Controls.Add(Me.tabConsole)
         Me.tabMenu.Cursor = System.Windows.Forms.Cursors.Default
@@ -259,101 +260,12 @@ Partial Class MLBGamesMetro
         Me.tabMenu.Location = New System.Drawing.Point(-1, 70)
         Me.tabMenu.Margin = New System.Windows.Forms.Padding(0)
         Me.tabMenu.Name = "tabMenu"
-        Me.tabMenu.SelectedIndex = 3
+        Me.tabMenu.SelectedIndex = 0
         Me.tabMenu.Size = New System.Drawing.Size(992, 550)
         Me.tabMenu.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.tabMenu.Style = MetroFramework.MetroColorStyle.Red
         Me.tabMenu.TabIndex = 10
         Me.tabMenu.UseSelectable = True
-        '
-        'tabStandings
-        '
-        Me.tabStandings.Controls.Add(Me.tlpStandings)
-        Me.tabStandings.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.tabStandings.HorizontalScrollbarBarColor = False
-        Me.tabStandings.HorizontalScrollbarHighlightOnWheel = False
-        Me.tabStandings.HorizontalScrollbarSize = 10
-        Me.tabStandings.Location = New System.Drawing.Point(4, 38)
-        Me.tabStandings.Name = "tabStandings"
-        Me.tabStandings.Padding = New System.Windows.Forms.Padding(1)
-        Me.tabStandings.Size = New System.Drawing.Size(984, 508)
-        Me.tabStandings.TabIndex = 1
-        Me.tabStandings.Text = "STANDINGS"
-        Me.tabStandings.UseCustomForeColor = True
-        Me.tabStandings.UseStyleColors = True
-        Me.tabStandings.VerticalScrollbarBarColor = False
-        Me.tabStandings.VerticalScrollbarHighlightOnWheel = False
-        Me.tabStandings.VerticalScrollbarSize = 10
-        '
-        'tlpStandings
-        '
-        Me.tlpStandings.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tlpStandings.AutoScroll = True
-        Me.tlpStandings.BackColor = System.Drawing.Color.White
-        Me.tlpStandings.ColumnCount = 3
-        Me.tlpStandings.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.tlpStandings.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpStandings.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpStandings.Controls.Add(Me.cbSeasons, 2, 1)
-        Me.tlpStandings.Controls.Add(Me.lblSeason, 0, 1)
-        Me.tlpStandings.Controls.Add(Me.tbStanding, 0, 2)
-        Me.tlpStandings.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.tlpStandings.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.tlpStandings.Location = New System.Drawing.Point(1, 1)
-        Me.tlpStandings.Margin = New System.Windows.Forms.Padding(0)
-        Me.tlpStandings.Name = "tlpStandings"
-        Me.tlpStandings.Padding = New System.Windows.Forms.Padding(20, 0, 20, 0)
-        Me.tlpStandings.RowCount = 3
-        Me.tlpStandings.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.tlpStandings.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.tlpStandings.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpStandings.Size = New System.Drawing.Size(982, 514)
-        Me.tlpStandings.TabIndex = 2
-        '
-        'cbSeasons
-        '
-        Me.cbSeasons.Dock = System.Windows.Forms.DockStyle.Left
-        Me.cbSeasons.FontSize = MetroFramework.MetroComboBoxSize.Small
-        Me.cbSeasons.FormattingEnabled = True
-        Me.cbSeasons.IntegralHeight = False
-        Me.cbSeasons.ItemHeight = 19
-        Me.cbSeasons.Location = New System.Drawing.Point(103, 33)
-        Me.cbSeasons.Name = "cbSeasons"
-        Me.cbSeasons.Size = New System.Drawing.Size(200, 25)
-        Me.cbSeasons.Style = MetroFramework.MetroColorStyle.Red
-        Me.cbSeasons.TabIndex = 501
-        Me.cbSeasons.UseSelectable = True
-        '
-        'lblSeason
-        '
-        Me.lblSeason.AutoSize = True
-        Me.lblSeason.Dock = System.Windows.Forms.DockStyle.Right
-        Me.lblSeason.Location = New System.Drawing.Point(20, 30)
-        Me.lblSeason.Margin = New System.Windows.Forms.Padding(0)
-        Me.lblSeason.Name = "lblSeason"
-        Me.lblSeason.Size = New System.Drawing.Size(60, 31)
-        Me.lblSeason.Style = MetroFramework.MetroColorStyle.Red
-        Me.lblSeason.TabIndex = 3
-        Me.lblSeason.Text = "SEASON"
-        Me.lblSeason.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'tbStanding
-        '
-        Me.tbStanding.CausesValidation = False
-        Me.tlpStandings.SetColumnSpan(Me.tbStanding, 3)
-        Me.tbStanding.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tbStanding.FontSize = MetroFramework.MetroTabControlSize.Tall
-        Me.tbStanding.FontWeight = MetroFramework.MetroTabControlWeight.Regular
-        Me.tbStanding.ItemSize = New System.Drawing.Size(120, 34)
-        Me.tbStanding.Location = New System.Drawing.Point(23, 64)
-        Me.tbStanding.Name = "tbStanding"
-        Me.tbStanding.Size = New System.Drawing.Size(936, 447)
-        Me.tbStanding.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
-        Me.tbStanding.Style = MetroFramework.MetroColorStyle.Red
-        Me.tbStanding.TabIndex = 502
-        Me.tbStanding.UseSelectable = True
         '
         'tabGames
         '
@@ -483,7 +395,7 @@ Partial Class MLBGamesMetro
         Me.btnTomorrow.FlatAppearance.BorderSize = 0
         Me.btnTomorrow.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnTomorrow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnTomorrow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.btnTomorrow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(65, Byte), Integer))
         Me.btnTomorrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTomorrow.Location = New System.Drawing.Point(310, 8)
         Me.btnTomorrow.Name = "btnTomorrow"
@@ -499,7 +411,7 @@ Partial Class MLBGamesMetro
         Me.btnYesterday.FlatAppearance.BorderSize = 0
         Me.btnYesterday.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnYesterday.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnYesterday.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.btnYesterday.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(65, Byte), Integer))
         Me.btnYesterday.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnYesterday.Location = New System.Drawing.Point(8, 8)
         Me.btnYesterday.Name = "btnYesterday"
@@ -515,7 +427,7 @@ Partial Class MLBGamesMetro
         Me.btnDate.FlatAppearance.BorderSize = 0
         Me.btnDate.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnDate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnDate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.btnDate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(65, Byte), Integer))
         Me.btnDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.btnDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -534,7 +446,7 @@ Partial Class MLBGamesMetro
         Me.btnRefresh.FlatAppearance.BorderSize = 0
         Me.btnRefresh.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(210, Byte), Integer))
+        Me.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(65, Byte), Integer))
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefresh.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.btnRefresh.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -544,6 +456,81 @@ Partial Class MLBGamesMetro
         Me.btnRefresh.Size = New System.Drawing.Size(24, 24)
         Me.btnRefresh.TabIndex = 140
         Me.btnRefresh.UseVisualStyleBackColor = False
+        '
+        'tabStandings
+        '
+        Me.tabStandings.Controls.Add(Me.tlpStandings)
+        Me.tabStandings.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.tabStandings.HorizontalScrollbarBarColor = False
+        Me.tabStandings.HorizontalScrollbarHighlightOnWheel = False
+        Me.tabStandings.HorizontalScrollbarSize = 10
+        Me.tabStandings.Location = New System.Drawing.Point(4, 38)
+        Me.tabStandings.Name = "tabStandings"
+        Me.tabStandings.Padding = New System.Windows.Forms.Padding(1)
+        Me.tabStandings.Size = New System.Drawing.Size(984, 508)
+        Me.tabStandings.TabIndex = 1
+        Me.tabStandings.Text = "STANDINGS"
+        Me.tabStandings.UseCustomForeColor = True
+        Me.tabStandings.UseStyleColors = True
+        Me.tabStandings.VerticalScrollbarBarColor = False
+        Me.tabStandings.VerticalScrollbarHighlightOnWheel = False
+        Me.tabStandings.VerticalScrollbarSize = 10
+        '
+        'tlpStandings
+        '
+        Me.tlpStandings.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tlpStandings.AutoScroll = True
+        Me.tlpStandings.BackColor = System.Drawing.Color.White
+        Me.tlpStandings.ColumnCount = 3
+        Me.tlpStandings.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.tlpStandings.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpStandings.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpStandings.Controls.Add(Me.cbSeasons, 2, 1)
+        Me.tlpStandings.Controls.Add(Me.lblSeason, 0, 1)
+        Me.tlpStandings.Controls.Add(Me.tbStanding, 0, 2)
+        Me.tlpStandings.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.tlpStandings.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.tlpStandings.Location = New System.Drawing.Point(1, 1)
+        Me.tlpStandings.Margin = New System.Windows.Forms.Padding(0)
+        Me.tlpStandings.Name = "tlpStandings"
+        Me.tlpStandings.Padding = New System.Windows.Forms.Padding(20, 0, 20, 0)
+        Me.tlpStandings.RowCount = 3
+        Me.tlpStandings.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.tlpStandings.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.tlpStandings.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpStandings.Size = New System.Drawing.Size(982, 514)
+        Me.tlpStandings.TabIndex = 2
+        '
+        'lblSeason
+        '
+        Me.lblSeason.AutoSize = True
+        Me.lblSeason.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lblSeason.Location = New System.Drawing.Point(20, 30)
+        Me.lblSeason.Margin = New System.Windows.Forms.Padding(0)
+        Me.lblSeason.Name = "lblSeason"
+        Me.lblSeason.Size = New System.Drawing.Size(60, 31)
+        Me.lblSeason.Style = MetroFramework.MetroColorStyle.Red
+        Me.lblSeason.TabIndex = 3
+        Me.lblSeason.Text = "SEASON"
+        Me.lblSeason.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'tbStanding
+        '
+        Me.tbStanding.CausesValidation = False
+        Me.tlpStandings.SetColumnSpan(Me.tbStanding, 3)
+        Me.tbStanding.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbStanding.FontSize = MetroFramework.MetroTabControlSize.Tall
+        Me.tbStanding.FontWeight = MetroFramework.MetroTabControlWeight.Regular
+        Me.tbStanding.ItemSize = New System.Drawing.Size(120, 34)
+        Me.tbStanding.Location = New System.Drawing.Point(23, 64)
+        Me.tbStanding.Name = "tbStanding"
+        Me.tbStanding.Size = New System.Drawing.Size(936, 447)
+        Me.tbStanding.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
+        Me.tbStanding.Style = MetroFramework.MetroColorStyle.Red
+        Me.tbStanding.TabIndex = 502
+        Me.tbStanding.UseSelectable = True
         '
         'tabSettings
         '
@@ -1014,21 +1001,6 @@ Partial Class MLBGamesMetro
         Me.lblMediaDesc.Text = "MEDIA_DESC"
         Me.lblMediaDesc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'cbStreamQuality
-        '
-        Me.cbStreamQuality.Dock = System.Windows.Forms.DockStyle.Left
-        Me.cbStreamQuality.DropDownHeight = 200
-        Me.cbStreamQuality.FontSize = MetroFramework.MetroComboBoxSize.Small
-        Me.cbStreamQuality.FormattingEnabled = True
-        Me.cbStreamQuality.IntegralHeight = False
-        Me.cbStreamQuality.ItemHeight = 19
-        Me.cbStreamQuality.Location = New System.Drawing.Point(177, 183)
-        Me.cbStreamQuality.Name = "cbStreamQuality"
-        Me.cbStreamQuality.Size = New System.Drawing.Size(600, 25)
-        Me.cbStreamQuality.Style = MetroFramework.MetroColorStyle.Red
-        Me.cbStreamQuality.TabIndex = 500
-        Me.cbStreamQuality.UseSelectable = True
-        '
         'lblStreamerArgs
         '
         Me.lblStreamerArgs.AutoSize = True
@@ -1377,21 +1349,6 @@ Partial Class MLBGamesMetro
         Me.flpLanguage.Size = New System.Drawing.Size(771, 30)
         Me.flpLanguage.TabIndex = 70
         '
-        'cbLanguage
-        '
-        Me.cbLanguage.BackColor = System.Drawing.SystemColors.Window
-        Me.cbLanguage.DropDownHeight = 80
-        Me.cbLanguage.FontSize = MetroFramework.MetroComboBoxSize.Small
-        Me.cbLanguage.FormattingEnabled = True
-        Me.cbLanguage.IntegralHeight = False
-        Me.cbLanguage.ItemHeight = 19
-        Me.cbLanguage.Location = New System.Drawing.Point(3, 3)
-        Me.cbLanguage.Name = "cbLanguage"
-        Me.cbLanguage.Size = New System.Drawing.Size(600, 25)
-        Me.cbLanguage.Style = MetroFramework.MetroColorStyle.Red
-        Me.cbLanguage.TabIndex = 1410
-        Me.cbLanguage.UseSelectable = True
-        '
         'lblSlPath
         '
         Me.lblSlPath.AutoSize = True
@@ -1495,22 +1452,6 @@ Partial Class MLBGamesMetro
         Me.lblProxyPort.Text = "PROXY_PORT"
         Me.lblProxyPort.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'cbServers
-        '
-        Me.cbServers.BackColor = System.Drawing.SystemColors.Window
-        Me.cbServers.Dock = System.Windows.Forms.DockStyle.Left
-        Me.cbServers.DropDownHeight = 80
-        Me.cbServers.FontSize = MetroFramework.MetroComboBoxSize.Small
-        Me.cbServers.FormattingEnabled = True
-        Me.cbServers.IntegralHeight = False
-        Me.cbServers.ItemHeight = 19
-        Me.cbServers.Location = New System.Drawing.Point(177, 333)
-        Me.cbServers.Name = "cbServers"
-        Me.cbServers.Size = New System.Drawing.Size(600, 25)
-        Me.cbServers.Style = MetroFramework.MetroColorStyle.Red
-        Me.cbServers.TabIndex = 510
-        Me.cbServers.UseSelectable = True
-        '
         'flpHostsFile
         '
         Me.flpHostsFile.Controls.Add(Me.lblProxyPortNumber)
@@ -1533,19 +1474,6 @@ Partial Class MLBGamesMetro
         Me.lblProxyPortNumber.TabIndex = 1
         Me.lblProxyPortNumber.Text = "000000"
         Me.lblProxyPortNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'tbProxyPort
-        '
-        Me.tbProxyPort.BackColor = System.Drawing.Color.Transparent
-        Me.tbProxyPort.LargeChange = 10
-        Me.tbProxyPort.Location = New System.Drawing.Point(69, 3)
-        Me.tbProxyPort.Maximum = 2500
-        Me.tbProxyPort.Minimum = 200
-        Me.tbProxyPort.Name = "tbProxyPort"
-        Me.tbProxyPort.Size = New System.Drawing.Size(534, 23)
-        Me.tbProxyPort.Style = MetroFramework.MetroColorStyle.Red
-        Me.tbProxyPort.TabIndex = 0
-        Me.tbProxyPort.Value = 808
         '
         'tlpGamePanelSettings
         '
@@ -2095,22 +2023,6 @@ Partial Class MLBGamesMetro
         Me.lblLiveRewindDetails.Text = "00_MINUTES_BEHIND_LIVE"
         Me.lblLiveRewindDetails.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'tbLiveRewind
-        '
-        Me.tbLiveRewind.BackColor = System.Drawing.Color.Transparent
-        Me.tbLiveRewind.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.tbLiveRewind.LargeChange = 3
-        Me.tbLiveRewind.Location = New System.Drawing.Point(3, 1)
-        Me.tbLiveRewind.Margin = New System.Windows.Forms.Padding(3, 0, 3, 0)
-        Me.tbLiveRewind.Maximum = 60
-        Me.tbLiveRewind.Minimum = 1
-        Me.tbLiveRewind.Name = "tbLiveRewind"
-        Me.tbLiveRewind.Size = New System.Drawing.Size(344, 29)
-        Me.tbLiveRewind.SmallChange = 2
-        Me.tbLiveRewind.Style = MetroFramework.MetroColorStyle.Red
-        Me.tbLiveRewind.TabIndex = 0
-        Me.tbLiveRewind.Value = 1
-        '
         'lblLiveRewind
         '
         Me.lblLiveRewind.AutoSize = True
@@ -2147,19 +2059,6 @@ Partial Class MLBGamesMetro
         Me.lblLiveReplay.TabIndex = 521
         Me.lblLiveReplay.Text = "REPLAY_LIVE_STREAM"
         Me.lblLiveReplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'cbLiveReplay
-        '
-        Me.cbLiveReplay.Dock = System.Windows.Forms.DockStyle.Left
-        Me.cbLiveReplay.FontSize = MetroFramework.MetroComboBoxSize.Small
-        Me.cbLiveReplay.FormattingEnabled = True
-        Me.cbLiveReplay.ItemHeight = 19
-        Me.cbLiveReplay.Location = New System.Drawing.Point(177, 213)
-        Me.cbLiveReplay.Name = "cbLiveReplay"
-        Me.cbLiveReplay.Size = New System.Drawing.Size(600, 25)
-        Me.cbLiveReplay.Style = MetroFramework.MetroColorStyle.Red
-        Me.cbLiveReplay.TabIndex = 522
-        Me.cbLiveReplay.UseSelectable = True
         '
         'tgDarkMode
         '
@@ -2360,7 +2259,7 @@ Partial Class MLBGamesMetro
         Me.lnkReddit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.lnkReddit.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lnkReddit.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lnkReddit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(155, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lnkReddit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(100, Byte), Integer), CType(CType(10, Byte), Integer))
         Me.lnkReddit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.lnkReddit.Location = New System.Drawing.Point(63, 0)
         Me.lnkReddit.Margin = New System.Windows.Forms.Padding(0, 0, 15, 0)
@@ -2470,6 +2369,108 @@ Partial Class MLBGamesMetro
         Me.pnlLogo.Size = New System.Drawing.Size(212, 50)
         Me.pnlLogo.TabIndex = 10000
         '
+        'cbSeasons
+        '
+        Me.cbSeasons.Dock = System.Windows.Forms.DockStyle.Left
+        Me.cbSeasons.FontSize = MetroFramework.MetroComboBoxSize.Small
+        Me.cbSeasons.FormattingEnabled = True
+        Me.cbSeasons.IntegralHeight = False
+        Me.cbSeasons.ItemHeight = 19
+        Me.cbSeasons.Location = New System.Drawing.Point(103, 33)
+        Me.cbSeasons.Name = "cbSeasons"
+        Me.cbSeasons.Size = New System.Drawing.Size(200, 25)
+        Me.cbSeasons.Style = MetroFramework.MetroColorStyle.Red
+        Me.cbSeasons.TabIndex = 501
+        Me.cbSeasons.UseSelectable = True
+        '
+        'cbStreamQuality
+        '
+        Me.cbStreamQuality.Dock = System.Windows.Forms.DockStyle.Left
+        Me.cbStreamQuality.DropDownHeight = 200
+        Me.cbStreamQuality.FontSize = MetroFramework.MetroComboBoxSize.Small
+        Me.cbStreamQuality.FormattingEnabled = True
+        Me.cbStreamQuality.IntegralHeight = False
+        Me.cbStreamQuality.ItemHeight = 19
+        Me.cbStreamQuality.Location = New System.Drawing.Point(177, 183)
+        Me.cbStreamQuality.Name = "cbStreamQuality"
+        Me.cbStreamQuality.Size = New System.Drawing.Size(600, 25)
+        Me.cbStreamQuality.Style = MetroFramework.MetroColorStyle.Red
+        Me.cbStreamQuality.TabIndex = 500
+        Me.cbStreamQuality.UseSelectable = True
+        '
+        'cbLanguage
+        '
+        Me.cbLanguage.BackColor = System.Drawing.SystemColors.Window
+        Me.cbLanguage.DropDownHeight = 80
+        Me.cbLanguage.FontSize = MetroFramework.MetroComboBoxSize.Small
+        Me.cbLanguage.FormattingEnabled = True
+        Me.cbLanguage.IntegralHeight = False
+        Me.cbLanguage.ItemHeight = 19
+        Me.cbLanguage.Location = New System.Drawing.Point(3, 3)
+        Me.cbLanguage.Name = "cbLanguage"
+        Me.cbLanguage.Size = New System.Drawing.Size(600, 25)
+        Me.cbLanguage.Style = MetroFramework.MetroColorStyle.Red
+        Me.cbLanguage.TabIndex = 1410
+        Me.cbLanguage.UseSelectable = True
+        '
+        'cbServers
+        '
+        Me.cbServers.BackColor = System.Drawing.SystemColors.Window
+        Me.cbServers.Dock = System.Windows.Forms.DockStyle.Left
+        Me.cbServers.DropDownHeight = 80
+        Me.cbServers.FontSize = MetroFramework.MetroComboBoxSize.Small
+        Me.cbServers.FormattingEnabled = True
+        Me.cbServers.IntegralHeight = False
+        Me.cbServers.ItemHeight = 19
+        Me.cbServers.Location = New System.Drawing.Point(177, 333)
+        Me.cbServers.Name = "cbServers"
+        Me.cbServers.Size = New System.Drawing.Size(600, 25)
+        Me.cbServers.Style = MetroFramework.MetroColorStyle.Red
+        Me.cbServers.TabIndex = 510
+        Me.cbServers.UseSelectable = True
+        '
+        'tbProxyPort
+        '
+        Me.tbProxyPort.BackColor = System.Drawing.Color.Transparent
+        Me.tbProxyPort.LargeChange = 10
+        Me.tbProxyPort.Location = New System.Drawing.Point(69, 3)
+        Me.tbProxyPort.Maximum = 2500
+        Me.tbProxyPort.Minimum = 200
+        Me.tbProxyPort.Name = "tbProxyPort"
+        Me.tbProxyPort.Size = New System.Drawing.Size(534, 23)
+        Me.tbProxyPort.Style = MetroFramework.MetroColorStyle.Red
+        Me.tbProxyPort.TabIndex = 0
+        Me.tbProxyPort.Value = 808
+        '
+        'tbLiveRewind
+        '
+        Me.tbLiveRewind.BackColor = System.Drawing.Color.Transparent
+        Me.tbLiveRewind.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.tbLiveRewind.LargeChange = 3
+        Me.tbLiveRewind.Location = New System.Drawing.Point(3, 1)
+        Me.tbLiveRewind.Margin = New System.Windows.Forms.Padding(3, 0, 3, 0)
+        Me.tbLiveRewind.Maximum = 60
+        Me.tbLiveRewind.Minimum = 1
+        Me.tbLiveRewind.Name = "tbLiveRewind"
+        Me.tbLiveRewind.Size = New System.Drawing.Size(344, 29)
+        Me.tbLiveRewind.SmallChange = 2
+        Me.tbLiveRewind.Style = MetroFramework.MetroColorStyle.Red
+        Me.tbLiveRewind.TabIndex = 0
+        Me.tbLiveRewind.Value = 1
+        '
+        'cbLiveReplay
+        '
+        Me.cbLiveReplay.Dock = System.Windows.Forms.DockStyle.Left
+        Me.cbLiveReplay.FontSize = MetroFramework.MetroComboBoxSize.Small
+        Me.cbLiveReplay.FormattingEnabled = True
+        Me.cbLiveReplay.ItemHeight = 19
+        Me.cbLiveReplay.Location = New System.Drawing.Point(177, 213)
+        Me.cbLiveReplay.Name = "cbLiveReplay"
+        Me.cbLiveReplay.Size = New System.Drawing.Size(600, 25)
+        Me.cbLiveReplay.Style = MetroFramework.MetroColorStyle.Red
+        Me.cbLiveReplay.TabIndex = 522
+        Me.cbLiveReplay.UseSelectable = True
+        '
         'MLBGamesMetro
         '
         Me.AccessibleDescription = "Watch NHL games for free in HD"
@@ -2498,12 +2499,12 @@ Partial Class MLBGamesMetro
         Me.Style = MetroFramework.MetroColorStyle.Red
         Me.Text = "MLBGames"
         Me.tabMenu.ResumeLayout(False)
-        Me.tabStandings.ResumeLayout(False)
-        Me.tlpStandings.ResumeLayout(False)
-        Me.tlpStandings.PerformLayout()
         Me.tabGames.ResumeLayout(False)
         Me.tabGames.PerformLayout()
         Me.pnlGameBar.ResumeLayout(False)
+        Me.tabStandings.ResumeLayout(False)
+        Me.tlpStandings.ResumeLayout(False)
+        Me.tlpStandings.PerformLayout()
         Me.tabSettings.ResumeLayout(False)
         Me.tabSettings.PerformLayout()
         Me.tlpSettings.ResumeLayout(False)

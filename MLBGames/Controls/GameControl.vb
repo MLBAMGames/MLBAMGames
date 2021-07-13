@@ -48,7 +48,7 @@ Namespace Controls
                 lblGameStatus.Visible = Not showLiveScores
                 lblHomeScore.Visible = showLiveScores
                 lblAwayScore.Visible = showLiveScores
-                lblPeriod.BackColor = Color.FromArgb(255, 0, 170, 210)
+                lblPeriod.BackColor = MetroColors.Red
                 lblPeriod.ForeColor = Color.White
 
                 If showLiveTime Then
@@ -130,7 +130,7 @@ Namespace Controls
                 lblGameStatus.Text = _game.GameDate.ToLocalTime().ToString("h:mm tt")
 
                 If _game.GameState.Equals(GameStateEnum.Pregame) OrElse _game.AreAnyStreamsAvailable() Then
-                    lblPeriod.BackColor = Color.FromArgb(255, 0, 170, 210)
+                    lblPeriod.BackColor = MetroColors.Red
                     If showLiveScores Then
                         lblPeriod.ForeColor = Color.White
                         lblPeriod.Text = gameState
@@ -291,7 +291,7 @@ Namespace Controls
                 bpGameControl.BorderColour = Color.DarkOrange
             Else
                 If _game.IsTodaysGame Then
-                    bpGameControl.BorderColour = Color.FromArgb(255, 0, 170, 210)
+                    bpGameControl.BorderColour = MetroColors.Red
                 Else
                     bpGameControl.BorderColour = Color.FromArgb(255, 100, 100, 100)
                 End If
