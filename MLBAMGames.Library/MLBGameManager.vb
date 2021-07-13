@@ -9,8 +9,10 @@ Public Class MLBGameManager
     Public Overrides ReadOnly Property DictStreamType As Dictionary(Of String, StreamTypeEnum)
         Get
             Return New Dictionary(Of String, StreamTypeEnum)() From {
-                {"HOME", StreamTypeEnum.Home}, {"AWAY", StreamTypeEnum.Away}
-            }
+                {"HOME", StreamTypeEnum.Home}, {"AWAY", StreamTypeEnum.Away}, {"NATIONAL", StreamTypeEnum.National},
+                {"FRENCH", StreamTypeEnum.French},
+                {"MULTICAM1", StreamTypeEnum.MultiCam1}, {"MULTICAM2", StreamTypeEnum.MultiCam2},
+                {"ENDZONECAM1", StreamTypeEnum.EndzoneCam1}, {"ENDZONECAM2", StreamTypeEnum.EndzoneCam2}}
         End Get
     End Property
 
@@ -53,12 +55,35 @@ Public Class MLBGameManager
         Return gs
     End Function
 
+    Public Overrides Async Function GetGameFeedUrlAsync(gameStream As GameStream) As Task(Of String)
+        If gameStream.GameUrl.Equals(String.Empty) Then Return String.Empty
+
+        Dim streamUrlReturned = Await Web.SendWebRequestAndGetContentAsync(gameStream.GameUrl)
+
+        ' Recover old streams
+        If gameStream.Game.GameDate.ToLocalTime() < DateTime.Today.AddDays(-2) And streamUrlReturned.StartsWith("https://hlslive") Then
+            Dim network = gameStream.CdnParameter.ToString().ToLower()
+            Dim newServerUrl = streamUrlReturned _
+            .Replace($"hlslive-{network}", $"vod-llc")
+            Dim matches = Regex.Match(newServerUrl, "(.*media.mlb.com)(.*)(\/[a-z]{2}[0-9]{2}\/)(mlb\/.*)").Groups
+            If matches.Count < 5 Then Return streamUrlReturned
+            streamUrlReturned = $"{matches(1)}/ps01/{matches(4)}"
+        End If
+
+#If DEBUG Then
+        Console.WriteLine("{0}", streamUrlReturned)
+#End If
+        If streamUrlReturned.Equals(String.Empty) Then Return String.Empty
+
+        Return If(Await Web.SendWebRequestAsync(streamUrlReturned), streamUrlReturned, String.Empty)
+    End Function
+
     Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
         Select Case status.statusCode
             Case "S"
                 Return GameStateEnum.Scheduled
             Case "P"
-                Return GameStateEnum.Pregame
+                Return GameStateEnum.Scheduled
             Case "PW"
                 Return GameStateEnum.Pregame
             Case "I"
@@ -66,7 +91,7 @@ Public Class MLBGameManager
             Case "F"
                 Return GameStateEnum.StreamEnded
             Case Else
-                Return GameStateEnum.Undefined
+                Return GameStateEnum.ToBeDetermined
         End Select
     End Function
 End Class

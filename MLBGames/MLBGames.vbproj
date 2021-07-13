@@ -209,13 +209,7 @@
     <EmbeddedResource Include="Resources\cam_left.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\cam_ref.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\cam_right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\cam_star.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\cam3way.png" />
@@ -324,6 +318,13 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\wgn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\mlb_d.png" />
+    <EmbeddedResource Include="Resources\mlb_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mlbgames.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

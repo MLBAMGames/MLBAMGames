@@ -13,6 +13,7 @@ Public MustInherit Class GameManager
     Public MustOverride Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
     Public MustOverride Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
     Public MustOverride Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item, streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
+    Public MustOverride Async Function GetGameFeedUrlAsync(gameStream As GameStream) As Task(Of String)
 
     Public Async Function GetGamesAsync(gameDate As Date) As Task(Of Game())
         Dim schedule As Schedule = Await GetSchedule(gameDate)
@@ -156,30 +157,6 @@ Public MustInherit Class GameManager
         Else
             Return StreamTypeEnum.Unknown
         End If
-    End Function
-
-    Friend Async Function GetGameFeedUrlAsync(gameStream As GameStream) As Task(Of String)
-        If gameStream.GameUrl.Equals(String.Empty) Then Return String.Empty
-
-        Dim streamUrlReturned = Await Web.SendWebRequestAndGetContentAsync(gameStream.GameUrl)
-
-        ' Recover old streams
-        If gameStream.Game.GameDate.ToLocalTime() < DateTime.Today.AddDays(-2) And streamUrlReturned.StartsWith("https://hlslive") Then
-            Dim network = gameStream.CdnParameter.ToString().ToLower()
-            Dim newServerUrl = streamUrlReturned _
-            .Replace($"hlslive-{network}.med2.med", $"hlslive-{network}.med") _
-            .Replace($"hlslive-{network}", $"vod-{network}-na1")
-            Dim matches = Regex.Match(newServerUrl, "(.*nhl.com)(.*)(\/[a-z]{2}[0-9]{2}\/)(nhl\/.*)").Groups
-            If matches.Count < 5 Then Return streamUrlReturned
-            streamUrlReturned = $"{matches(1)}/ps01/{matches(4)}"
-        End If
-
-#If DEBUG Then
-        Console.WriteLine("{0}", streamUrlReturned)
-#End If
-        If streamUrlReturned.Equals(String.Empty) Then Return String.Empty
-
-        Return If(Await Web.SendWebRequestAsync(streamUrlReturned), streamUrlReturned, String.Empty)
     End Function
 
     Private Sub Dispose(disposing As Boolean)

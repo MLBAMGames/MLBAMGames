@@ -215,6 +215,7 @@ Namespace Controls
                 {"FS", "FS"},
                 {"GOLF", "NBC"},
                 {"KCOP", "FS"},
+                {"FOX", "FS"},
                 {"MSG", "MSG"},
                 {"NBC", "NBC"},
                 {"NESN", "NESN"},
@@ -343,8 +344,10 @@ Namespace Controls
                     Dim img As String = GetBroadcasterPicFor(stream.Network)
                     If img <> "" Then
                         Dim networkImage = ImageFetcher.GetEmbeddedImage(img)
-                        If btnLink.BackgroundImage IsNot Nothing Then btnLink.BackgroundImage.Dispose()
-                        If networkImage IsNot Nothing Then btnLink.BackgroundImage = networkImage
+                        If networkImage IsNot Nothing Then
+                            If btnLink.BackgroundImage IsNot Nothing Then btnLink.BackgroundImage.Dispose()
+                            btnLink.BackgroundImage = networkImage
+                        End If
                     End If
                     tooltip &= String.Format(Lang.RmText.GetString("lblOnNetwork"), stream.Network)
                 End If
@@ -389,7 +392,8 @@ Namespace Controls
         End Sub
 
         Private Function WatchArgs() As GameWatchArguments
-            Return SettingsExtensions.ReadGameWatchArgsParams()
+            Dim params = SettingsExtensions.ReadGameWatchArgsParams()
+            Return New GameWatchArguments(params)
         End Function
 
         Private Sub WatchStream(streamType As StreamerTypeEnum)
@@ -537,17 +541,15 @@ Namespace Controls
                 Next
             End If
 
-            Dim nhl = $"nhl_{_themeChar}"
-            picHome.BackgroundImage = ImageFetcher.GetEmbeddedImage(nhl)
-            picAway.BackgroundImage = ImageFetcher.GetEmbeddedImage(nhl)
-            lnkHome.BackgroundImage = ImageFetcher.GetEmbeddedImage(nhl)
-            lnkAway.BackgroundImage = ImageFetcher.GetEmbeddedImage(nhl)
-            lnkFrench.BackgroundImage = ImageFetcher.GetEmbeddedImage(nhl)
-            lnkNational.BackgroundImage = ImageFetcher.GetEmbeddedImage(nhl)
+            Dim mlb = $"mlb_{_themeChar}"
+            picHome.BackgroundImage = ImageFetcher.GetEmbeddedImage(mlb)
+            picAway.BackgroundImage = ImageFetcher.GetEmbeddedImage(mlb)
+            lnkHome.BackgroundImage = ImageFetcher.GetEmbeddedImage(mlb)
+            lnkAway.BackgroundImage = ImageFetcher.GetEmbeddedImage(mlb)
+            lnkFrench.BackgroundImage = ImageFetcher.GetEmbeddedImage(mlb)
+            lnkNational.BackgroundImage = ImageFetcher.GetEmbeddedImage(mlb)
             lnkEnd1.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam_left")
             lnkEnd2.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam_right")
-            lnkRef.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam_ref")
-            lnkStar.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam_star")
             lnkThree.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam3way")
             lnkSix.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam6way")
             btnRecap.BackgroundImage = ImageFetcher.GetEmbeddedImage($"recap_{_themeChar}")

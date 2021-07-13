@@ -213,6 +213,7 @@ Namespace Controls
                 {"CSN", "NBC"},
                 {"ESPN", "ESPN"},
                 {"FS", "FS"},
+                {"FOX", "FS"},
                 {"GOLF", "NBC"},
                 {"KCOP", "FS"},
                 {"MSG", "MSG"},
@@ -343,8 +344,10 @@ Namespace Controls
                     Dim img As String = GetBroadcasterPicFor(stream.Network)
                     If img <> "" Then
                         Dim networkImage = ImageFetcher.GetEmbeddedImage(img)
-                        If btnLink.BackgroundImage IsNot Nothing Then btnLink.BackgroundImage.Dispose()
-                        If networkImage IsNot Nothing Then btnLink.BackgroundImage = networkImage
+                        If networkImage IsNot Nothing Then
+                            If btnLink.BackgroundImage IsNot Nothing Then btnLink.BackgroundImage.Dispose()
+                            btnLink.BackgroundImage = networkImage
+                        End If
                     End If
                     tooltip &= String.Format(Lang.RmText.GetString("lblOnNetwork"), stream.Network)
                 End If
