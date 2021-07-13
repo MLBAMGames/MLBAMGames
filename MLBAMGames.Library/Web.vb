@@ -26,19 +26,6 @@ Public Class Web
         Return sb.ToString()
     End Function
 
-    Public Shared Async Function GetScheduleAsync(startDate As DateTime) As Task(Of Schedule)
-        Dim dateTimeString As String = startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
-        Dim url As String = String.Format(NHLAPIServiceURLs.scheduleGames, dateTimeString, dateTimeString)
-
-        Console.WriteLine("{0}: Game schedule for {1} from NHL.tv", "Fetching",
-                          startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
-
-        Dim data = Await Web.SendWebRequestAndGetContentAsync(url)
-        If data.Equals(String.Empty) Then Return Nothing
-
-        Return JsonConvert.DeserializeObject(Of Schedule)(data)
-    End Function
-
     Public Shared Function SetHttpWebRequest(address As String) As HttpWebRequest
         Dim defaultHttpWebRequest = CType(WebRequest.Create(New Uri(address)), HttpWebRequest)
         defaultHttpWebRequest.UserAgent = UserAgent

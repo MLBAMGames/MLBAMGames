@@ -39,7 +39,7 @@ Namespace API
             End Get
         End Property
 
-        Public ReadOnly Property numberOfNHLTVFeedsWithRecap As Integer
+        Public ReadOnly Property numberOfFeedsWithRecap As Integer
             Get
                 Dim streams = numberOfRecapFeeds + numberOfFeeds
                 Return If(streams > 0, numberOfFeeds + 1, numberOfFeeds)

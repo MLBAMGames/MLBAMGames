@@ -33,16 +33,8 @@ Public Enum GameStateEnum
     Ended = 5
     OffTheAir = 6
     StreamEnded = 7
-    ToBeDetermined = 8 'playoff game5,6,7
-    Postponed = 9 'snow storm
-
-    P = 2
-    PW = 12
-    S = 1
-    I = 3
-    F = 7
-
-    WarmUp = 12
+    ToBeDetermined = 8
+    Postponed = 9
 End Enum
 
 Public Enum GameTypeEnum

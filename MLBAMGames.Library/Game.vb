@@ -90,18 +90,6 @@ Public NotInheritable Class Game
         Return (StreamsDict IsNot Nothing) AndAlso StreamsDict.ContainsKey(streamType)
     End Function
 
-    Public Sub SetStatsInfo(game As API.Game)
-        HomeScore = game.teams.home.score.ToString()
-        AwayScore = game.teams.away.score.ToString()
-        GamePeriod = game.linescore.currentPeriodOrdinal
-        GameTimeLeft = game.linescore.currentPeriodTimeRemaining
-        IsInIntermission = game.linescore.intermissionInfo.inIntermission
-
-        If IsInIntermission Then
-            IntermissionTimeRemaining = Date.MinValue.AddSeconds(game.linescore.intermissionInfo.intermissionTimeRemaining)
-        End If
-    End Sub
-
     Public Sub New()
         StreamsDict = New Dictionary(Of StreamTypeEnum, GameStream)()
         StreamsUnknown = New List(Of GameStream)()

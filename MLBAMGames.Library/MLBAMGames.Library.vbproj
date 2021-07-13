@@ -131,7 +131,7 @@
     </Compile>
     <Compile Include="DataAccessLayer.vb" />
     <Compile Include="API\League.vb" />
-    <Compile Include="NHLAPIServiceURLs.vb" />
+    <Compile Include="MLBAMAPIServiceURLs.vb" />
     <Compile Include="API\OverallRecord.vb" />
     <Compile Include="API\Record.vb" />
     <Compile Include="API\Records.vb" />

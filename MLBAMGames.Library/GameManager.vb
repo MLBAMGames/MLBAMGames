@@ -1,5 +1,7 @@
-﻿Imports System.Text.RegularExpressions
+﻿Imports System.Globalization
+Imports System.Text.RegularExpressions
 Imports MLBAMGames.Library.API
+Imports Newtonsoft.Json
 
 Public MustInherit Class GameManager
     Implements IDisposable
@@ -75,11 +77,21 @@ Public MustInherit Class GameManager
             End If
 
             If currentGame.IsStreamable Then
-                currentGame.SetStatsInfo(game)
+                currentGame.HomeScore = game.teams.home.score.ToString()
+                currentGame.AwayScore = game.teams.away.score.ToString()
+                If currentGame.IsLive Then
+                    currentGame.GamePeriod = game.linescore.currentPeriodOrdinal
+                    currentGame.GameTimeLeft = game.linescore.currentPeriodTimeRemaining
+                    currentGame.IsInIntermission = game.linescore.intermissionInfo.inIntermission
+                End If
+
+                If currentGame.IsInIntermission Then
+                    currentGame.IntermissionTimeRemaining = Date.MinValue.AddSeconds(game.linescore.intermissionInfo.intermissionTimeRemaining)
+                End If
             End If
 
             If Parameters.IsServerUp Then
-                Dim progressPerStream = If(game.numberOfNHLTVFeedsWithRecap <> 0, Convert.ToInt32(progressPerGame / game.numberOfNHLTVFeedsWithRecap), progressPerGame)
+                Dim progressPerStream = If(game.numberOfFeedsWithRecap <> 0, Convert.ToInt32(progressPerGame / game.numberOfFeedsWithRecap), progressPerGame)
                 For Each feed In game.EventFeeds
                     Parameters.SpnLoadingValue += progressPerStream
                     Dim streamType As StreamTypeEnum = GetStreamType(feed.streamTypeSelected)
@@ -210,8 +222,17 @@ Public Class NHLGameManager
         End Get
     End Property
 
-    Public Overrides Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
-        Return Await Web.GetScheduleAsync(gameDate)
+    Public Overrides Async Function GetSchedule(startDate As Date) As Task(Of Schedule)
+        Dim dateTimeString As String = startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
+        Dim url As String = String.Format(NHLAPIServiceURLs.scheduleGames, dateTimeString, dateTimeString)
+
+        Console.WriteLine("{0}: Game schedule for {1} from NHL.tv", "Fetching",
+                          startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
+
+        Dim data = Await Web.SendWebRequestAndGetContentAsync(url)
+        If data.Equals(String.Empty) Then Return Nothing
+
+        Return JsonConvert.DeserializeObject(Of Schedule)(data)
     End Function
 
     Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
@@ -229,12 +250,33 @@ Public Class MLBGameManager
         End Get
     End Property
 
-    Public Overrides Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
-        Return Await Web.GetScheduleAsync(gameDate)
+    Public Overrides Async Function GetSchedule(startDate As Date) As Task(Of Schedule)
+        Dim dateTimeString As String = startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
+        Dim url As String = String.Format(MLBAPIServiceURLs.scheduleGames, dateTimeString)
+
+        Console.WriteLine("{0}: Game schedule for {1} from MLB.tv", "Fetching",
+                          startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
+
+        Dim data = Await Web.SendWebRequestAndGetContentAsync(url)
+        If data.Equals(String.Empty) Then Return Nothing
+
+        Return JsonConvert.DeserializeObject(Of Schedule)(data)
     End Function
 
     Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
-        Dim code = Convert.ToInt16(If(status.statusCode, 0).ToString())
-        Return If(code > 10, 11, code)
+        Select Case status.statusCode
+            Case "S"
+                Return GameStateEnum.Scheduled
+            Case "P"
+                Return GameStateEnum.Pregame
+            Case "PW"
+                Return GameStateEnum.Pregame
+            Case "I"
+                Return GameStateEnum.InProgress
+            Case "F"
+                Return GameStateEnum.StreamEnded
+            Case Else
+                Return GameStateEnum.Undefined
+        End Select
     End Function
 End Class
