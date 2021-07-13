@@ -68,11 +68,11 @@ Public Class MLBGamesMetro
 
         Dim errorMessage = Await Web.CheckAppCanRun()
         If errorMessage <> String.Empty Then
-            If Instance.Form.MsgBox($"{Lang.RmText.GetString(errorMessage)} {Lang.RmText.GetString("msgNotStarting")}",
+            If MsgBox($"{Lang.RmText.GetString(errorMessage)} {Lang.RmText.GetString("msgNotStarting")}",
                                    Lang.RmText.GetString("msgFailure"),
                                    MessageBoxButtons.YesNo,
                                    MessageBoxIcon.Error) = DialogResult.Yes Then
-                Instance.Form.Close()
+                Close()
             End If
         End If
 
@@ -878,17 +878,6 @@ Public Class MLBGamesMetro
     End Sub
 
 #Region "Implements IMLBAMForm"
-    Private Function IMLBAMForm_BeginInvoke(method As [Delegate], ParamArray args() As Object) As IAsyncResult Implements IMLBAMForm.BeginInvoke
-        Return BeginInvoke(method, args)
-    End Function
-
-    Private Function IMLBAMForm_EndInvoke(asyncResult As IAsyncResult) As Object Implements IMLBAMForm.EndInvoke
-        Return EndInvoke(asyncResult)
-    End Function
-
-    Private Sub IMLBAMForm_Close() Implements IMLBAMForm.Close
-        Close()
-    End Sub
 
     Private Property IMLBAMForm_tgModules As MetroToggle Implements IMLBAMForm.tgModules
         Get
@@ -1185,12 +1174,6 @@ Public Class MLBGamesMetro
         Set(value As Button)
             btnYesterday = value
         End Set
-    End Property
-
-    Private ReadOnly Property IMLBAMForm_InvokeRequired As Boolean Implements IMLBAMForm.InvokeRequired
-        Get
-            Return InvokeRequired
-        End Get
     End Property
 
     Private Property IMLBAMForm_tgAlternateCdn As MetroToggle Implements IMLBAMForm.tgAlternateCdn

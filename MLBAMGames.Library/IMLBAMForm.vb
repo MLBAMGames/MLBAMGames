@@ -65,12 +65,6 @@ Public Interface IMLBAMForm
     Property rbMPC As MetroRadioButton
     Property rbVLC As MetroRadioButton
 #End Region
-#Region "Core"
-    ReadOnly Property InvokeRequired As Boolean
-    Function BeginInvoke(method As [Delegate], ParamArray args As Object()) As IAsyncResult
-    Function EndInvoke(asyncResult As IAsyncResult) As Object
-    Sub Close()
-#End Region
 #Region "Methods"
     Function GetSetting(name As String) As Object
     Sub SetSetting(name As String, value As Object)
