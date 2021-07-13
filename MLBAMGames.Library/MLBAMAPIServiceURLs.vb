@@ -3,7 +3,7 @@ Imports System.Collections.Generic
 Imports System.Text
 
 Public Class NHLAPIServiceURLs
-    Public Shared scheduleGames As String = "http://statsapi.web.nhl.com/api/v1/schedule?startDate={0}&endDate={1}&expand=schedule.teams,schedule.linescore,schedule.game.seriesSummary,schedule.game.content.media.epg"
+    Public Shared scheduleGames As String = "http://statsapi.web.nhl.com/api/v1/schedule?startDate={0}&endDate={0}&expand=schedule.teams,schedule.linescore,schedule.game.seriesSummary,schedule.game.content.media.epg"
 
     Public Shared playoffsTree As String = "https://statsapi.web.nhl.com/api/v1/tournaments/playoffs?expand=round.series,schedule.game.seriesSummary&season={0}"
 
@@ -17,7 +17,7 @@ Public Class NHLAPIServiceURLs
 End Class
 
 Public Class MLBAPIServiceURLs
-    Public Shared scheduleGames As String = "http://statsapi.mlb.com/api/v1/schedule?sportId=1&date={0}&hydrate=team,linescore,game(content(summary,media(epg))"
+    Public Shared scheduleGames As String = "http://statsapi.mlb.com/api/v1/schedule?sportId=1&date={0}&hydrate=team,linescore,game(content(summary,media(epg)))&language=en"
 
     'Public Shared leagueStandings As String = "https://statsapi.mlb.com/api/v1/standings/byLeague?season={0}&expand=standings.record"
     'Public Shared conferenceStandings As String = "https://statsapi.mlb.com/api/v1/standings/byConference?season={0}&expand=standings.record"

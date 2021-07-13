@@ -10,7 +10,7 @@ Namespace API
         Public Property eventId As String
         Public Property language As String
         Public Property freeGame As Boolean
-        Public Property feedName As String
+        Public Property feedName As String = ""
         Public Property gamePlus As Boolean
         Public Property type As String
         Public Property [date] As DateTime

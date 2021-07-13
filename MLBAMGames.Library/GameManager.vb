@@ -22,7 +22,7 @@ Public MustInherit Class GameManager
 
     Public MustOverride Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
     Public MustOverride Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
-    Public MustOverride ReadOnly Property SportApp As SportsEnum
+    Public MustOverride Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item, streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
 
     Public Async Function GetGamesAsync(gameDate As Date) As Task(Of Game())
         Dim schedule As Schedule = Await GetSchedule(gameDate)
@@ -152,19 +152,6 @@ Public MustInherit Class GameManager
         }
     End Function
 
-
-    Private Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item,
-                                                   streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
-        Dim gs = New GameStream(currentGame, innerStream, streamType, streamTypeSelected, SportApp)
-        gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
-
-        If gs.StreamUrl.Equals(String.Empty) Then
-            Console.WriteLine("Game stream: {0} not found or unavailable on the server", gs.Title)
-        End If
-
-        Return gs
-    End Function
-
     Private Shared Function GetStreamType(streamTypeSelected As String) As StreamTypeEnum
         Dim streamTypeAsText = Regex.Replace(streamTypeSelected.ToUpper(), "[^A-Z0-9]", "")
 
@@ -175,7 +162,7 @@ Public MustInherit Class GameManager
         End If
     End Function
 
-    Private Shared Async Function GetGameFeedUrlAsync(gameStream As GameStream) As Task(Of String)
+    Friend Shared Async Function GetGameFeedUrlAsync(gameStream As GameStream) As Task(Of String)
         If gameStream.GameUrl.Equals(String.Empty) Then Return String.Empty
 
         Dim streamUrlReturned = Await Web.SendWebRequestAndGetContentAsync(gameStream.GameUrl)
@@ -216,23 +203,43 @@ End Class
 Public Class NHLGameManager
     Inherits GameManager
 
-    Public Overrides ReadOnly Property SportApp As SportsEnum
-        Get
-            Return SportsEnum.NHL
-        End Get
-    End Property
-
     Public Overrides Async Function GetSchedule(startDate As Date) As Task(Of Schedule)
         Dim dateTimeString As String = startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
-        Dim url As String = String.Format(NHLAPIServiceURLs.scheduleGames, dateTimeString, dateTimeString)
+        Dim url As String = String.Format(NHLAPIServiceURLs.scheduleGames, dateTimeString)
 
         Console.WriteLine("{0}: Game schedule for {1} from NHL.tv", "Fetching",
                           startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
 
         Dim data = Await Web.SendWebRequestAndGetContentAsync(url)
-        If data.Equals(String.Empty) Then Return Nothing
+        If data.Equals(String.Empty) OrElse data.Equals("{}") Then Return Nothing
 
         Return JsonConvert.DeserializeObject(Of Schedule)(data)
+    End Function
+
+    Public Overrides Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item,
+                                                   streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
+        Dim gs = New GameStream() With {
+            .Game = currentGame,
+            .Type = streamType,
+            .Network = innerStream.callLetters,
+            .PlayBackId = innerStream.mediaPlaybackId,
+            .CdnParameter = SettingsExtensions.ReadGameWatchArgs().Cdn
+        }
+        If gs.Network = String.Empty Then gs.Network = EPGMediaEnum.NHLTV.ToString()
+        If gs.Type = StreamTypeEnum.Unknown Then
+            gs.StreamTypeSelected = streamTypeSelected
+        End If
+        gs.GameUrl = $"http://{Parameters.HostName}/getM3U8.php?league={SportsEnum.NHL}&id={gs.PlayBackId}&cdn={gs.CdnParameter.ToString().ToLower()}&date={DateHelper.GetPacificTime(currentGame.GameDate).ToString("yyyy-MM-dd")}"
+        gs.Title = $"{currentGame.AwayAbbrev} vs {currentGame.HomeAbbrev} on {gs.Network}"
+
+
+        gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
+
+        If gs.StreamUrl.Equals(String.Empty) Then
+            Console.WriteLine("Game stream: {0} not found or unavailable on the server", gs.Title)
+        End If
+
+        Return gs
     End Function
 
     Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
@@ -244,12 +251,6 @@ End Class
 Public Class MLBGameManager
     Inherits GameManager
 
-    Public Overrides ReadOnly Property SportApp As SportsEnum
-        Get
-            Return SportsEnum.MLB
-        End Get
-    End Property
-
     Public Overrides Async Function GetSchedule(startDate As Date) As Task(Of Schedule)
         Dim dateTimeString As String = startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
         Dim url As String = String.Format(MLBAPIServiceURLs.scheduleGames, dateTimeString)
@@ -258,9 +259,35 @@ Public Class MLBGameManager
                           startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
 
         Dim data = Await Web.SendWebRequestAndGetContentAsync(url)
-        If data.Equals(String.Empty) Then Return Nothing
+        If data.Equals(String.Empty) OrElse data.Equals("{}") Then Return Nothing
 
         Return JsonConvert.DeserializeObject(Of Schedule)(data)
+    End Function
+
+    Public Overrides Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item,
+                                                   streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
+        Dim gs = New GameStream() With {
+            .Game = currentGame,
+            .Type = streamType,
+            .Network = innerStream.callLetters,
+            .PlayBackId = innerStream.id,
+            .CdnParameter = SettingsExtensions.ReadGameWatchArgs().Cdn
+        }
+        If gs.Network = String.Empty Then gs.Network = EPGMediaEnum.MLBTV.ToString()
+        If gs.Type = StreamTypeEnum.Unknown Then
+            gs.StreamTypeSelected = streamTypeSelected
+        End If
+        gs.GameUrl = $"http://{Parameters.HostName}/getM3U8.php?league={SportsEnum.MLB}&id={gs.PlayBackId}&cdn={gs.CdnParameter.ToString().ToLower()}&date={DateHelper.GetPacificTime(currentGame.GameDate).ToString("yyyy-MM-dd")}"
+        gs.Title = $"{currentGame.AwayAbbrev} vs {currentGame.HomeAbbrev} on {gs.Network}"
+
+
+        gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
+
+        If gs.StreamUrl.Equals(String.Empty) Then
+            Console.WriteLine("Game stream: {0} not found or unavailable on the server", gs.Title)
+        End If
+
+        Return gs
     End Function
 
     Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
