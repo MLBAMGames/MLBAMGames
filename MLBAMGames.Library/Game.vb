@@ -3,7 +3,7 @@ Public NotInheritable Class Game
     Implements IDisposable
     Private _disposedValue As Boolean
 
-    Public Property StreamsDict As Dictionary(Of StreamTypeEnum, GameStream)
+    Public Property StreamsDict As IDictionary(Of StreamTypeEnum, GameStream)
     Public Property Recap As GameStream
     Public Property StreamsUnknown As List(Of GameStream)
     Public Property GameId As String

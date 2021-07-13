@@ -1,10 +1,10 @@
 ﻿Public Class GameStream
     Implements IDisposable
     Private _disposedValue As Boolean
-    Public Property Type As StreamTypeEnum
-    Public Property Game As Game
-    Public Property Network As String
-    Public Property PlayBackId As String
+    Public Property Type As StreamTypeEnum = StreamerTypeEnum.None
+    Public Property Game As Game = Nothing
+    Public Property Network As String = String.Empty
+    Public Property PlayBackId As String = String.Empty
     Public Property GameUrl As String = String.Empty
     Public Property CdnParameter As CdnTypeEnum = CdnTypeEnum.Akc
     Public Property Title As String = String.Empty

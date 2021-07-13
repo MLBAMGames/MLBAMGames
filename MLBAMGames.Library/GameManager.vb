@@ -8,18 +8,13 @@ Public MustInherit Class GameManager
 
     Private _disposedValue As Boolean
 
-    Private Shared ReadOnly DictStreamType As Dictionary(Of String, StreamTypeEnum) = New Dictionary(Of String, StreamTypeEnum)() From {
-        {"HOME", StreamTypeEnum.Home}, {"AWAY", StreamTypeEnum.Away}, {"NATIONAL", StreamTypeEnum.National},
-        {"FRENCH", StreamTypeEnum.French},
-        {"MULTICAM1", StreamTypeEnum.MultiCam1}, {"MULTICAM2", StreamTypeEnum.MultiCam2},
-        {"ENDZONECAM1", StreamTypeEnum.EndzoneCam1}, {"ENDZONECAM2", StreamTypeEnum.EndzoneCam2},
-        {"REFCAM", StreamTypeEnum.RefCam}, {"STARCAM", StreamTypeEnum.StarCam}}
 
     Private Const MediaOff = "MEDIA_OFF"
 
     Public Sub New()
     End Sub
 
+    Public MustOverride ReadOnly Property DictStreamType As Dictionary(Of String, StreamTypeEnum)
     Public MustOverride Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
     Public MustOverride Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
     Public MustOverride Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item, streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
@@ -49,46 +44,10 @@ Public MustInherit Class GameManager
         lstStreamsTask = If(Parameters.IsServerUp, New Task(numberOfStreams - 1) {}, New Task() {})
 
         Dim progressPerGame = Convert.ToInt32(((Parameters.SpnLoadingMaxValue - 1) - Parameters.SpnLoadingValue) / numberOfGames)
-        Dim currentGame As Game
 
         For Each game As API.Game In schedule.date.games
 
-            currentGame = New Game With {
-                .GameDate = game.gameDate.ToUniversalTime(), ' Must use universal time to always get correct date for stream
-                .GameId = game.gamePk.ToString(),
-                .GameType = Convert.ToInt16(GetChar(game.gamePk.ToString(), 6)) - 48,
-                .Home = If(game.teams?.home?.team?.locationName, String.Empty),
-                .HomeAbbrev = If(game.teams?.home?.team?.abbreviation, String.Empty),
-                .HomeTeam = If(game.teams?.home?.team?.teamName, String.Empty),
-                .Away = If(game.teams?.away?.team?.locationName, String.Empty),
-                .AwayAbbrev = If(game.teams?.away?.team?.abbreviation, String.Empty),
-                .AwayTeam = If(game.teams?.away?.team?.teamName, String.Empty),
-                .GameState = GetGameStateFromStatus(game.status),
-                .GameStateDetailed = game.status.detailedState
-            }
-
-            If currentGame.GameType = GameTypeEnum.Series AndAlso game.seriesSummary?.gameNumber IsNot Nothing Then
-                currentGame.SeriesGameNumber = game.seriesSummary?.gameNumber
-                currentGame.SeriesGameStatus = If(game.seriesSummary?.seriesStatusShort, String.Empty)
-            End If
-
-            If currentGame.GameDate.AddDays(1) < Date.UtcNow AndAlso currentGame.GameState > 0 AndAlso currentGame.GameState < 7 Then
-                currentGame.GameState = GameStateEnum.StreamEnded
-            End If
-
-            If currentGame.IsStreamable Then
-                currentGame.HomeScore = game.teams.home.score.ToString()
-                currentGame.AwayScore = game.teams.away.score.ToString()
-                If currentGame.IsLive Then
-                    currentGame.GamePeriod = game.linescore.currentPeriodOrdinal
-                    currentGame.GameTimeLeft = game.linescore.currentPeriodTimeRemaining
-                    currentGame.IsInIntermission = game.linescore.intermissionInfo.inIntermission
-                End If
-
-                If currentGame.IsInIntermission Then
-                    currentGame.IntermissionTimeRemaining = Date.MinValue.AddSeconds(game.linescore.intermissionInfo.intermissionTimeRemaining)
-                End If
-            End If
+            Dim currentGame = NewGameWithStats(game)
 
             If Parameters.IsServerUp Then
                 Dim progressPerStream = If(game.numberOfFeedsWithRecap <> 0, Convert.ToInt32(progressPerGame / game.numberOfFeedsWithRecap), progressPerGame)
@@ -105,6 +64,7 @@ Public MustInherit Class GameManager
                             Task.Run(Async Function()
                                          Dim newStream = Await SetNewGameStream(tCurrentGame, tInnerStream, tStreamType, tStreamTypeSelected)
                                          If streamType <> StreamTypeEnum.Unknown Then
+                                             If gamesArray(tCurrentGameIndex).StreamsDict.ContainsKey(streamType) Then Return
                                              gamesArray(tCurrentGameIndex).StreamsDict.Add(streamType, newStream)
                                          Else
                                              gamesArray(tCurrentGameIndex).StreamsUnknown.Add(newStream)
@@ -142,9 +102,50 @@ Public MustInherit Class GameManager
         Return gamesArray
     End Function
 
+    Private Function NewGameWithStats(game As API.Game)
+        Dim currentGame = New Game With {
+                .GameDate = game.gameDate.ToUniversalTime(), ' Must use universal time to always get correct date for stream
+                .GameId = game.gamePk.ToString(),
+                .GameType = Convert.ToInt16(GetChar(game.gamePk.ToString(), 6)) - 48,
+                .Home = If(game.teams?.home?.team?.locationName, String.Empty),
+                .HomeAbbrev = If(game.teams?.home?.team?.abbreviation, String.Empty),
+                .HomeTeam = If(game.teams?.home?.team?.teamName, String.Empty),
+                .Away = If(game.teams?.away?.team?.locationName, String.Empty),
+                .AwayAbbrev = If(game.teams?.away?.team?.abbreviation, String.Empty),
+                .AwayTeam = If(game.teams?.away?.team?.teamName, String.Empty),
+                .GameState = GetGameStateFromStatus(game.status),
+                .GameStateDetailed = game.status.detailedState
+            }
 
-    Private Shared Function SetGameRecap(currentGame As API.Game)
-        Dim recap = currentGame.RecapFeeds.First()
+        If currentGame.GameType = GameTypeEnum.Series AndAlso game.seriesSummary?.gameNumber IsNot Nothing Then
+            currentGame.SeriesGameNumber = game.seriesSummary?.gameNumber
+            currentGame.SeriesGameStatus = If(game.seriesSummary?.seriesStatusShort, String.Empty)
+        End If
+
+        If currentGame.GameDate.AddDays(1) < Date.UtcNow AndAlso currentGame.GameState > 0 AndAlso currentGame.GameState < 7 Then
+            currentGame.GameState = GameStateEnum.StreamEnded
+        End If
+
+        If currentGame.IsStreamable Then
+            currentGame.HomeScore = game.teams.home.score.ToString()
+            currentGame.AwayScore = game.teams.away.score.ToString()
+            If currentGame.IsLive Then
+                currentGame.GamePeriod = game.linescore.currentPeriodOrdinal
+                currentGame.GameTimeLeft = game.linescore.currentPeriodTimeRemaining
+                currentGame.IsInIntermission = game.linescore.intermissionInfo.inIntermission
+            End If
+
+            If currentGame.IsInIntermission Then
+                currentGame.IntermissionTimeRemaining = Date.MinValue.AddSeconds(game.linescore.intermissionInfo.intermissionTimeRemaining)
+            End If
+        End If
+
+        Return currentGame
+    End Function
+
+
+    Private Function SetGameRecap(game As API.Game)
+        Dim recap = game.RecapFeeds.First()
         Return New GameStream With {
             .Title = recap.title,
             .StreamUrl = recap.recapLink,
@@ -152,7 +153,7 @@ Public MustInherit Class GameManager
         }
     End Function
 
-    Private Shared Function GetStreamType(streamTypeSelected As String) As StreamTypeEnum
+    Private Function GetStreamType(streamTypeSelected As String) As StreamTypeEnum
         Dim streamTypeAsText = Regex.Replace(streamTypeSelected.ToUpper(), "[^A-Z0-9]", "")
 
         If DictStreamType.ContainsKey(streamTypeAsText) Then
@@ -162,7 +163,7 @@ Public MustInherit Class GameManager
         End If
     End Function
 
-    Friend Shared Async Function GetGameFeedUrlAsync(gameStream As GameStream) As Task(Of String)
+    Friend Async Function GetGameFeedUrlAsync(gameStream As GameStream) As Task(Of String)
         If gameStream.GameUrl.Equals(String.Empty) Then Return String.Empty
 
         Dim streamUrlReturned = Await Web.SendWebRequestAndGetContentAsync(gameStream.GameUrl)
@@ -186,8 +187,10 @@ Public MustInherit Class GameManager
         Return If(Await Web.SendWebRequestAsync(streamUrlReturned), streamUrlReturned, String.Empty)
     End Function
 
-    Protected Overridable Sub Dispose(disposing As Boolean)
-        _disposedValue = True
+    Private Sub Dispose(disposing As Boolean)
+        If Not _disposedValue Then
+            _disposedValue = True
+        End If
     End Sub
 
     Public Sub Dispose() Implements IDisposable.Dispose
@@ -198,112 +201,4 @@ Public MustInherit Class GameManager
     Protected Overrides Sub Finalize()
         Dispose(False)
     End Sub
-End Class
-
-Public Class NHLGameManager
-    Inherits GameManager
-
-    Public Overrides Async Function GetSchedule(startDate As Date) As Task(Of Schedule)
-        Dim dateTimeString As String = startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
-        Dim url As String = String.Format(NHLAPIServiceURLs.scheduleGames, dateTimeString)
-
-        Console.WriteLine("{0}: Game schedule for {1} from NHL.tv", "Fetching",
-                          startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
-
-        Dim data = Await Web.SendWebRequestAndGetContentAsync(url)
-        If data.Equals(String.Empty) OrElse data.Equals("{}") Then Return Nothing
-
-        Return JsonConvert.DeserializeObject(Of Schedule)(data)
-    End Function
-
-    Public Overrides Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item,
-                                                   streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
-        Dim gs = New GameStream() With {
-            .Game = currentGame,
-            .Type = streamType,
-            .Network = innerStream.callLetters,
-            .PlayBackId = innerStream.mediaPlaybackId,
-            .CdnParameter = SettingsExtensions.ReadGameWatchArgs().Cdn
-        }
-        If gs.Network = String.Empty Then gs.Network = EPGMediaEnum.NHLTV.ToString()
-        If gs.Type = StreamTypeEnum.Unknown Then
-            gs.StreamTypeSelected = streamTypeSelected
-        End If
-        gs.GameUrl = $"http://{Parameters.HostName}/getM3U8.php?league={SportsEnum.NHL}&id={gs.PlayBackId}&cdn={gs.CdnParameter.ToString().ToLower()}&date={DateHelper.GetPacificTime(currentGame.GameDate).ToString("yyyy-MM-dd")}"
-        gs.Title = $"{currentGame.AwayAbbrev} vs {currentGame.HomeAbbrev} on {gs.Network}"
-
-
-        gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
-
-        If gs.StreamUrl.Equals(String.Empty) Then
-            Console.WriteLine("Game stream: {0} not found or unavailable on the server", gs.Title)
-        End If
-
-        Return gs
-    End Function
-
-    Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
-        Dim code = Convert.ToInt16(If(status.statusCode, 0).ToString())
-        Return If(code > 10, 11, code)
-    End Function
-End Class
-
-Public Class MLBGameManager
-    Inherits GameManager
-
-    Public Overrides Async Function GetSchedule(startDate As Date) As Task(Of Schedule)
-        Dim dateTimeString As String = startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
-        Dim url As String = String.Format(MLBAPIServiceURLs.scheduleGames, dateTimeString)
-
-        Console.WriteLine("{0}: Game schedule for {1} from MLB.tv", "Fetching",
-                          startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
-
-        Dim data = Await Web.SendWebRequestAndGetContentAsync(url)
-        If data.Equals(String.Empty) OrElse data.Equals("{}") Then Return Nothing
-
-        Return JsonConvert.DeserializeObject(Of Schedule)(data)
-    End Function
-
-    Public Overrides Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item,
-                                                   streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
-        Dim gs = New GameStream() With {
-            .Game = currentGame,
-            .Type = streamType,
-            .Network = innerStream.callLetters,
-            .PlayBackId = innerStream.id,
-            .CdnParameter = SettingsExtensions.ReadGameWatchArgs().Cdn
-        }
-        If gs.Network = String.Empty Then gs.Network = EPGMediaEnum.MLBTV.ToString()
-        If gs.Type = StreamTypeEnum.Unknown Then
-            gs.StreamTypeSelected = streamTypeSelected
-        End If
-        gs.GameUrl = $"http://{Parameters.HostName}/getM3U8.php?league={SportsEnum.MLB}&id={gs.PlayBackId}&cdn={gs.CdnParameter.ToString().ToLower()}&date={DateHelper.GetPacificTime(currentGame.GameDate).ToString("yyyy-MM-dd")}"
-        gs.Title = $"{currentGame.AwayAbbrev} vs {currentGame.HomeAbbrev} on {gs.Network}"
-
-
-        gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
-
-        If gs.StreamUrl.Equals(String.Empty) Then
-            Console.WriteLine("Game stream: {0} not found or unavailable on the server", gs.Title)
-        End If
-
-        Return gs
-    End Function
-
-    Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
-        Select Case status.statusCode
-            Case "S"
-                Return GameStateEnum.Scheduled
-            Case "P"
-                Return GameStateEnum.Pregame
-            Case "PW"
-                Return GameStateEnum.Pregame
-            Case "I"
-                Return GameStateEnum.InProgress
-            Case "F"
-                Return GameStateEnum.StreamEnded
-            Case Else
-                Return GameStateEnum.Undefined
-        End Select
-    End Function
 End Class
