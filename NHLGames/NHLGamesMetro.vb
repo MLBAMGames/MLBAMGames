@@ -40,15 +40,15 @@ Public Class NHLGamesMetro
     End Sub
 
     Private Shared Sub Form1_UIThreadException(sender As Object, t As ThreadExceptionEventArgs)
-        Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Running UI thread", t.Exception.ToString())
+        Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Running UI thread", t.Exception.ToString())
     End Sub
 
     Private Shared Sub CurrentDomain_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs)
-        Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Using NHLGames domain", e.ExceptionObject.ToString())
+        Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Using NHLGames domain", e.ExceptionObject.ToString())
     End Sub
 
     Public Sub HandleException(e As Exception)
-        Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Running main thread", e.ToString())
+        Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Running main thread", e.ToString())
     End Sub
 
     Private Async Sub NHLGames_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -74,7 +74,6 @@ Public Class NHLGamesMetro
                                    MessageBoxIcon.Error) = DialogResult.Yes Then
                 Instance.Form.Close()
             End If
-            Console.WriteLine($"Status: {Lang.EnglishRmText.GetString("errorMessage")}")
         End If
 
         Parameters.UILoaded = True
@@ -111,12 +110,17 @@ Public Class NHLGamesMetro
     End Sub
 
     Public Function MsgBox(message As String, title As String, buttons As MessageBoxButtons, type As MessageBoxIcon) As DialogResult Implements IMLBAMForm.MsgBox
-        Instance.Form.tabMenu.SetPropertyThreadSafe(Function() Instance.Form.tabMenu.SelectedIndex = MainTabsEnum.Console)
-        Return MetroMessageBox.Show(Me,
-                                    message,
-                                    title,
-                                    buttons,
-                                    type)
+        tabMenu.SetPropertyThreadSafe(Function() tabMenu.SelectedIndex = MainTabsEnum.Console)
+        Dim dialogResult As New DialogResult
+        Me.GetPropertyThreadSafe(Function()
+                                     dialogResult = MetroMessageBox.Show(Me,
+                                        message,
+                                        title,
+                                        buttons,
+                                        type)
+                                     Return True
+                                 End Function)
+        Return dialogResult
     End Function
 
     Private Sub LoadStandings()
@@ -149,7 +153,7 @@ Public Class NHLGamesMetro
     End Sub
 
     Private Shared Sub _writeToConsoleSettingsChanged(key As String, value As String)
-        If Parameters.UILoaded Then Console.WriteLine(Lang.EnglishRmText.GetString("msgSettingUpdated"), key, value)
+        If Parameters.UILoaded Then Console.WriteLine("Status: Setting updated for '{0}' to '{1}'", key, value)
     End Sub
 
     Private Sub tmrAnimate_Tick(sender As Object, e As EventArgs) Handles tmr.Tick
@@ -259,8 +263,8 @@ Public Class NHLGamesMetro
     End Sub
 
     Private Sub _writeToConsoleSettingToggleChanged(label As String, checked As Boolean)
-        _writeToConsoleSettingsChanged(String.Format(Lang.EnglishRmText.GetString("msgThisEnable"), label),
-            If(checked, Lang.EnglishRmText.GetString("msgOn"), Lang.EnglishRmText.GetString("msgOff")))
+        _writeToConsoleSettingsChanged(String.Format("{0} enable", label),
+            If(checked, "ON", "OFF"))
     End Sub
 
     Private Sub tgShowFinalScores_CheckedChanged(sender As Object, e As EventArgs) _

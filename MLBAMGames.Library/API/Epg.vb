@@ -21,7 +21,7 @@ Namespace API
 
         Public ReadOnly Property numberOfRecapFeeds As Integer
             Get
-                Return If(title = EPGMediaEnum.Recap, items.Count(), 0)
+                Return If(title = EPGMediaEnum.Recap.ToString(), items.Count(), 0)
             End Get
         End Property
     End Class

@@ -10,13 +10,13 @@ Public Class Player
 
         If args.PlayerPath.Equals(String.Empty) OrElse args.StreamerPath.Equals(String.Empty) Then
             If form.txtStreamerPath.Text.Equals(String.Empty) Then
-                Console.WriteLine(Lang.EnglishRmText.GetString("errorStreamerExe"))
+                Console.WriteLine("Error:  Can't find the specified streamer. The streamer is used to send streams to your media player, please select the one that comes with NHLGames or select a valid path of Livestreamer.exe or Streamlink.exe")
             ElseIf _
                 form.txtMpvPath.Text.Equals(String.Empty) AndAlso form.txtVLCPath.Text.Equals(String.Empty) AndAlso
                 form.txtMPCPath.Text.Equals(String.Empty) Then
-                Console.WriteLine(Lang.EnglishRmText.GetString("errorMpvExe"))
+                Console.WriteLine("Error: Can't find mpv.exe : mpv is a media player that we shipped with NHLGames. You probably moved it or deleted it. Please set a player, NHLGames needs one.")
             Else
-                Console.WriteLine(Lang.EnglishRmText.GetString("errorPlayerPathEmpty"))
+                Console.WriteLine("Error: No media player selected in settings.")
             End If
             Return
         End If
@@ -42,8 +42,8 @@ Public Class Player
         Dim progressStep As Integer = (Parameters.SpnLoadingMaxValue) / (lstValidLines.Count + 1)
 
 
-        Console.WriteLine(Lang.EnglishRmText.GetString("msgStreaming"), args.GameTitle, args.Stream.Network, args.PlayerType.ToString())
-        Console.WriteLine(Lang.EnglishRmText.GetString("msgStartingStreamer"), args.ToString(True))
+        Console.WriteLine("Streaming: {0} on {1} using {2} player", args.GameTitle, args.Stream.Network, args.PlayerType.ToString())
+        Console.WriteLine("Starting: Streamer {0}", args.ToString(True))
 
         Dim procStreaming = New Process() With {.StartInfo =
                 New ProcessStartInfo With {
@@ -68,7 +68,7 @@ Public Class Player
                 Dim line = procStreaming.StandardOutput.ReadLine().ToLower()
                 If line.Contains(Http) Then
                     line = line.Substring(0, line.IndexOf(Http, StringComparison.Ordinal)) &
-                           Lang.EnglishRmText.GetString("msgCensoredStream")
+                           "[CENSORED_STREAM_URL]"
                 End If
                 If lstValidLines.Any(Function(x) line.Contains(x)) Then
                     Parameters.SpnStreamingValue += progressStep
@@ -78,7 +78,7 @@ Public Class Player
                 End If
                 Console.WriteLine(line)
                 If lstInvalidLines.Any(Function(x) line.Contains(x)) Then
-                    Console.WriteLine(Lang.EnglishRmText.GetString("errorStreamFailedCantRead"))
+                    Console.WriteLine("Warning: Starting stream failed. Try to use a different quality in settings, so it will try another stream.")
                     Throw New IOException()
                 End If
                 If line.Contains("player closed") Then Throw New IOException()
@@ -86,7 +86,7 @@ Public Class Player
             End While
         Catch ex As IOException
         Catch ex As Exception
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Starting stream", ex.Message)
+            Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Starting stream", ex.Message)
         Finally
             Parameters.StreamStarted = False
         End Try

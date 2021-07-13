@@ -13,13 +13,13 @@ Public Class FileAccess
             ' Make the file RW
             attributes = RemoveAttribute(attributes, FileAttributes.[ReadOnly])
             File.SetAttributes(path, attributes)
-            Console.WriteLine(Lang.EnglishRmText.GetString("msgRemoveReadOnly"), path)
+            Console.WriteLine("Status: The {0} file is no longer Read Only", path)
         End If
     End Sub
 
     Public Shared Sub AddReadonly(path As String)
         File.SetAttributes(path, File.GetAttributes(path) Or FileAttributes.ReadOnly)
-        Console.WriteLine(Lang.EnglishRmText.GetString("msgAddReadOnly"), path)
+        Console.WriteLine("The {0} file is now set back to Read Only", path)
     End Sub
 
     Private Shared Function RemoveAttribute(attributes As FileAttributes, attributesToRemove As FileAttributes) _
@@ -39,7 +39,7 @@ Public Class FileAccess
 
             Return True
         Catch ex As Exception
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorAccessPath"), ex.Message)
+            Console.WriteLine("Error: Checking access to path: {0}", ex.Message)
             Return False
         End Try
     End Function

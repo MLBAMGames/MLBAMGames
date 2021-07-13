@@ -12,7 +12,7 @@
         Try
             Return Serialization.DeserializeObject(Of GameWatchArguments)(args)
         Catch ex As Exception
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorDeserialize"), Instance.Form.GetSetting("DefaultWatchArgs"), NameOf(GameWatchArguments))
+            Console.WriteLine("Error : Failed to deserialize setting value of '{0}' to type '{1}'", Instance.Form.GetSetting("DefaultWatchArgs"), NameOf(GameWatchArguments))
             Return defaultReturnValue
         End Try
     End Function
@@ -30,7 +30,7 @@
         Try
             Return Serialization.DeserializeObject(Of AdDetectionConfigs)(configs)
         Catch ex As Exception
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorDeserialize"), Instance.Form.GetSetting("DefaultWatchArgs"), NameOf(AdDetectionConfigs))
+            Console.WriteLine("Error : Failed to deserialize setting value of '{0}' to type '{1}'", Instance.Form.GetSetting("DefaultWatchArgs"), NameOf(AdDetectionConfigs))
             Return defaultReturnValue
         End Try
     End Function

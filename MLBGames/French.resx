@@ -137,10 +137,6 @@
     <value>Détails des séries</value>
     <comment>Settings tab</comment>
   </data>
-  <data name="msgHostnameSet" xml:space="preserve">
-    <value>NHLGames doit ajouter une ligne à votre fichier Hosts de Windows pour qu'il puisse rediriger efficacement les streams de NHL.tv. Laissez-vous NHLGames ajouter son domaine à ce fichier?</value>
-    <comment>Message</comment>
-  </data>
   <data name="lblAwayTeam" xml:space="preserve">
     <value>Visiteurs : {1} {0}</value>
     <comment>Game panel</comment>
@@ -233,10 +229,6 @@
     <value>Aujourd'hui</value>
     <comment>Calendar</comment>
   </data>
-  <data name="msgAddHost" xml:space="preserve">
-    <value>Ajouter l'entrée du serveur au fichier Hosts</value>
-    <comment>Message</comment>
-  </data>
   <data name="msgChangeLog" xml:space="preserve">
     <value>Voulez-vous mettre à jour à la dernière version? Voici les derniers changements:{0}{1}</value>
     <comment>Version</comment>
@@ -253,14 +245,6 @@
     <value>Matchs trouvés : {0}</value>
     <comment>Status bar</comment>
   </data>
-  <data name="msgHostsFailure" xml:space="preserve">
-    <value>L'entrée dans le fichier Hosts ne semble pas fonctionner :(</value>
-    <comment>Message</comment>
-  </data>
-  <data name="msgHostsSuccess" xml:space="preserve">
-    <value>Le fichier Hosts de Windows semble fonctionnel: Les adresses IP de NHL.tv et NHLGames correspondent  :)</value>
-    <comment>Message</comment>
-  </data>
   <data name="msgLoadingGames" xml:space="preserve">
     <value>Chargement des matchs</value>
     <comment>Status bar</comment>
@@ -273,28 +257,8 @@
     <value>Nouvelle version {0} est disponible! Cliquer pour mettre à jour.</value>
     <comment>Status bar</comment>
   </data>
-  <data name="msgRunAsAdmin" xml:space="preserve">
-    <value>Accès d'administrateur requis</value>
-    <comment>Message</comment>
-  </data>
-  <data name="msgRunAsAdminText" xml:space="preserve">
-    <value>NHLGames a détecté une entrée au fichier Hosts qui n'est plus nécessaire.  Voulez-vous qu'elle redémarre avec le droit d'administrateur pour supprimer l'ancienne entrée?</value>
-    <comment>Message</comment>
-  </data>
-  <data name="msgSuccess" xml:space="preserve">
-    <value>Succès</value>
-    <comment>Message</comment>
-  </data>
   <data name="msgTeamVsTeam" xml:space="preserve">
     <value>{0} vs {1}</value>
-    <comment>Message</comment>
-  </data>
-  <data name="msgViewHosts" xml:space="preserve">
-    <value>Voir le fichier Hosts</value>
-    <comment>Message</comment>
-  </data>
-  <data name="msgViewHostsText" xml:space="preserve">
-    <value>Voulez-vous voir les changements apportés au fichier Hosts?</value>
     <comment>Message</comment>
   </data>
   <data name="tabConsole" xml:space="preserve">
@@ -303,10 +267,6 @@
   </data>
   <data name="tabGames" xml:space="preserve">
     <value>Matchs</value>
-    <comment>Main</comment>
-  </data>
-  <data name="tabModules" xml:space="preserve">
-    <value>Modules</value>
     <comment>Main</comment>
   </data>
   <data name="tabSettings" xml:space="preserve">
@@ -393,36 +353,8 @@
     <value>Superbe - 720p - 1.8Gb/heure</value>
     <comment>Settings tab</comment>
   </data>
-  <data name="cbHostsAdd" xml:space="preserve">
-    <value>Ajouter la ligne de redirection de l'authentifcation à NHL.tv au fichier Hosts</value>
-    <comment>Settings tab</comment>
-  </data>
-  <data name="cbHostsEntry" xml:space="preserve">
-    <value>Copier dans le presse-papier la ligne de redirection</value>
-    <comment>Settings tab</comment>
-  </data>
-  <data name="cbHostsLocation" xml:space="preserve">
-    <value>Ouvrir l'emplacement du fichier Hosts</value>
-    <comment>Settings tab</comment>
-  </data>
-  <data name="cbHostsRemove" xml:space="preserve">
-    <value>Retirer la ligne de redirection de l'authentification à NHL.tv au fichier Hosts</value>
-    <comment>Settings tab</comment>
-  </data>
-  <data name="cbHostsTest" xml:space="preserve">
-    <value>Tester si le contournement de l'authentification à NHL.tv fonctionne</value>
-    <comment>Settings tab</comment>
-  </data>
-  <data name="cbHostsView" xml:space="preserve">
-    <value>Voir le contenu du fichier Hosts dans bloc-notes</value>
-    <comment>Settings tab</comment>
-  </data>
   <data name="tipBrowse" xml:space="preserve">
     <value>Parcourir</value>
-    <comment>Settings tab</comment>
-  </data>
-  <data name="tipHostsExecuteAction" xml:space="preserve">
-    <value>Exécuter l'action</value>
     <comment>Settings tab</comment>
   </data>
   <data name="lblModules" xml:space="preserve">
@@ -464,10 +396,6 @@
   <data name="cbQualitySuperb60fps" xml:space="preserve">
     <value>Excellente - 720p @ 60 fps - 2.5Gb/heure</value>
     <comment>Settings tab</comment>
-  </data>
-  <data name="msgHostsCopyEntry" xml:space="preserve">
-    <value>La ligne de redirection de l'authentifcation à NHL.tv ''{0}'' a été copiée dans votre presse-papier. Utiliser CTRL+V pour la coller dans le fichier Hosts.</value>
-    <comment>Message</comment>
   </data>
   <data name="noWebAccess" xml:space="preserve">
     <value>Aucun accès à Internet!</value>
@@ -525,10 +453,6 @@
     <value>Assurez-vous que votre antivirus n'est pas effacé un fichier, sinon réinstallez l'app. Voulez-vous quitter NHLGames?</value>
     <comment>Message</comment>
   </data>
-  <data name="noGameServer" xml:space="preserve">
-    <value>Aucun serveur de redirection trouvé!</value>
-    <comment>Message</comment>
-  </data>
   <data name="tipCalendar" xml:space="preserve">
     <value>Calendrier</value>
     <comment>Games tab</comment>
@@ -564,18 +488,6 @@
   <data name="tipYearUp" xml:space="preserve">
     <value>Année suivante</value>
     <comment>Calendar</comment>
-  </data>
-  <data name="cbLiveStatusLive" xml:space="preserve">
-    <value>En direct - Les matchs du jour suivent le stream en direct (Default)</value>
-    <comment>Settings tab</comment>
-  </data>
-  <data name="cbLiveStatusReplay" xml:space="preserve">
-    <value>Rejouer - Les matchs du jour ignorent le stream en direct</value>
-    <comment>Settings tab</comment>
-  </data>
-  <data name="cbLiveStatusRewind" xml:space="preserve">
-    <value>Reculer - Les matchs du jour sont positionnés derrière le stream en direct</value>
-    <comment>Settings tab</comment>
   </data>
   <data name="lblLiveRewind" xml:space="preserve">
     <value>Reculer en direct</value>

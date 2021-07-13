@@ -63,7 +63,7 @@ Namespace API
         Private Function GetFeeds(ByVal ParamArray types() As EPGMediaEnum) As List(Of Item)
             Dim [default] = New List(Of Item)
             If content?.media?.epg IsNot Nothing Then
-                Return If(content.media.epg.Find(Function(x) types.Contains(x.title))?.items, [default])
+                Return If(content.media.epg.Find(Function(x) types.Any(Function(t) t.ToString() = x.title))?.items, [default])
             End If
             Return [default]
         End Function

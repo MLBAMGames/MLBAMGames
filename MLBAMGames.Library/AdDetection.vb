@@ -150,7 +150,7 @@ Public Class AdDetection
         Try
             Task.WaitAll(_initializationTasks.ToArray(), TimeSpan.FromSeconds(5))
         Catch ex As Exception
-            Console.WriteLine(Lang.EnglishRmText.GetString("msgAdDetectionProbInit"), ex.Message)
+            Console.WriteLine("Warning: Ad Detection: Problem initializing tasks: {0}", ex.Message)
         End Try
         While DetectionEnabled
             Try
@@ -164,7 +164,7 @@ Public Class AdDetection
                 NotifyModules()
                 _previousAdPlayingState = newAdPlayingState
             Catch ex As Exception
-                Console.WriteLine(Lang.EnglishRmText.GetString("msgAdDetectionException"), ex.Message)
+                Console.WriteLine("Warning: Ad Detection: Unexpected Exception: {0}", ex.Message)
             End Try
         End While
     End Sub

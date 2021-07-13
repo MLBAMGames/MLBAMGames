@@ -13,13 +13,13 @@ Public Module ControlExtensions
 
     <Extension()>
     Public Sub SetPropertyThreadSafe(Of TControl As Control)(ByVal control As TControl, ByVal setter As MethodInvoker)
-        SyncLock control
-            If control.IsDisposed() Then Return
+        'SyncLock control
+        If control.IsDisposed() Then Return
             If control.InvokeRequired Then
                 control.Invoke(setter)
             Else
                 setter()
             End If
-        End SyncLock
+        'End SyncLock
     End Sub
 End Module

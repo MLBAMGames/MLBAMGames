@@ -68,7 +68,7 @@ Public Class GameWatchArguments
         safeOutput = False
 #End If
         If String.IsNullOrEmpty(PlayerPath) OrElse PlayerType.Equals(PlayerTypeEnum.None) Then _
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorPlayerPathEmpty"))
+            Console.WriteLine("Error: No media player selected in settings.")
 
         Dim result As String
 
@@ -172,7 +172,7 @@ Public Class GameWatchArguments
     End Function
 
     Private Function StreamLinkCensoredArgs() As String
-        Return $" ""hls://{Lang.EnglishRmText.GetString("msgCensoredStream")} "
+        Return $" ""hls://[CENSORED_STREAM_URL] "
     End Function
 
     Private Function StreamBestQualityArgs() As String

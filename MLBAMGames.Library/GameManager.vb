@@ -19,12 +19,14 @@ Public MustInherit Class GameManager
     End Sub
 
     Public MustOverride Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
+    Public MustOverride Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
+    Public MustOverride ReadOnly Property SportApp As SportsEnum
 
     Public Async Function GetGamesAsync(gameDate As Date) As Task(Of Game())
         Dim schedule As Schedule = Await GetSchedule(gameDate)
 
         If schedule Is Nothing Then
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorFetchingGames"))
+            Console.WriteLine("Error: Failed to fetch games schedule.")
             Return Nothing
         End If
 
@@ -98,7 +100,7 @@ Public MustInherit Class GameManager
                                      End Function)
 
                         If streamType = StreamTypeEnum.Unknown Then
-                            Console.WriteLine(Lang.EnglishRmText.GetString("errorStreamTypeUnknown"), currentGame.AwayAbbrev,
+                            Console.WriteLine("Game stream: Stream type unknown for the game {0} vs {1} : {2} - {3}", currentGame.AwayAbbrev,
                                                 currentGame.HomeAbbrev,
                                                 feed.mediaFeedType,
                                                 feed.feedName)
@@ -122,13 +124,12 @@ Public MustInherit Class GameManager
         Try
             Await Task.WhenAll(lstStreamsTask).ContinueWith(Sub(x) x.Dispose())
         Catch ex As AggregateException
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Getting streams in manager", ex.Message)
+            Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Getting streams in manager", ex.Message)
         End Try
 
         Return gamesArray
     End Function
 
-    Public MustOverride Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
 
     Private Shared Function SetGameRecap(currentGame As API.Game)
         Dim recap = currentGame.RecapFeeds.First()
@@ -140,15 +141,13 @@ Public MustInherit Class GameManager
     End Function
 
 
-    Public MustOverride ReadOnly Property SportApp() As SportsEnum
-
     Private Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item,
                                                    streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
         Dim gs = New GameStream(currentGame, innerStream, streamType, streamTypeSelected, SportApp)
         gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
 
         If gs.StreamUrl.Equals(String.Empty) Then
-            Console.WriteLine(Lang.EnglishRmText.GetString("msgGettingStreamFailed"), gs.Title)
+            Console.WriteLine("Game stream: {0} not found or unavailable on the server", gs.Title)
         End If
 
         Return gs
@@ -203,31 +202,39 @@ Public MustInherit Class GameManager
 End Class
 
 Public Class NHLGameManager
-    Public Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
+    Inherits GameManager
+
+    Public Overrides ReadOnly Property SportApp As SportsEnum
+        Get
+            Return SportsEnum.NHL
+        End Get
+    End Property
+
+    Public Overrides Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
         Return Await Web.GetScheduleAsync(gameDate)
     End Function
 
-    Public Shared Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
+    Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
         Dim code = Convert.ToInt16(If(status.statusCode, 0).ToString())
         Return If(code > 10, 11, code)
-    End Function
-
-    Public Function GetSportApp() As SportsEnum
-        Return SportsEnum.NHL
     End Function
 End Class
 
 Public Class MLBGameManager
-    Public Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
+    Inherits GameManager
+
+    Public Overrides ReadOnly Property SportApp As SportsEnum
+        Get
+            Return SportsEnum.MLB
+        End Get
+    End Property
+
+    Public Overrides Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
         Return Await Web.GetScheduleAsync(gameDate)
     End Function
 
-    Public Shared Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
+    Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
         Dim code = Convert.ToInt16(If(status.statusCode, 0).ToString())
         Return If(code > 10, 11, code)
-    End Function
-
-    Public Function GetSportApp() As SportsEnum
-        Return SportsEnum.NHL
     End Function
 End Class

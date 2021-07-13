@@ -30,29 +30,30 @@ Public Class ConsoleRedirectStreamWriter
                     Dim startIndex As Integer = -1
                     Dim length As Integer = -1
                     Dim type = OutputTypeEnum.Normal
-                    Dim timestamp As String = String.Format(Lang.EnglishRmText.GetString("msgDateTimeNow"), Now.ToString("HH:mm:ss"))
+                    Dim timestamp As String = String.Format("[{0}] ", Now.ToString("HH:mm:ss"))
 
-                    If value.ToLower().IndexOf(Lang.EnglishRmText.GetString("errorDetection"), StringComparison.Ordinal) = 0 OrElse
-                       value.ToLower().IndexOf(Lang.EnglishRmText.GetString("errorExceptionDetection"), StringComparison.Ordinal) = 0 Then
+                    If value.ToLower().IndexOf("error:", StringComparison.Ordinal) = 0 OrElse
+                       value.ToLower().IndexOf("exception", StringComparison.Ordinal) = 0 OrElse
+                       value.ToLower().IndexOf("exception:", StringComparison.Ordinal) <> -1 Then
                         type = OutputTypeEnum.Error
                         startIndex = _output.TextLength
-                        length = value.IndexOf(Lang.EnglishRmText.GetString("errorDoubleDot"), StringComparison.Ordinal) + 2
+                        length = value.IndexOf(":", StringComparison.Ordinal) + 2
                         _output.AppendText(vbCr)
-                    ElseIf value.ToLower().IndexOf(Lang.EnglishRmText.GetString("errorCliStreamer"), StringComparison.Ordinal) = 0 Then
-                        value = Lang.EnglishRmText.GetString("msgStreamer") & regex.Replace(value, String.Empty)
+                    ElseIf value.ToLower().IndexOf("[cli]", StringComparison.Ordinal) = 0 Then
+                        value = "Streamer:" & regex.Replace(value, String.Empty)
                         type = OutputTypeEnum.Cli
                         startIndex = _output.TextLength
-                        length = value.IndexOf(Lang.EnglishRmText.GetString("errorDoubleDot"), StringComparison.Ordinal) + 2
+                        length = value.IndexOf(":", StringComparison.Ordinal) + 2
                         _output.AppendText(vbCr)
-                    ElseIf value.ToLower().IndexOf(Lang.EnglishRmText.GetString("errorWarning"), StringComparison.Ordinal) = 0 Then
+                    ElseIf value.ToLower().IndexOf("warning:", StringComparison.Ordinal) = 0 Then
                         type = OutputTypeEnum.Warning
                         startIndex = _output.TextLength
-                        length = value.IndexOf(Lang.EnglishRmText.GetString("errorDoubleDot"), StringComparison.Ordinal) + 2
+                        length = value.IndexOf(":", StringComparison.Ordinal) + 2
                         _output.AppendText(vbCr)
                     ElseIf value.IndexOf(":", StringComparison.Ordinal) > -1 Then
                         type = OutputTypeEnum.Status
                         startIndex = _output.TextLength
-                        length = value.IndexOf(Lang.EnglishRmText.GetString("errorDoubleDot"), StringComparison.Ordinal) + 2
+                        length = value.IndexOf(":", StringComparison.Ordinal) + 2
                         _output.AppendText(vbCr)
                     End If
 

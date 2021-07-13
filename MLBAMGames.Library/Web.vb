@@ -30,7 +30,7 @@ Public Class Web
         Dim dateTimeString As String = startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
         Dim url As String = String.Format(NHLAPIServiceURLs.scheduleGames, dateTimeString, dateTimeString)
 
-        Console.WriteLine(Lang.EnglishRmText.GetString("msgGettingSchedule"), Lang.EnglishRmText.GetString("msgFetching"),
+        Console.WriteLine("{0}: Game schedule for {1} from NHL.tv", "Fetching",
                           startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
 
         Dim data = Await Web.SendWebRequestAndGetContentAsync(url)
@@ -119,7 +119,7 @@ Public Class Web
         Instance.Form.SetSetting("SelectedServer", Parameters.HostName)
         If LogIt Then
             Console.WriteLine(
-                Lang.EnglishRmText.GetString("msgSettingUpdated"),
+                "Status: Setting updated for '{0}' to '{1}'",
                 Lang.RmText.GetString("lblHostname"),
                 Parameters.HostName)
         End If

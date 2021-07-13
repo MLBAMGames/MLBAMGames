@@ -40,15 +40,15 @@ Public Class MLBGamesMetro
     End Sub
 
     Private Shared Sub Form1_UIThreadException(sender As Object, t As ThreadExceptionEventArgs)
-        Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Running UI thread", t.Exception.ToString())
+        Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Running UI thread", t.Exception.ToString())
     End Sub
 
     Private Shared Sub CurrentDomain_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs)
-        Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Using MLBGames domain", e.ExceptionObject.ToString())
+        Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Using MLBGames domain", e.ExceptionObject.ToString())
     End Sub
 
     Public Sub HandleException(e As Exception)
-        Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Running main thread", e.ToString())
+        Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Running main thread", e.ToString())
     End Sub
 
     Private Async Sub MLBGames_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -116,7 +116,7 @@ Public Class MLBGamesMetro
     End Sub
 
     Private Shared Sub WriteToConsoleSettingsChanged(key As String, value As String)
-        If Parameters.UILoaded Then Console.WriteLine(Lang.EnglishRmText.GetString("msgSettingUpdated"), key, value)
+        If Parameters.UILoaded Then Console.WriteLine("Status: Setting updated for '{0}' to '{1}'", key, value)
     End Sub
 
     Private Sub tmrAnimate_Tick(sender As Object, e As EventArgs) Handles tmr.Tick
@@ -249,8 +249,8 @@ Public Class MLBGamesMetro
     End Sub
 
     Private Sub _writeToConsoleSettingToggleChanged(label As String, checked As Boolean)
-        WriteToConsoleSettingsChanged(String.Format(Lang.EnglishRmText.GetString("msgThisEnable"), label),
-            If(checked, Lang.EnglishRmText.GetString("msgOn"), Lang.EnglishRmText.GetString("msgOff")))
+        WriteToConsoleSettingsChanged(String.Format("{0} enable", label),
+            If(checked, "ON", "OFF"))
     End Sub
 
     Private Sub tgShowFinalScores_CheckedChanged(sender As Object, e As EventArgs) _

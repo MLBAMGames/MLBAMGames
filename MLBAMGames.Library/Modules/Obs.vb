@@ -37,11 +37,11 @@ Namespace Modules
         Public ReadOnly Property Title As AdModulesEnum = AdModulesEnum.Obs Implements IAdModule.Title
 
         Public Sub AdEnded() Implements IAdModule.AdEnded
-            Switching(HotkeyGame, IsHotkeyGameSet, IsHotkeyGameHasSpecialKeys, Lang.EnglishRmText.GetString("msgObsGameWord"))
+            Switching(HotkeyGame, IsHotkeyGameSet, IsHotkeyGameHasSpecialKeys, "Game")
         End Sub
 
         Public Sub AdStarted() Implements IAdModule.AdStarted
-            Switching(HotkeyAd, IsHotkeyAdSet, IsHotkeyAdHasSpecialKeys, Lang.EnglishRmText.GetString("msgObsAdWord"))
+            Switching(HotkeyAd, IsHotkeyAdSet, IsHotkeyAdHasSpecialKeys, "Ad")
         End Sub
         Public Sub AdPlaying() Implements IAdModule.AdPlaying
 
@@ -49,7 +49,7 @@ Namespace Modules
 
         Private Sub Switching(hotkey As Hotkey, isHotkeySet As Boolean, specialKey As Boolean, scene As String)
             If Not isHotkeySet Then
-                Console.WriteLine(Lang.EnglishRmText.GetString("msgObsHotkeyNotSet"), scene)
+                Console.WriteLine("Warning: Ad Detection: OBS {0} scene hotkey not set", scene)
                 Return
             End If
 
@@ -83,7 +83,7 @@ Namespace Modules
                 End If
 
                 Dim curr? = NativeMethods.GetForegroundWindowFromHandle()
-                Console.WriteLine(Lang.EnglishRmText.GetString("msgObsChangingScene"), scene)
+                Console.WriteLine("Ad Detection: OBS is changing to {0} scene", scene)
                 NativeMethods.SetForegroundWindowFromHandle(_obsHandle)
                 Thread.Sleep(50)
                 SendKeys.SendWait(toSend)

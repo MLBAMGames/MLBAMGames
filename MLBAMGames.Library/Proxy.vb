@@ -27,10 +27,10 @@ Public Class Proxy
             _proxyVersion.Start()
 
             While (_proxyVersion.StandardOutput.EndOfStream = False)
-                Console.WriteLine(Lang.EnglishRmText.GetString("msgProxyStarting"), _proxyVersion.StandardOutput.ReadLine())
+                Console.WriteLine("MLBAMProxy: Proxy {0} is getting ready", _proxyVersion.StandardOutput.ReadLine())
             End While
         Catch ex As Exception
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Starting proxy", ex.Message)
+            Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Starting proxy", ex.Message)
             Return
         End Try
 
@@ -48,7 +48,7 @@ Public Class Proxy
         Instance.Form.lblStatus.SetPropertyThreadSafe(Function() Instance.Form.lblStatus.Text = Lang.RmText.GetString("msgProxyGettingReady"))
 
         If Not IsProxyFileFound() Then
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorMitmProxyNotFound"))
+            Console.WriteLine("Error: Can't find mitmproxy : mitmproxy is a https proxy that we shipped with NHLGames. You probably moved it or deleted it. Please go to our GitHub page to get it back, NHLGames needs it")
             Return
         End If
 
@@ -68,7 +68,7 @@ Public Class Proxy
             End While
 
         Catch ex As Exception
-            Console.WriteLine(Lang.EnglishRmText.GetString("errorGeneral"), $"Starting proxy", ex.Message)
+            Console.WriteLine("Error: Code failed at: {0} - With exception: {1}", $"Starting proxy", ex.Message)
         End Try
     End Sub
 

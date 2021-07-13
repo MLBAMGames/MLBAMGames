@@ -128,7 +128,7 @@ Namespace Modules
             If Not SpotifyIsInstalled() Then
                 _stopIt = True
                 ModuleSpotifyOff()
-                Console.WriteLine(Lang.EnglishRmText.GetString("msgSpotifyIsntInstalled"))
+                Console.WriteLine("Warning: Ad Detection: Spotify is not installed")
             End If
 
             Task.Run(AddressOf ConnectLoop)
@@ -148,14 +148,14 @@ Namespace Modules
                 Catch ex As Exception
                     _stopIt = True
                     ModuleSpotifyOff()
-                    Console.WriteLine(Lang.EnglishRmText.GetString("msgSpotifyException"), ex.Message)
+                    Console.WriteLine("Warning: Ad Detection: Unexpected exception connecting to Spotify: {0}", ex.Message)
                 End Try
                 Await Task.Delay(_connectSleep)
             End While
 
             If _spotifyId = 0 AndAlso Not _stopIt Then
                 ModuleSpotifyOff()
-                Console.WriteLine(Lang.EnglishRmText.GetString("msgSpotifyNotConnected"))
+                Console.WriteLine("Ad Detection: Spotify didn't connect in time, try again.")
             End If
 
             _initialized = True
@@ -164,11 +164,11 @@ Namespace Modules
         Private Function ConnectInternal() As Boolean
             If Not SpotifyIsRunning() Then
                 If ForceToOpen Then
-                    Console.WriteLine(Lang.EnglishRmText.GetString("msgSpotifyNotRunning"))
+                    Console.WriteLine("Ad Detection: Spotify isn't running. Trying to start it...")
                     Try
                         RunSpotify()
                     Catch ex As Exception
-                        Console.WriteLine(Lang.EnglishRmText.GetString("msgSpotifyCantStart"), ex.Message)
+                        Console.WriteLine("Warning: Ad Detection: Can't start Spotify: {0}", ex.Message)
                     End Try
                     ForceToOpen = False
                 End If

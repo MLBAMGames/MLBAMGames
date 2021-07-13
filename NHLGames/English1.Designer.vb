@@ -407,110 +407,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Error: Checking access to path: {0}.
-        '''</summary>
-        Friend Shared ReadOnly Property errorAccessPath() As String
-            Get
-                Return ResourceManager.GetString("errorAccessPath", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to [cli].
-        '''</summary>
-        Friend Shared ReadOnly Property errorCliStreamer() As String
-            Get
-                Return ResourceManager.GetString("errorCliStreamer", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Error : Failed to deserialize setting value of &apos;{0}&apos; to type &apos;{1}&apos;.
-        '''</summary>
-        Friend Shared ReadOnly Property errorDeserialize() As String
-            Get
-                Return ResourceManager.GetString("errorDeserialize", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to error:.
-        '''</summary>
-        Friend Shared ReadOnly Property errorDetection() As String
-            Get
-                Return ResourceManager.GetString("errorDetection", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to :.
-        '''</summary>
-        Friend Shared ReadOnly Property errorDoubleDot() As String
-            Get
-                Return ResourceManager.GetString("errorDoubleDot", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to exception.
-        '''</summary>
-        Friend Shared ReadOnly Property errorExceptionDetection() As String
-            Get
-                Return ResourceManager.GetString("errorExceptionDetection", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Error: Failed to fetch games schedule..
-        '''</summary>
-        Friend Shared ReadOnly Property errorFetchingGames() As String
-            Get
-                Return ResourceManager.GetString("errorFetchingGames", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Error: Code failed at: {0} - With exception: {1}.
-        '''</summary>
-        Friend Shared ReadOnly Property errorGeneral() As String
-            Get
-                Return ResourceManager.GetString("errorGeneral", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to Error: Selected Hostname is unreachable.
         '''</summary>
         Friend Shared ReadOnly Property errorHostname() As String
             Get
                 Return ResourceManager.GetString("errorHostname", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Error: Can&apos;t find mitmproxy : mitmproxy is a https proxy that we shipped with NHLGames. You probably moved it or deleted it. Please go to our GitHub page to get it back, NHLGames needs it.
-        '''</summary>
-        Friend Shared ReadOnly Property errorMitmProxyNotFound() As String
-            Get
-                Return ResourceManager.GetString("errorMitmProxyNotFound", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Error: Can&apos;t find mpv.exe : mpv is a media player that we shipped with NHLGames. You probably moved it or deleted it. Please set a player, NHLGames needs one..
-        '''</summary>
-        Friend Shared ReadOnly Property errorMpvExe() As String
-            Get
-                Return ResourceManager.GetString("errorMpvExe", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Error: No media player selected in settings..
-        '''</summary>
-        Friend Shared ReadOnly Property errorPlayerPathEmpty() As String
-            Get
-                Return ResourceManager.GetString("errorPlayerPathEmpty", resourceCulture)
             End Get
         End Property
         
@@ -533,47 +434,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Error:  Can&apos;t find the specified streamer. The streamer is used to send streams to your media player, please select the one that comes with NHLGames or select a valid path of Livestreamer.exe or Streamlink.exe.
-        '''</summary>
-        Friend Shared ReadOnly Property errorStreamerExe() As String
-            Get
-                Return ResourceManager.GetString("errorStreamerExe", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Warning: Starting stream failed. Try to use a different quality in settings, so it will try another stream..
-        '''</summary>
-        Friend Shared ReadOnly Property errorStreamFailedCantRead() As String
-            Get
-                Return ResourceManager.GetString("errorStreamFailedCantRead", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Game stream: Stream type unknown for the game {0} vs {1} : {2} - {3}.
-        '''</summary>
-        Friend Shared ReadOnly Property errorStreamTypeUnknown() As String
-            Get
-                Return ResourceManager.GetString("errorStreamTypeUnknown", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to unknown (server is not available).
         '''</summary>
         Friend Shared ReadOnly Property errorUnknownServerDown() As String
             Get
                 Return ResourceManager.GetString("errorUnknownServerDown", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to warning:.
-        '''</summary>
-        Friend Shared ReadOnly Property errorWarning() As String
-            Get
-                Return ResourceManager.GetString("errorWarning", resourceCulture)
             End Get
         End Property
         
@@ -1379,38 +1244,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Warning: Ad Detection: Unexpected Exception: {0}.
-        '''</summary>
-        Friend Shared ReadOnly Property msgAdDetectionException() As String
-            Get
-                Return ResourceManager.GetString("msgAdDetectionException", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Warning: Ad Detection: Problem initializing tasks: {0}.
-        '''</summary>
-        Friend Shared ReadOnly Property msgAdDetectionProbInit() As String
-            Get
-                Return ResourceManager.GetString("msgAdDetectionProbInit", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to Add our server to your hosts file.
         '''</summary>
         Friend Shared ReadOnly Property msgAddHost() As String
             Get
                 Return ResourceManager.GetString("msgAddHost", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to The {0} file is now set back to Read Only.
-        '''</summary>
-        Friend Shared ReadOnly Property msgAddReadOnly() As String
-            Get
-                Return ResourceManager.GetString("msgAddReadOnly", resourceCulture)
             End Get
         End Property
         
@@ -1429,15 +1267,6 @@ Namespace My.Resources
         Friend Shared ReadOnly Property msgBackingHostsFile() As String
             Get
                 Return ResourceManager.GetString("msgBackingHostsFile", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to [CENSORED_STREAM_URL].
-        '''</summary>
-        Friend Shared ReadOnly Property msgCensoredStream() As String
-            Get
-                Return ResourceManager.GetString("msgCensoredStream", resourceCulture)
             End Get
         End Property
         
@@ -1478,15 +1307,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to [{0}] .
-        '''</summary>
-        Friend Shared ReadOnly Property msgDateTimeNow() As String
-            Get
-                Return ResourceManager.GetString("msgDateTimeNow", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to An error happened! {0}Click on [?] (top-right corner) to get to NHLGames documentation and search for your issue.{0}If not found, click on &quot;Copy to clipboard&quot; and paste it in a new thread on /r/nhl_games or open a new issue on our GitHub page. Make sure it was not already posted by someone else..
         '''</summary>
         Friend Shared ReadOnly Property msgErrorGeneralText() As String
@@ -1505,38 +1325,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Fetching.
-        '''</summary>
-        Friend Shared ReadOnly Property msgFetching() As String
-            Get
-                Return ResourceManager.GetString("msgFetching", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to Games Found : {0}.
         '''</summary>
         Friend Shared ReadOnly Property msgGamesFound() As String
             Get
                 Return ResourceManager.GetString("msgGamesFound", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to {0}: Game schedule for {1} from NHL.tv.
-        '''</summary>
-        Friend Shared ReadOnly Property msgGettingSchedule() As String
-            Get
-                Return ResourceManager.GetString("msgGettingSchedule", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Game stream: {0} not found or unavailable on the server.
-        '''</summary>
-        Friend Shared ReadOnly Property msgGettingStreamFailed() As String
-            Get
-                Return ResourceManager.GetString("msgGettingStreamFailed", resourceCulture)
             End Get
         End Property
         
@@ -1604,56 +1397,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Ad.
-        '''</summary>
-        Friend Shared ReadOnly Property msgObsAdWord() As String
-            Get
-                Return ResourceManager.GetString("msgObsAdWord", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to Ad Detection: OBS is changing to {0} scene.
         '''</summary>
         Friend Shared ReadOnly Property msgObsChangingScene() As String
             Get
                 Return ResourceManager.GetString("msgObsChangingScene", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Game.
-        '''</summary>
-        Friend Shared ReadOnly Property msgObsGameWord() As String
-            Get
-                Return ResourceManager.GetString("msgObsGameWord", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Warning: Ad Detection: OBS {0} scene hotkey not set.
-        '''</summary>
-        Friend Shared ReadOnly Property msgObsHotkeyNotSet() As String
-            Get
-                Return ResourceManager.GetString("msgObsHotkeyNotSet", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to OFF.
-        '''</summary>
-        Friend Shared ReadOnly Property msgOff() As String
-            Get
-                Return ResourceManager.GetString("msgOff", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to ON.
-        '''</summary>
-        Friend Shared ReadOnly Property msgOn() As String
-            Get
-                Return ResourceManager.GetString("msgOn", resourceCulture)
             End Get
         End Property
         
@@ -1672,24 +1420,6 @@ Namespace My.Resources
         Friend Shared ReadOnly Property msgProxyListening() As String
             Get
                 Return ResourceManager.GetString("msgProxyListening", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to MLBAMProxy: Proxy {0} is getting ready.
-        '''</summary>
-        Friend Shared ReadOnly Property msgProxyStarting() As String
-            Get
-                Return ResourceManager.GetString("msgProxyStarting", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Status: The {0} file is no longer Read Only.
-        '''</summary>
-        Friend Shared ReadOnly Property msgRemoveReadOnly() As String
-            Get
-                Return ResourceManager.GetString("msgRemoveReadOnly", resourceCulture)
             End Get
         End Property
         
@@ -1730,87 +1460,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Status: Setting updated for &apos;{0}&apos; to &apos;{1}&apos;.
-        '''</summary>
-        Friend Shared ReadOnly Property msgSettingUpdated() As String
-            Get
-                Return ResourceManager.GetString("msgSettingUpdated", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Warning: Ad Detection: Can&apos;t start Spotify: {0}.
-        '''</summary>
-        Friend Shared ReadOnly Property msgSpotifyCantStart() As String
-            Get
-                Return ResourceManager.GetString("msgSpotifyCantStart", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Warning: Ad Detection: Unexpected exception connecting to Spotify: {0}.
-        '''</summary>
-        Friend Shared ReadOnly Property msgSpotifyException() As String
-            Get
-                Return ResourceManager.GetString("msgSpotifyException", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Warning: Ad Detection: Spotify is not installed.
-        '''</summary>
-        Friend Shared ReadOnly Property msgSpotifyIsntInstalled() As String
-            Get
-                Return ResourceManager.GetString("msgSpotifyIsntInstalled", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Ad Detection: Spotify didn&apos;t connect in time, try again..
-        '''</summary>
-        Friend Shared ReadOnly Property msgSpotifyNotConnected() As String
-            Get
-                Return ResourceManager.GetString("msgSpotifyNotConnected", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Ad Detection: Spotify isn&apos;t running. Trying to start it....
-        '''</summary>
-        Friend Shared ReadOnly Property msgSpotifyNotRunning() As String
-            Get
-                Return ResourceManager.GetString("msgSpotifyNotRunning", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Starting: Streamer {0}.
-        '''</summary>
-        Friend Shared ReadOnly Property msgStartingStreamer() As String
-            Get
-                Return ResourceManager.GetString("msgStartingStreamer", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Streamer:.
-        '''</summary>
-        Friend Shared ReadOnly Property msgStreamer() As String
-            Get
-                Return ResourceManager.GetString("msgStreamer", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Streaming: {0} on {1} using {2} player.
-        '''</summary>
-        Friend Shared ReadOnly Property msgStreaming() As String
-            Get
-                Return ResourceManager.GetString("msgStreaming", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to Success.
         '''</summary>
         Friend Shared ReadOnly Property msgSuccess() As String
@@ -1825,15 +1474,6 @@ Namespace My.Resources
         Friend Shared ReadOnly Property msgTeamVsTeam() As String
             Get
                 Return ResourceManager.GetString("msgTeamVsTeam", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to {0} enable.
-        '''</summary>
-        Friend Shared ReadOnly Property msgThisEnable() As String
-            Get
-                Return ResourceManager.GetString("msgThisEnable", resourceCulture)
             End Get
         End Property
         

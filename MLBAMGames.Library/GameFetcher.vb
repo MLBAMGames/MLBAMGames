@@ -84,8 +84,6 @@ Public Class GameFetcher
                 AddGamesToDict(SortGames(games))
             End If
 
-
-
         Catch ex As Exception
             Console.WriteLine(ex.ToString())
             Return True
