@@ -30,5 +30,5 @@ Public Class Parameters
     Public Shared StartupPath As String = Nothing
 
     Public Shared Tips As New Dictionary(Of Integer, String)
-    Public Shared WatchArgs As GameWatchArguments = New GameWatchArguments
+    Public Shared WatchArgsParams As GameWatchArgumentsParameters = New GameWatchArgumentsParameters
 End Class

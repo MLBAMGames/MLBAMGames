@@ -7,12 +7,7 @@ Public MustInherit Class GameManager
     Implements IDisposable
 
     Private _disposedValue As Boolean
-
-
     Private Const MediaOff = "MEDIA_OFF"
-
-    Public Sub New()
-    End Sub
 
     Public MustOverride ReadOnly Property DictStreamType As Dictionary(Of String, StreamTypeEnum)
     Public MustOverride Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)

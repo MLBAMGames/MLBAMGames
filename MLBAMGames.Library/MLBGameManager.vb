@@ -34,7 +34,7 @@ Public Class MLBGameManager
             .Type = streamType,
             .Network = innerStream.callLetters,
             .PlayBackId = innerStream.id,
-            .CdnParameter = SettingsExtensions.ReadGameWatchArgs().Cdn
+            .CdnParameter = SettingsExtensions.ReadGameWatchArgsParams().Cdn
         }
         If gs.Network = String.Empty Then gs.Network = EPGMediaEnum.MLBTV.ToString()
         If gs.Type = StreamTypeEnum.Unknown Then

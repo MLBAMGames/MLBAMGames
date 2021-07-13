@@ -5,7 +5,7 @@
     <Setting Name="ProxyPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">17070</Value>
     </Setting>
-    <Setting Name="DefaultWatchArgs" Type="System.String" Scope="User">
+    <Setting Name="DefaultWatchArgsParams" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="VlcPath" Type="System.String" Scope="User">

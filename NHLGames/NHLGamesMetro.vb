@@ -87,6 +87,8 @@ Public Class NHLGamesMetro
     End Sub
 
     Private Async Function LoadGames(gameDate As Date) As Task
+        If Not Parameters.UILoaded Then Return
+
         ClearGamePanel()
         Await Task.Run(Async Function() As Task
                            lblStatus.SetPropertyThreadSafe(Function() lblStatus.Text = Lang.RmText.GetString("msgLoadingGames"))
@@ -100,13 +102,14 @@ Public Class NHLGamesMetro
     End Function
 
     Public Sub ClearGamePanel()
-        SyncLock flpGames.Controls
-            If flpGames.Controls.Count > 0 Then
-                For index = flpGames.Controls.Count - 1 To 0 Step -1
-                    CType(flpGames.Controls(index), GameControl).Dispose()
-                Next
-            End If
-        End SyncLock
+        flpGames.SetPropertyThreadSafe(Sub()
+                                           If flpGames.Controls.Count > 0 Then
+                                               For index = flpGames.Controls.Count - 1 To 0 Step -1
+                                                   CType(flpGames.Controls(index), GameControl).Dispose()
+                                               Next
+                                           End If
+                                       End Sub)
+
     End Sub
 
     Public Function MsgBox(message As String, title As String, buttons As MessageBoxButtons, type As MessageBoxIcon) As DialogResult Implements IMLBAMForm.MsgBox
@@ -289,55 +292,45 @@ Public Class NHLGamesMetro
 
     Private Sub txtVLCPath_TextChanged(sender As Object, e As EventArgs) Handles txtVLCPath.TextChanged
         If Not rbVLC.Enabled Then rbVLC.Enabled = True
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
     End Sub
 
     Private Sub txtMPCPath_TextChanged(sender As Object, e As EventArgs) Handles txtMPCPath.TextChanged
         If Not rbMPC.Enabled Then rbMPC.Enabled = True
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
     End Sub
 
     Private Sub txtMpvPath_TextChanged(sender As Object, e As EventArgs) Handles txtMpvPath.TextChanged
         If Not rbMPV.Enabled Then rbMPV.Enabled = True
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
     End Sub
 
     Private Sub txtStreamerPath_TextChanged(sender As Object, e As EventArgs) Handles txtStreamerPath.TextChanged
-        Player.RenewArgs()
-    End Sub
-
-    Private Sub player_CheckedChanged(sender As Object, e As EventArgs) _
-        Handles rbVLC.CheckedChanged, rbMPV.CheckedChanged, rbMPC.CheckedChanged
-        Dim rb As RadioButton = sender
-        If rb.Checked Then
-            Player.RenewArgs()
-            SetPlayerDefaultArgs(True)
-            _writeToConsoleSettingsChanged(lblPlayer.Text, rb.Text)
-        End If
+        GameWatchArgumentsParameters.RenewArgsParams()
     End Sub
 
     Private Sub tgAlternateCdn_CheckedChanged(sender As Object, e As EventArgs) Handles tgAlternateCdn.CheckedChanged
         Dim cdn = If(tgAlternateCdn.Checked, CdnTypeEnum.L3C, CdnTypeEnum.Akc)
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
         _writeToConsoleSettingsChanged(lblCdn.Text, cdn.ToString())
         Task.Run(Function() LoadGames(CalendarControl.GameDate))
     End Sub
 
     Private Sub txtOutputPath_TextChanged(sender As Object, e As EventArgs) Handles txtOutputArgs.TextChanged
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
         _writeToConsoleSettingsChanged(lblOutput.Text, txtOutputArgs.Text)
     End Sub
 
     Private Sub txtPlayerArgs_TextChanged(sender As Object, e As EventArgs) Handles txtPlayerArgs.TextChanged
-        Dim playerType = Player.GetPlayerType(Instance.Form)
+        Dim playerType = GameWatchArgumentsParameters.GetPlayerType(Instance.Form)
         Dim args = txtPlayerArgs.Text.Split(New String() {" "}, StringSplitOptions.RemoveEmptyEntries)
         GameWatchArguments.SavedPlayerArgs(playerType) = args
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
         _writeToConsoleSettingsChanged(lblPlayerArgs.Text, txtPlayerArgs.Text)
     End Sub
 
     Private Sub txtStreamerArgs_TextChanged(sender As Object, e As EventArgs) Handles txtStreamerArgs.TextChanged
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
         _writeToConsoleSettingsChanged(lblStreamerArgs.Text, txtStreamerArgs.Text)
     End Sub
 
@@ -347,7 +340,7 @@ Public Class NHLGamesMetro
                                Environment.GetFolderPath(Environment.SpecialFolder.MyVideos))
         If fbd.ShowDialog() = DialogResult.OK Then
             txtOutputArgs.Text = fbd.SelectedPath & $"\(DATE)_(HOME)_vs_(AWAY)_(TYPE)_(NETWORK).mp4"
-            Player.RenewArgs()
+            GameWatchArgumentsParameters.RenewArgsParams()
             _writeToConsoleSettingsChanged(lblOutput.Text, txtOutputArgs.Text)
         End If
     End Sub
@@ -425,7 +418,7 @@ Public Class NHLGamesMetro
     Private Sub tgStreamer_CheckedChanged(sender As Object, e As EventArgs) Handles tgStreamer.CheckedChanged
         SetStreamerDefaultArgs()
         txtStreamerArgs.Enabled = tgStreamer.Checked
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
         _writeToConsoleSettingToggleChanged(lblStreamerArgs.Text, tgStreamer.Checked)
     End Sub
 
@@ -436,7 +429,7 @@ Public Class NHLGamesMetro
                 $"{Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) _
                     }\(DATE)_(HOME)_vs_(AWAY)_(TYPE)_(NETWORK).mp4"
         End If
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
         _writeToConsoleSettingToggleChanged(lblOutput.Text, tgOutput.Checked)
     End Sub
 
@@ -482,16 +475,16 @@ Public Class NHLGamesMetro
         RefreshFocus()
     End Sub
 
-    Public Sub SetStreamerDefaultArgs()
+    Public Sub SetStreamerDefaultArgs(Optional forceSet As Boolean = False)
         If tgStreamer Is Nothing Then Return
-        If Not tgStreamer.Checked Then
+        If Not tgStreamer.Checked OrElse forceSet Then
             SetDefaultArgs(GameWatchArguments.StreamerDefaultArgs, txtStreamerArgs)
         End If
     End Sub
 
     Public Sub SetPlayerDefaultArgs(Optional overwrite As Boolean = False)
         If txtPlayerArgs Is Nothing Then Return
-        Dim gameArgs = SettingsExtensions.ReadGameWatchArgs()
+        Dim gameArgs = SettingsExtensions.ReadGameWatchArgsParams()
         Dim defaultPlayerArgs = New String() {}
         Select Case gameArgs.PlayerType
             Case PlayerTypeEnum.Vlc
@@ -672,7 +665,7 @@ Public Class NHLGamesMetro
 
     Private Sub cbStreamQuality_SelectedIndexChanged(sender As Object, e As EventArgs) _
         Handles cbStreamQuality.SelectedIndexChanged
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
         _writeToConsoleSettingsChanged(lblQuality.Text, cbStreamQuality.SelectedItem)
     End Sub
 
@@ -786,7 +779,7 @@ Public Class NHLGamesMetro
         lblLiveRewindDetails.Text = String.Format(
             Lang.RmText.GetString("lblLiveRewindDetails"),
             minutesBehind, Now.AddMinutes(-minutesBehind).ToString("h:mm tt", CultureInfo.InvariantCulture))
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
 
         For Each game As GameControl In flpGames.Controls
             If game.LiveReplayCode = LiveStatusCodeEnum.Rewind Then
@@ -797,7 +790,7 @@ Public Class NHLGamesMetro
 
     Private Sub cbLiveReplay_SelectedIndexChanged(sender As Object, e As EventArgs) _
         Handles cbLiveReplay.SelectedIndexChanged
-        Player.RenewArgs()
+        GameWatchArgumentsParameters.RenewArgsParams()
         _writeToConsoleSettingsChanged(_lblLiveReplay.Text, cbLiveReplay.SelectedItem)
     End Sub
 
@@ -858,6 +851,14 @@ Public Class NHLGamesMetro
     Private Sub cbSeasons_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbSeasons.SelectedIndexChanged
         Dim season As API.Season = cbSeasons.Items(cbSeasons.SelectedIndex)
         StandingsHelper.GenerateStandings(tbStanding, season)
+    End Sub
+
+    Private Sub tgPlayer_CheckedChanged(sender As Object, e As EventArgs) Handles tgPlayer.CheckedChanged
+        If Not Parameters.UILoaded Then Return
+        SetPlayerDefaultArgs()
+        txtPlayerArgs.Enabled = tgPlayer.Checked
+        GameWatchArgumentsParameters.RenewArgsParams()
+        _writeToConsoleSettingToggleChanged(lblPlayerArgs.Text, tgPlayer.Checked)
     End Sub
 
     Private Sub tgReset_CheckedChanged(sender As Object, e As EventArgs) Handles tgReset.CheckedChanged

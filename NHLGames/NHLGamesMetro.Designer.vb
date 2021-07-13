@@ -260,7 +260,7 @@ Partial Class NHLGamesMetro
         Me.tabMenu.Location = New System.Drawing.Point(-1, 70)
         Me.tabMenu.Margin = New System.Windows.Forms.Padding(0)
         Me.tabMenu.Name = "tabMenu"
-        Me.tabMenu.SelectedIndex = 0
+        Me.tabMenu.SelectedIndex = 2
         Me.tabMenu.Size = New System.Drawing.Size(992, 550)
         Me.tabMenu.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.tabMenu.Style = MetroFramework.MetroColorStyle.Blue
@@ -394,7 +394,7 @@ Partial Class NHLGamesMetro
         Me.btnTomorrow.FlatAppearance.BorderSize = 0
         Me.btnTomorrow.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnTomorrow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnTomorrow.FlatAppearance.MouseOverBackColor = MetroColors.Blue
+        Me.btnTomorrow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
         Me.btnTomorrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTomorrow.Location = New System.Drawing.Point(310, 8)
         Me.btnTomorrow.Name = "btnTomorrow"
@@ -410,7 +410,7 @@ Partial Class NHLGamesMetro
         Me.btnYesterday.FlatAppearance.BorderSize = 0
         Me.btnYesterday.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnYesterday.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnYesterday.FlatAppearance.MouseOverBackColor = MetroColors.Blue
+        Me.btnYesterday.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
         Me.btnYesterday.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnYesterday.Location = New System.Drawing.Point(8, 8)
         Me.btnYesterday.Name = "btnYesterday"
@@ -426,7 +426,7 @@ Partial Class NHLGamesMetro
         Me.btnDate.FlatAppearance.BorderSize = 0
         Me.btnDate.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnDate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnDate.FlatAppearance.MouseOverBackColor = MetroColors.Blue
+        Me.btnDate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
         Me.btnDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.btnDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -445,7 +445,7 @@ Partial Class NHLGamesMetro
         Me.btnRefresh.FlatAppearance.BorderSize = 0
         Me.btnRefresh.FlatAppearance.CheckedBackColor = System.Drawing.Color.White
         Me.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
-        Me.btnRefresh.FlatAppearance.MouseOverBackColor = MetroColors.Blue
+        Me.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(174, Byte), Integer), CType(CType(219, Byte), Integer))
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefresh.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.btnRefresh.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -554,7 +554,7 @@ Partial Class NHLGamesMetro
         Me.tabSettings.Name = "tabSettings"
         Me.tabSettings.Padding = New System.Windows.Forms.Padding(1)
         Me.tabSettings.Size = New System.Drawing.Size(984, 508)
-        Me.tabSettings.TabIndex = 1
+        Me.tabSettings.TabIndex = 2
         Me.tabSettings.Text = "SETTINGS"
         Me.tabSettings.UseCustomForeColor = True
         Me.tabSettings.UseStyleColors = True
@@ -2153,7 +2153,7 @@ Partial Class NHLGamesMetro
         Me.tabConsole.Location = New System.Drawing.Point(4, 38)
         Me.tabConsole.Name = "tabConsole"
         Me.tabConsole.Size = New System.Drawing.Size(984, 508)
-        Me.tabConsole.TabIndex = 2
+        Me.tabConsole.TabIndex = 3
         Me.tabConsole.Text = "CONSOLE"
         Me.tabConsole.UseCustomForeColor = True
         Me.tabConsole.VerticalScrollbarBarColor = False

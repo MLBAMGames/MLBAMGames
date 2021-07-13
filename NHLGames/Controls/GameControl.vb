@@ -384,16 +384,17 @@ Namespace Controls
                 tt.SetToolTip(btnLiveReplay, Lang.RmText.GetString("tipLiveStatus" & type))
             Else
                 tt.SetToolTip(btnLiveReplay, String.Format(Lang.RmText.GetString("tipLiveStatus" & type),
-                                                           WatchArgs().StreamLiveRewind))
+                                                           GameWatchArgs().StreamLiveRewind))
             End If
         End Sub
 
-        Private Function WatchArgs() As GameWatchArguments
-            Return SettingsExtensions.ReadGameWatchArgs()
+        Private Function GameWatchArgs() As GameWatchArguments
+            Dim params = SettingsExtensions.ReadGameWatchArgsParams()
+            Return New GameWatchArguments(params)
         End Function
 
         Private Sub WatchStream(streamType As StreamerTypeEnum)
-            Dim args = WatchArgs()
+            Dim args = GameWatchArgs()
             args.GameDate = _game.GameDate
             args.Stream = _game.GetStream(streamType)
             args.GameTitle = _game.AwayAbbrev & " @ " & _game.HomeAbbrev
@@ -404,7 +405,7 @@ Namespace Controls
         End Sub
 
         Private Sub WatchStream(sender As Object, e As EventArgs)
-            Dim args = WatchArgs()
+            Dim args = GameWatchArgs()
             args.GameDate = _game.GameDate
             args.Stream = CType(sender, Button).Tag
             args.GameTitle = _game.AwayAbbrev & " @ " & _game.HomeAbbrev
@@ -415,7 +416,7 @@ Namespace Controls
         End Sub
 
         Private Sub btnRecap_Click(sender As Object, e As EventArgs) Handles btnRecap.Click
-            Dim args = WatchArgs()
+            Dim args = GameWatchArgs()
             args.GameDate = _game.GameDate
             args.Stream = _game.Recap
             args.GameTitle = _game.AwayAbbrev & " @ " & _game.HomeAbbrev

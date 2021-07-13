@@ -37,7 +37,7 @@ Public Class NHLGameManager
             .Type = streamType,
             .Network = innerStream.callLetters,
             .PlayBackId = innerStream.mediaPlaybackId,
-            .CdnParameter = SettingsExtensions.ReadGameWatchArgs().Cdn
+            .CdnParameter = SettingsExtensions.ReadGameWatchArgsParams().Cdn
         }
         If gs.Network = String.Empty Then gs.Network = EPGMediaEnum.NHLTV.ToString()
         If gs.Type = StreamTypeEnum.Unknown Then

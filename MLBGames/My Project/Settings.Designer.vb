@@ -69,12 +69,12 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property DefaultWatchArgs() As String
+        Public Property DefaultWatchArgsParams() As String
             Get
-                Return CType(Me("DefaultWatchArgs"),String)
+                Return CType(Me("DefaultWatchArgsParams"),String)
             End Get
             Set
-                Me("DefaultWatchArgs") = value
+                Me("DefaultWatchArgsParams") = value
             End Set
         End Property
         

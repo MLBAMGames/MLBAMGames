@@ -95,6 +95,7 @@
     <Compile Include="FileAccess.vb" />
     <Compile Include="Game.vb" />
     <Compile Include="GameFetcher.vb" />
+    <Compile Include="GameWatchArgumentsParameters.vb" />
     <Compile Include="MLBGameManager.vb" />
     <Compile Include="NHLGameManager.vb" />
     <Compile Include="GameManager.vb" />

@@ -389,7 +389,7 @@ Namespace Controls
         End Sub
 
         Private Function WatchArgs() As GameWatchArguments
-            Return SettingsExtensions.ReadGameWatchArgs()
+            Return SettingsExtensions.ReadGameWatchArgsParams()
         End Function
 
         Private Sub WatchStream(streamType As StreamerTypeEnum)

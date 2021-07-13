@@ -543,7 +543,7 @@ Partial Class MLBGamesMetro
         Me.tabSettings.Name = "tabSettings"
         Me.tabSettings.Padding = New System.Windows.Forms.Padding(1)
         Me.tabSettings.Size = New System.Drawing.Size(984, 508)
-        Me.tabSettings.TabIndex = 1
+        Me.tabSettings.TabIndex = 2
         Me.tabSettings.Text = "SETTINGS"
         Me.tabSettings.UseCustomForeColor = True
         Me.tabSettings.UseStyleColors = True
@@ -2141,7 +2141,7 @@ Partial Class MLBGamesMetro
         Me.tabConsole.Location = New System.Drawing.Point(4, 38)
         Me.tabConsole.Name = "tabConsole"
         Me.tabConsole.Size = New System.Drawing.Size(984, 508)
-        Me.tabConsole.TabIndex = 2
+        Me.tabConsole.TabIndex = 3
         Me.tabConsole.Text = "CONSOLE"
         Me.tabConsole.UseCustomForeColor = True
         Me.tabConsole.VerticalScrollbarBarColor = False

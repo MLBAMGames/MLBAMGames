@@ -1,18 +1,18 @@
 ﻿Public Class SettingsExtensions
-    Public Shared Function ReadGameWatchArgs(Optional defaultReturnValue As Object = Nothing) As GameWatchArguments
-        Dim args As Object = Instance.Form.GetSetting("DefaultWatchArgs")
+    Public Shared Function ReadGameWatchArgsParams(Optional defaultReturnValue As Object = Nothing) As GameWatchArgumentsParameters
+        Dim args As Object = Instance.Form.GetSetting("DefaultWatchArgsParams")
 
         If String.IsNullOrEmpty(args) OrElse IsNothing(args) Then Return defaultReturnValue
 
-        If TypeOf args Is GameWatchArguments Then
-            args = DirectCast(args, GameWatchArguments)
+        If TypeOf args Is GameWatchArgumentsParameters Then
+            args = DirectCast(args, GameWatchArgumentsParameters)
             Return args
         End If
 
         Try
-            Return Serialization.DeserializeObject(Of GameWatchArguments)(args)
+            Return Serialization.DeserializeObject(Of GameWatchArgumentsParameters)(args)
         Catch ex As Exception
-            Console.WriteLine("Error : Failed to deserialize setting value of '{0}' to type '{1}'", Instance.Form.GetSetting("DefaultWatchArgs"), NameOf(GameWatchArguments))
+            Console.WriteLine("Error : Failed to deserialize setting value of '{0}' to type '{1}'", Instance.Form.GetSetting("DefaultWatchArgsParams"), NameOf(GameWatchArguments))
             Return defaultReturnValue
         End Try
     End Function
@@ -30,7 +30,7 @@
         Try
             Return Serialization.DeserializeObject(Of AdDetectionConfigs)(configs)
         Catch ex As Exception
-            Console.WriteLine("Error : Failed to deserialize setting value of '{0}' to type '{1}'", Instance.Form.GetSetting("DefaultWatchArgs"), NameOf(AdDetectionConfigs))
+            Console.WriteLine("Error : Failed to deserialize setting value of '{0}' to type '{1}'", Instance.Form.GetSetting("AdDetection"), NameOf(AdDetectionConfigs))
             Return defaultReturnValue
         End Try
     End Function

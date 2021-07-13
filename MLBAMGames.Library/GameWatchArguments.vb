@@ -1,27 +1,13 @@
 ﻿Imports System.IO
 
 Public Class GameWatchArguments
+    Inherits GameWatchArgumentsParameters
+
     Const DefaultSegment = 12
     Public Property GameDate As Date = Now
-    Public Property Quality As StreamQualityEnum = StreamQualityEnum.best
-    Public Property Is60Fps As Boolean = True
-    Public Property Cdn As CdnTypeEnum = CdnTypeEnum.Akc
     Public Property Stream As GameStream = Nothing
     Public Property GameTitle As String = String.Empty
-    Public Property PlayerPath As String = String.Empty
-    Public Property PlayerType As PlayerTypeEnum = PlayerTypeEnum.None
-    Public Property StreamerPath As String = String.Empty
-    Public Property UseCustomStreamerArgs As Boolean = True
-    Public Property CustomStreamerArgs As String
-    Public Property UseCustomPlayerArgs As Boolean = True
-    Public Property CustomPlayerArgs As String
-    Public Property UseOutputArgs As Boolean = False
-    Public Property PlayerOutputPath As String = String.Empty
-    Public Property StreamLiveRewind As Integer = 5
     Public Property GameIsOnAir As Boolean = False
-    Public Property StreamLiveReplayCode As LiveStatusCodeEnum = LiveStatusCodeEnum.Live
-    Public Property StreamerType As StreamerTypeEnum = StreamerTypeEnum.None
-    Public Property StreamLiveReplay As LiveReplayEnum = LiveReplayEnum.StreamStarts
 
     Public Shared ReadOnly StreamerDefaultArgs As Dictionary(Of String, String) = New Dictionary(Of String, String)() From {
         {"--hls-segment-threads", "2"}, {"--hls-segment-attempts", "9"}, {"--hls-segment-timeout", "10"}, {"--hls-timeout", "180"}}
@@ -38,6 +24,13 @@ Public Class GameWatchArguments
         {PlayerTypeEnum.Mpv, MpvDefaultArgs.Select(Function(kvp) $"{kvp.Key}={kvp.Value}").ToArray()},
         {PlayerTypeEnum.None, {}}
     }
+
+    Public Sub New()
+    End Sub
+
+    Public Sub New(params As GameWatchArgumentsParameters)
+        MyBase.New(params)
+    End Sub
 
     Public Overrides Function ToString() As String
         Return OutputArgs(False)

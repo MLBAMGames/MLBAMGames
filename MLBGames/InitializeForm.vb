@@ -138,6 +138,8 @@ Namespace Utilities
         End Sub
 
         Public Shared Sub SetSettings()
+            Form.tgPlayer.Checked = True
+            Form.tgStreamer.Checked = True
             Form.tabMenu.SelectedIndex = MainTabsEnum.Matchs
 
             Dim lstLanguages = New String() {
@@ -182,16 +184,16 @@ Namespace Utilities
             Form.tgShowTodayLiveGamesFirst.Checked = My.Settings.ShowTodayLiveGamesFirst
 
             Dim playersPath = New String() {Form.txtMpvPath.Text, Form.txtMPCPath.Text, Form.txtVLCPath.Text}
-            Dim watchArgs = SettingsExtensions.ReadGameWatchArgs()
+            Dim watchArgsParams = SettingsExtensions.ReadGameWatchArgsParams()
 
-            If ValidWatchArgs(watchArgs, playersPath, Form.txtStreamerPath.Text) Then
-                watchArgs = Player.RenewArgs(True)
+            If ValidWatchArgsParams(watchArgsParams, playersPath, Form.txtStreamerPath.Text) Then
+                watchArgsParams = GameWatchArgumentsParameters.RenewArgsParams(forceSet:=True)
             End If
 
             PopulateComboBox(Form.cbServers, SettingsEnum.SelectedServer, SettingsEnum.ServerList, String.Empty)
             Web.SetRedirectionServerInApp(LogIt:=False)
 
-            Parameters.WatchArgs = BindWatchArgsToForm(watchArgs)
+            Parameters.WatchArgsParams = BindWatchArgsParamsToForm(watchArgsParams)
 
             Dim adDetectionConfigs = SettingsExtensions.ReadAdDetectionConfigs()
 
@@ -199,8 +201,8 @@ Namespace Utilities
                 adDetectionConfigs = AdDetection.Renew(True)
             End If
 
-            Form.SetStreamerDefaultArgs()
-            Form.SetPlayerDefaultArgs()
+            Form.SetStreamerDefaultArgs(forceSet:=True)
+            Form.SetPlayerDefaultArgs(overwrite:=True)
 
             BindAdDetectionConfigsToForm(adDetectionConfigs)
 
@@ -244,44 +246,44 @@ Namespace Utilities
             End If
         End Sub
 
-        Public Shared Function GetSelectedPlayerType(watchArgs As GameWatchArguments) As PlayerTypeEnum
-            If watchArgs.PlayerType.Equals(PlayerTypeEnum.Mpv) AndAlso Not String.IsNullOrEmpty(Form.txtMpvPath.Text) Then Return PlayerTypeEnum.Mpv
-            If watchArgs.PlayerType.Equals(PlayerTypeEnum.Vlc) AndAlso Not String.IsNullOrEmpty(Form.txtVLCPath.Text) Then Return PlayerTypeEnum.Vlc
-            If watchArgs.PlayerType.Equals(PlayerTypeEnum.Mpc) AndAlso Not String.IsNullOrEmpty(Form.txtMPCPath.Text) Then Return PlayerTypeEnum.Mpc
-            Return watchArgs.PlayerType = PlayerTypeEnum.None
+        Public Shared Function GetSelectedPlayerType(watchArgsParams As GameWatchArgumentsParameters) As PlayerTypeEnum
+            If watchArgsParams.PlayerType.Equals(PlayerTypeEnum.Mpv) AndAlso Not String.IsNullOrEmpty(Form.txtMpvPath.Text) Then Return PlayerTypeEnum.Mpv
+            If watchArgsParams.PlayerType.Equals(PlayerTypeEnum.Vlc) AndAlso Not String.IsNullOrEmpty(Form.txtVLCPath.Text) Then Return PlayerTypeEnum.Vlc
+            If watchArgsParams.PlayerType.Equals(PlayerTypeEnum.Mpc) AndAlso Not String.IsNullOrEmpty(Form.txtMPCPath.Text) Then Return PlayerTypeEnum.Mpc
+            Return watchArgsParams.PlayerType = PlayerTypeEnum.None
         End Function
 
-        Public Shared Sub ResetSelectedPlayer(watchArgs As GameWatchArguments)
+        Public Shared Sub ResetSelectedPlayer(watchArgsParams As GameWatchArgumentsParameters)
             If Not String.IsNullOrEmpty(Form.txtMpvPath.Text) Then
-                watchArgs.PlayerType = PlayerTypeEnum.Mpv
+                watchArgsParams.PlayerType = PlayerTypeEnum.Mpv
             ElseIf Not String.IsNullOrEmpty(Form.txtVLCPath.Text) Then
-                watchArgs.PlayerType = PlayerTypeEnum.Vlc
+                watchArgsParams.PlayerType = PlayerTypeEnum.Vlc
             ElseIf Not String.IsNullOrEmpty(Form.txtMPCPath.Text) Then
-                watchArgs.PlayerType = PlayerTypeEnum.Mpc
+                watchArgsParams.PlayerType = PlayerTypeEnum.Mpc
             Else
-                watchArgs.PlayerType = PlayerTypeEnum.None
+                watchArgsParams.PlayerType = PlayerTypeEnum.None
             End If
 
-            My.Settings.DefaultWatchArgs = Serialization.SerializeObject(watchArgs)
+            My.Settings.DefaultWatchArgsParams = Serialization.SerializeObject(watchArgsParams)
             My.Settings.Save()
         End Sub
 
-        Private Shared Function ValidWatchArgs(watchArgs As GameWatchArguments, playersPath As String(),
+        Private Shared Function ValidWatchArgsParams(watchArgsParams As GameWatchArgumentsParameters, playersPath As String(),
                                                streamerPath As String) As Boolean
-            If watchArgs Is Nothing Then Return True
+            If watchArgsParams Is Nothing Then Return True
 
-            Dim selectedPlayerType = GetSelectedPlayerType(watchArgs)
-            If Not selectedPlayerType.Equals(watchArgs.PlayerType) OrElse selectedPlayerType.Equals(PlayerTypeEnum.None) Then
-                ResetSelectedPlayer(watchArgs)
+            Dim selectedPlayerType = GetSelectedPlayerType(watchArgsParams)
+            If Not selectedPlayerType.Equals(watchArgsParams.PlayerType) OrElse selectedPlayerType.Equals(PlayerTypeEnum.None) Then
+                ResetSelectedPlayer(watchArgsParams)
             End If
 
-            Dim hasPlayerSet As Boolean = playersPath.Any(Function(x) x = watchArgs.PlayerPath)
-            If Not watchArgs.StreamerPath.Equals(streamerPath) Then Return True
+            Dim hasPlayerSet As Boolean = playersPath.Any(Function(x) x = watchArgsParams.PlayerPath)
+            If Not watchArgsParams.StreamerPath.Equals(streamerPath) Then Return True
             If Not hasPlayerSet Then
-                watchArgs.PlayerType = PlayerTypeEnum.None
-                watchArgs.StreamerType = StreamerTypeEnum.None
-                watchArgs.PlayerPath = String.Empty
-                watchArgs.StreamerPath = String.Empty
+                watchArgsParams.PlayerType = PlayerTypeEnum.None
+                watchArgsParams.StreamerType = StreamerTypeEnum.None
+                watchArgsParams.PlayerPath = String.Empty
+                watchArgsParams.StreamerPath = String.Empty
                 Form.rbMPC.Enabled = False
                 Form.rbVLC.Enabled = False
                 Form.rbMPV.Enabled = False
@@ -291,7 +293,7 @@ Namespace Utilities
             Return False
         End Function
 
-        Private Shared Function BindWatchArgsToForm(watchArgs As GameWatchArguments) As GameWatchArguments
+        Private Shared Function BindWatchArgsParamsToForm(watchArgs As GameWatchArgumentsParameters) As GameWatchArgumentsParameters
             If watchArgs IsNot Nothing Then
                 Form.cbStreamQuality.SelectedIndex = CType(watchArgs.Quality, Integer)
 
@@ -313,7 +315,7 @@ Namespace Utilities
                 Dim isMPVPathOutdated = Form.rbMPV.Checked AndAlso watchArgs.PlayerPath <> Form.txtMpvPath.Text
 
                 If isVLCPathOutdated OrElse isMPCPathOutdated OrElse isMPVPathOutdated Then
-                    watchArgs = Player.RenewArgs(True)
+                    watchArgs = GameWatchArgumentsParameters.RenewArgsParams(True)
                 End If
 
                 Form.tgPlayer.Checked = watchArgs.UseCustomPlayerArgs
