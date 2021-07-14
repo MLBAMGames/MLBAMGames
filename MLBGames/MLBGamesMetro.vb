@@ -869,6 +869,24 @@ Public Class MLBGamesMetro
         tgReset.Checked = False
     End Sub
 
+    Private Sub rbPlayer_CheckedChanged(sender As Object, e As EventArgs) _
+        Handles rbVLC.CheckedChanged, rbMPV.CheckedChanged, rbMPC.CheckedChanged
+        Dim rb As RadioButton = sender
+        If rb.Checked Then
+            GameWatchArgumentsParameters.RenewArgsParams()
+            SetPlayerDefaultArgs(overwrite:=True)
+            _writeToConsoleSettingsChanged(lblPlayer.Text, rb.Text)
+        End If
+    End Sub
+
+    Private Sub tgPlayer_CheckedChanged(sender As Object, e As EventArgs) Handles tgPlayer.CheckedChanged
+        If Not Parameters.UILoaded Then Return
+        SetPlayerDefaultArgs()
+        txtPlayerArgs.Enabled = tgPlayer.Checked
+        GameWatchArgumentsParameters.RenewArgsParams()
+        _writeToConsoleSettingToggleChanged(lblPlayerArgs.Text, tgPlayer.Checked)
+    End Sub
+
 #Region "Implements IMLBAMForm"
 
     Private Property IMLBAMForm_tgModules As MetroToggle Implements IMLBAMForm.tgModules
@@ -1283,13 +1301,6 @@ Public Class MLBGamesMetro
     Private Sub SetSetting(name As String, value As Object) Implements IMLBAMForm.SetSetting
         My.Settings(name) = value
         My.Settings.Save()
-    End Sub
-
-    Private Sub tgPlayer_CheckedChanged(sender As Object, e As EventArgs) Handles tgPlayer.CheckedChanged
-        SetPlayerDefaultArgs()
-        txtPlayerArgs.Enabled = tgPlayer.Checked
-        GameWatchArgumentsParameters.RenewArgsParams()
-        _writeToConsoleSettingToggleChanged(lblPlayerArgs.Text, tgPlayer.Checked)
     End Sub
 #End Region
 End Class

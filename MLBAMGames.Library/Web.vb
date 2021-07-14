@@ -8,7 +8,7 @@ Imports MLBAMGames.Library.API
 Imports Newtonsoft.Json
 
 Public Class Web
-    Public Const UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36"
+    Public Const UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
     Private Const s = "abcdefghijklmnopqrstuvwxyz0123456789"
     Private Shared r As New Random
     Const BYTES_IN_MEGABYTE = 1_000_000

@@ -64,7 +64,7 @@ Public Class MLBGameManager
         If gameStream.Game.GameDate.ToLocalTime() < DateTime.Today.AddDays(-2) And streamUrlReturned.StartsWith("https://hlslive") Then
             Dim network = gameStream.CdnParameter.ToString().ToLower()
             Dim newServerUrl = streamUrlReturned _
-            .Replace($"hlslive-{network}", $"vod-llc")
+            .Replace($"hlslive-{network}", $"vod-llc").Replace("complete-trimmed.m3u8", "complete_gdfp-trimmed.m3u8")
             Dim matches = Regex.Match(newServerUrl, "(.*media.mlb.com)(.*)(\/[a-z]{2}[0-9]{2}\/)(mlb\/.*)").Groups
             If matches.Count < 5 Then Return streamUrlReturned
             streamUrlReturned = $"{matches(1)}/ps01/{matches(4)}"
@@ -83,7 +83,7 @@ Public Class MLBGameManager
             Case "S"
                 Return GameStateEnum.Scheduled
             Case "P"
-                Return GameStateEnum.Scheduled
+                Return GameStateEnum.Pregame
             Case "PW"
                 Return GameStateEnum.Pregame
             Case "I"

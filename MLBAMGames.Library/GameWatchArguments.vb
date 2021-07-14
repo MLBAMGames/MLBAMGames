@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 
 Public Class GameWatchArguments
     Inherits GameWatchArgumentsParameters
@@ -78,7 +78,7 @@ Public Class GameWatchArguments
         If IsProxyNecessary() Then result &= StreamlinkHttpsProxyArgs()
         result &= RetryArgs()
         If UseCustomStreamerArgs Then result &= CustomStreamerArgs
-        If Not safeOutput Then result &= NhlCookieArgs()
+        If Not safeOutput Then result &= CookieArgs()
         If Not safeOutput Then result &= UserAgentArgs()
         result &= If(safeOutput, StreamLinkCensoredArgs(), StreamLinkArgs())
         result &= If(Is60Fps, StreamBestQualityArgs(), StreamQualityArgs())
@@ -152,7 +152,7 @@ Public Class GameWatchArguments
         Return $"--stream-types=hls "
     End Function
 
-    Private Function NhlCookieArgs() As String
+    Private Function CookieArgs() As String
         Return $" --http-cookie=""mediaAuth={Web.GetRandomString(240)} """
     End Function
 

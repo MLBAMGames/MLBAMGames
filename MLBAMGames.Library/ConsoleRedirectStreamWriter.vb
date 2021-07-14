@@ -33,6 +33,7 @@ Public Class ConsoleRedirectStreamWriter
                     Dim timestamp As String = String.Format("[{0}] ", Now.ToString("HH:mm:ss"))
 
                     If value.ToLower().IndexOf("error:", StringComparison.Ordinal) = 0 OrElse
+                       value.ToLower().IndexOf("[error]", StringComparison.Ordinal) <> -1 OrElse
                        value.ToLower().IndexOf("exception", StringComparison.Ordinal) = 0 OrElse
                        value.ToLower().IndexOf("exception:", StringComparison.Ordinal) <> -1 Then
                         type = OutputTypeEnum.Error
