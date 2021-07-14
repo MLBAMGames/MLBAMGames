@@ -113,17 +113,22 @@ Public Class NHLGamesMetro
     End Sub
 
     Public Function MsgBox(message As String, title As String, buttons As MessageBoxButtons, type As MessageBoxIcon) As DialogResult Implements IMLBAMForm.MsgBox
-        tabMenu.SetPropertyThreadSafe(Function() tabMenu.SelectedIndex = MainTabsEnum.Console)
-        Dim dialogResult As New DialogResult
+        Dim DialogResult As New DialogResult
+        If Parameters.MsgBoxVisible Then Return DialogResult
+        Parameters.MsgBoxVisible = True
         Me.GetPropertyThreadSafe(Function()
-                                     dialogResult = MetroMessageBox.Show(Me,
+                                     DialogResult = MetroMessageBox.Show(Me,
                                         message,
                                         title,
                                         buttons,
                                         type)
                                      Return True
                                  End Function)
-        Return dialogResult
+        If type = MessageBoxIcon.Error Then
+            tabMenu.SetPropertyThreadSafe(Sub() tabMenu.SelectedIndex = MainTabsEnum.Console)
+        End If
+        Parameters.MsgBoxVisible = False
+        Return DialogResult
     End Function
 
     Private Sub LoadStandings()

@@ -19,6 +19,7 @@ Public Class Parameters
     Public Shared UILoaded As Boolean = False
     Public Shared TodayLiveGamesFirst As Boolean = False
     Public Shared StreamStarted As Boolean = False
+    Public Shared MsgBoxVisible As Boolean = False
 
     Public Shared SpnLoadingValue As Integer = 0
     Public Shared SpnLoadingMaxValue As Integer = 1000

@@ -51,37 +51,38 @@ Namespace Controls
                 lblPeriod.BackColor = MetroColors.Red
                 lblPeriod.ForeColor = Color.White
 
-                If showLiveTime Then
-                    Dim period = _game.GamePeriod.
-                            Replace($"1st", Lang.RmText.GetString("gamePeriod1")).
-                            Replace($"2nd", Lang.RmText.GetString("gamePeriod2")).
-                            Replace($"3rd", Lang.RmText.GetString("gamePeriod3")).
-                            Replace($"OT", Lang.RmText.GetString("gamePeriodOt")).
-                            Replace($"SO", Lang.RmText.GetString("gamePeriodSo")).
-                            ToUpper()
-                    If _game.IsInIntermission Then
-                        lblPeriod.Text = $"{period} {Lang.RmText.GetString("gameIntermission")} { _
-                                _game.IntermissionTimeRemaining.ToString("mm:ss")}".ToUpper()
-                    Else
-                        lblPeriod.Text = $"{period}             {_game.GameTimeLeft.ToLower().Replace("end", "00:00")}".ToUpper() '1st 2nd 3rd OT SO... Final, 12:34, 20:00 
+                'If showLiveTime Then
+                '    Dim period = String.Empty
+                '    _game.GamePeriod.
+                '        Replace($"1st", Lang.RmText.GetString("gamePeriod1")).
+                '        Replace($"2nd", Lang.RmText.GetString("gamePeriod2")).
+                '        Replace($"3rd", Lang.RmText.GetString("gamePeriod3")).
+                '        Replace($"OT", Lang.RmText.GetString("gamePeriodOt")).
+                '        Replace($"SO", Lang.RmText.GetString("gamePeriodSo")).
+                '        ToUpper()
+                '    If _game.IsInIntermission Then
+                '        lblPeriod.Text = $"{period} {Lang.RmText.GetString("gameIntermission")} { _
+                '                _game.IntermissionTimeRemaining.ToString("mm:ss")}".ToUpper()
+                '    Else
+                '        lblPeriod.Text = $"{period}             {_game.GameTimeLeft.ToLower().Replace("end", "00:00")}".ToUpper() '1st 2nd 3rd OT SO... Final, 12:34, 20:00 
 
-                        If _game.GameTimeLeft.ToLower() = "final" Then
-                            lblPeriod.Text = Lang.RmText.GetString("gamePeriodFinal").ToUpper()
-                            If _game.HomeScore < _game.AwayScore Then
-                                lblHomeScore.ForeColor = Color.Gray
-                            Else
-                                lblAwayScore.ForeColor = Color.Gray
-                            End If
-                        End If
+                '        If _game.GameTimeLeft.ToLower() = "final" Then
+                '            lblPeriod.Text = Lang.RmText.GetString("gamePeriodFinal").ToUpper()
+                '            If _game.HomeScore < _game.AwayScore Then
+                '                lblHomeScore.ForeColor = Color.Gray
+                '            Else
+                '                lblAwayScore.ForeColor = Color.Gray
+                '            End If
+                '        End If
 
-                        If _game.GamePeriod.Contains(Lang.RmText.GetString("gamePeriodOt")) And
-                            IsNumeric(_game.GamePeriod(0)) Then
-                            lblPeriod.Text =
-                                String.Format(Lang.RmText.GetString("gamePeriodOtMore"), _game.GamePeriod(0)).
-                                    ToUpper() '2OT..
-                        End If
-                    End If
-                End If
+                '        If _game.GamePeriod.Contains(Lang.RmText.GetString("gamePeriodOt")) And
+                '            IsNumeric(_game.GamePeriod(0)) Then
+                '            lblPeriod.Text =
+                '                String.Format(Lang.RmText.GetString("gamePeriodOtMore"), _game.GamePeriod(0)).
+                '                    ToUpper() '2OT..
+                '        End If
+                '    End If
+                'End If
 
                 If Not showLiveScores Then
                     lblGameStatus.Text = String.Format("{0}{1}{2}",

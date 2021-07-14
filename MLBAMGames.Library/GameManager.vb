@@ -128,7 +128,7 @@ Public MustInherit Class GameManager
             If currentGame.IsLive Then
                 currentGame.GamePeriod = game.linescore.currentPeriodOrdinal
                 currentGame.GameTimeLeft = game.linescore.currentPeriodTimeRemaining
-                currentGame.IsInIntermission = game.linescore.intermissionInfo.inIntermission
+                currentGame.IsInIntermission = If(game.linescore.intermissionInfo?.inIntermission, False)
             End If
 
             If currentGame.IsInIntermission Then
