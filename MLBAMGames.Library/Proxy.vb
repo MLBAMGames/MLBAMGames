@@ -37,7 +37,7 @@ Public Class Proxy
         _proxy = New Process() With {
             .StartInfo = New ProcessStartInfo With {
                 .FileName = _pathToProxy,
-                .Arguments = $"-p {port} -d {Parameters.HostName} -s {Parameters.DomainName}",
+                .Arguments = $"-p {port} -d {Parameters.HostName} -s {String.Join(",", Parameters.DomainNames)}",
                 .UseShellExecute = False,
                 .RedirectStandardOutput = True,
                 .CreateNoWindow = True
@@ -93,8 +93,11 @@ Public Class Proxy
         If Parameters.HostName.Equals(String.Empty) Then Return hasRedirection
         Try
             Dim serverIp = Dns.GetHostEntry(Parameters.HostName).AddressList.First.ToString()
-            Dim resolvedIp = Dns.GetHostAddresses(Parameters.DomainName)(0).ToString()
-            hasRedirection = serverIp.Equals(resolvedIp)
+            For Each domainName In Parameters.DomainNames
+                Dim resolvedIp = Dns.GetHostAddresses(domainName)(0).ToString()
+                hasRedirection = serverIp.Equals(resolvedIp)
+                If Not hasRedirection Then Return False
+            Next
         Catch ex As Exception
         End Try
         Return hasRedirection

@@ -1,13 +1,14 @@
 ﻿Imports MLBAMGames.Library.API
 
 Public Class Parameters
-    Public Const DomainName As String = "mf.svc.nhl.com"
     Public Const SubredditLink As String = "https://www.reddit.com/r/nhl_games/"
     Public Const LatestReleaseLink As String = "https://github.com/NHLGames/NHLGames/releases/latest"
 
     Public Const ResizeBorderWidth As Integer = 8
     Public Const TotalTipCount As Integer = 10
     Public Const AnimateTipsEveryTick As Integer = 10000
+
+    Public Shared Property DomainNames As String()
 
     Public Shared Property AnimateTipsTick As Integer = 0
     Public Shared Property HostName As String = String.Empty

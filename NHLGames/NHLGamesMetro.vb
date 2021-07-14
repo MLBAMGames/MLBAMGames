@@ -29,6 +29,7 @@ Public Class NHLGamesMetro
 
         Parameters.IsDarkMode = My.Settings.UseDarkMode
         Parameters.StartupPath = Application.StartupPath
+        Parameters.DomainNames = {"mf.svc.nhl.com"}
 
         Dim form As New NHLGamesMetro()
         form.SuspendLayout()
@@ -815,6 +816,7 @@ Public Class NHLGamesMetro
     End Sub
 
     Private Sub tgDarkMode_CheckedChanged(sender As Object, e As EventArgs) Handles tgDarkMode.CheckedChanged
+        If Not Parameters.UILoaded Then Return
         Dim darkMode = My.Settings.UseDarkMode
         If Not darkMode.Equals(tgDarkMode.Checked) AndAlso Instance.Form.MsgBox(
             Lang.RmText.GetString("msgAcceptToRestart"),
