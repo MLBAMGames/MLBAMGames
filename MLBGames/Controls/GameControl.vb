@@ -549,10 +549,6 @@ Namespace Controls
             lnkAway.BackgroundImage = ImageFetcher.GetEmbeddedImage(mlb)
             lnkFrench.BackgroundImage = ImageFetcher.GetEmbeddedImage(mlb)
             lnkNational.BackgroundImage = ImageFetcher.GetEmbeddedImage(mlb)
-            lnkEnd1.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam_left")
-            lnkEnd2.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam_right")
-            lnkThree.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam3way")
-            lnkSix.BackgroundImage = ImageFetcher.GetEmbeddedImage("cam6way")
             btnRecap.BackgroundImage = ImageFetcher.GetEmbeddedImage($"recap_{_themeChar}")
         End Sub
     End Class

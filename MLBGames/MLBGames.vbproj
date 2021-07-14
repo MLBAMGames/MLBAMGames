@@ -206,21 +206,6 @@
     <EmbeddedResource Include="Resources\bs.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\cam.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\cam_left.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\cam_right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\cam3way.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\cam6way.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\cbc.png" />
   </ItemGroup>
   <ItemGroup>

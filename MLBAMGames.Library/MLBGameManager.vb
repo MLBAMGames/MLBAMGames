@@ -10,9 +10,7 @@ Public Class MLBGameManager
         Get
             Return New Dictionary(Of String, StreamTypeEnum)() From {
                 {"HOME", StreamTypeEnum.Home}, {"AWAY", StreamTypeEnum.Away}, {"NATIONAL", StreamTypeEnum.National},
-                {"FRENCH", StreamTypeEnum.French},
-                {"MULTICAM1", StreamTypeEnum.MultiCam1}, {"MULTICAM2", StreamTypeEnum.MultiCam2},
-                {"ENDZONECAM1", StreamTypeEnum.EndzoneCam1}, {"ENDZONECAM2", StreamTypeEnum.EndzoneCam2}}
+                {"FRENCH", StreamTypeEnum.French}}
         End Get
     End Property
 
