@@ -255,15 +255,6 @@ Namespace Controls
             lnkFrench.Visible = _game.IsStreamDefined(StreamTypeEnum.French)
             lnkNational.Visible = _game.IsStreamDefined(StreamTypeEnum.National)
 
-            lnkThree.Visible = _game.IsStreamDefined(StreamTypeEnum.MultiCam1)
-            lnkSix.Visible = _game.IsStreamDefined(StreamTypeEnum.MultiCam2)
-
-            lnkRef.Visible = _game.IsStreamDefined(StreamTypeEnum.RefCam)
-            lnkStar.Visible = _game.IsStreamDefined(StreamTypeEnum.StarCam)
-
-            lnkEnd1.Visible = _game.IsStreamDefined(StreamTypeEnum.EndzoneCam1)
-            lnkEnd2.Visible = _game.IsStreamDefined(StreamTypeEnum.EndzoneCam2)
-
             If _game.StreamsUnknown IsNot Nothing Then
                 Dim unknownStreams = _game.StreamsUnknown
                 ReDim _lnkUnknowns(unknownStreams.Count() - 1)
@@ -316,18 +307,6 @@ Namespace Controls
             SetStreamButtonLink(_game.GetStream(StreamTypeEnum.National), lnkNational,
                                 Lang.RmText.GetString("lblNationalNetwork"))
 
-            SetStreamButtonLink(_game.GetStream(StreamTypeEnum.MultiCam1), lnkThree,
-                                String.Format(Lang.RmText.GetString("lblCamViews"), 3))
-            SetStreamButtonLink(_game.GetStream(StreamTypeEnum.MultiCam2), lnkSix,
-                                String.Format(Lang.RmText.GetString("lblCamViews"), 6))
-
-            SetStreamButtonLink(_game.GetStream(StreamTypeEnum.EndzoneCam1), lnkEnd1,
-                                String.Format(Lang.RmText.GetString("lblEndzoneCam"), _game.AwayAbbrev))
-            SetStreamButtonLink(_game.GetStream(StreamTypeEnum.EndzoneCam2), lnkEnd2,
-                                String.Format(Lang.RmText.GetString("lblEndzoneCam"), _game.HomeAbbrev))
-
-            SetStreamButtonLink(_game.GetStream(StreamTypeEnum.RefCam), lnkRef, Lang.RmText.GetString("lblRefCam"))
-            SetStreamButtonLink(_game.GetStream(StreamTypeEnum.StarCam), lnkStar, Lang.RmText.GetString("lblStarCam"))
             UpdateGameStreams()
         End Sub
 
@@ -378,7 +357,7 @@ Namespace Controls
                 LiveReplayCode = If(LiveReplayCode + 1 > LiveStatusCodeEnum.Replay, 0, LiveReplayCode + 1)
             End If
 
-            btnLiveReplay.BackColor = If(LiveReplayCode.Equals(LiveStatusCodeEnum.Live), Color.Red, Color.White)
+            btnLiveReplay.BackColor = If(LiveReplayCode.Equals(LiveStatusCodeEnum.Live), Color.FromArgb(4, 30, 66), Color.White)
 
             If btnLiveReplay.BackgroundImage IsNot Nothing Then btnLiveReplay.BackgroundImage.Dispose()
             btnLiveReplay.BackgroundImage = ImageFetcher.GetEmbeddedImage($"live_{CType(LiveReplayCode, Integer)}")
@@ -444,27 +423,27 @@ Namespace Controls
             WatchStream(StreamTypeEnum.Home)
         End Sub
 
-        Private Sub lnkThree_Click(sender As Object, e As EventArgs) Handles lnkThree.Click
+        Private Sub lnkThree_Click(sender As Object, e As EventArgs)
             WatchStream(StreamTypeEnum.MultiCam1)
         End Sub
 
-        Private Sub lnkSix_Click(sender As Object, e As EventArgs) Handles lnkSix.Click
+        Private Sub lnkSix_Click(sender As Object, e As EventArgs)
             WatchStream(StreamTypeEnum.MultiCam2)
         End Sub
 
-        Private Sub lnkEnd1_Click(sender As Object, e As EventArgs) Handles lnkEnd1.Click
+        Private Sub lnkEnd1_Click(sender As Object, e As EventArgs)
             WatchStream(StreamTypeEnum.EndzoneCam1)
         End Sub
 
-        Private Sub lnkEnd2_Click(sender As Object, e As EventArgs) Handles lnkEnd2.Click
+        Private Sub lnkEnd2_Click(sender As Object, e As EventArgs)
             WatchStream(StreamTypeEnum.EndzoneCam2)
         End Sub
 
-        Private Sub lnkRef_Click(sender As Object, e As EventArgs) Handles lnkRef.Click
+        Private Sub lnkRef_Click(sender As Object, e As EventArgs)
             WatchStream(StreamTypeEnum.RefCam)
         End Sub
 
-        Private Sub lnkStar_Click(sender As Object, e As EventArgs) Handles lnkStar.Click
+        Private Sub lnkStar_Click(sender As Object, e As EventArgs)
             WatchStream(StreamTypeEnum.StarCam)
         End Sub
 
@@ -492,12 +471,6 @@ Namespace Controls
                     If lnkAway IsNot Nothing Then lnkAway.Dispose()
                     If lnkNational IsNot Nothing Then lnkNational.Dispose()
                     If lnkFrench IsNot Nothing Then lnkFrench.Dispose()
-                    If lnkThree IsNot Nothing Then lnkThree.Dispose()
-                    If lnkSix IsNot Nothing Then lnkSix.Dispose()
-                    If lnkEnd1 IsNot Nothing Then lnkEnd1.Dispose()
-                    If lnkEnd2 IsNot Nothing Then lnkEnd2.Dispose()
-                    If lnkRef IsNot Nothing Then lnkRef.Dispose()
-                    If lnkStar IsNot Nothing Then lnkStar.Dispose()
                     If lblNotInSeason IsNot Nothing Then lblNotInSeason.Dispose()
                     If lblStreamStatus IsNot Nothing Then lblStreamStatus.Dispose()
                     If btnRecap IsNot Nothing Then btnRecap.Dispose()
@@ -536,7 +509,7 @@ Namespace Controls
                 lblNotInSeason.Theme = MetroThemeStyle.Dark
                 lblDivider.BackColor = Color.Black
                 btnRecap.FlatAppearance.BorderColor = Color.LightGray
-                For Each lnk In New Button() {lnkHome, lnkAway, lnkFrench, lnkNational, lnkEnd1, lnkEnd2, lnkRef, lnkStar, lnkThree, lnkSix}
+                For Each lnk In New Button() {lnkHome, lnkAway, lnkFrench, lnkNational}
                     lnk.FlatAppearance.BorderColor = Color.FromArgb(80, 80, 80)
                     lnk.FlatAppearance.MouseOverBackColor = Color.FromArgb(100, 100, 100)
                 Next

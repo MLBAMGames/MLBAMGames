@@ -20,7 +20,7 @@ Namespace Controls
         Private Sub InitializeComponent()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GameControl))
             Me.tt = New MetroFramework.Components.MetroToolTip()
-            Me.bpGameControl = New Controls.BorderPanel()
+            Me.bpGameControl = New MLBGames.Controls.BorderPanel()
             Me.btnRecap = New System.Windows.Forms.Button()
             Me.btnLiveReplay = New System.Windows.Forms.Button()
             Me.lblGameStatus = New MetroFramework.Controls.MetroLabel()
@@ -37,12 +37,6 @@ Namespace Controls
             Me.lnkAway = New System.Windows.Forms.Button()
             Me.lnkNational = New System.Windows.Forms.Button()
             Me.lnkFrench = New System.Windows.Forms.Button()
-            Me.lnkThree = New System.Windows.Forms.Button()
-            Me.lnkSix = New System.Windows.Forms.Button()
-            Me.lnkEnd1 = New System.Windows.Forms.Button()
-            Me.lnkEnd2 = New System.Windows.Forms.Button()
-            Me.lnkRef = New System.Windows.Forms.Button()
-            Me.lnkStar = New System.Windows.Forms.Button()
             Me.lblNotInSeason = New MetroFramework.Controls.MetroLabel()
             Me.lblStreamStatus = New MetroFramework.Controls.MetroLabel()
             Me.bpGameControl.SuspendLayout()
@@ -90,7 +84,7 @@ Namespace Controls
             Me.btnRecap.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
             Me.btnRecap.FlatAppearance.BorderSize = 0
             Me.btnRecap.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
-            Me.btnRecap.FlatAppearance.MouseOverBackColor = MetroColors.Red
+            Me.btnRecap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(65, Byte), Integer))
             Me.btnRecap.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.btnRecap.ForeColor = System.Drawing.Color.Black
             Me.btnRecap.Location = New System.Drawing.Point(286, 2)
@@ -102,9 +96,9 @@ Namespace Controls
             '
             'btnLiveReplay
             '
-            Me.btnLiveReplay.BackColor = System.Drawing.Color.Red
+            Me.btnLiveReplay.BackColor = System.Drawing.Color.FromArgb(CType(CType(4, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(66, Byte), Integer))
             Me.btnLiveReplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-            Me.btnLiveReplay.FlatAppearance.BorderColor = MetroColors.Red
+            Me.btnLiveReplay.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(65, Byte), Integer))
             Me.btnLiveReplay.FlatAppearance.BorderSize = 0
             Me.btnLiveReplay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
             Me.btnLiveReplay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -192,7 +186,7 @@ Namespace Controls
             '
             'picHome
             '
-            Me.picHome.BackgroundImage = CType(resources.GetObject("picHome.BackgroundImage"), System.Drawing.Image)
+            Me.picHome.BackgroundImage = Global.MLBGames.My.Resources.Resources.mlb_l
             Me.picHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
             Me.picHome.Location = New System.Drawing.Point(218, 35)
             Me.picHome.Name = "picHome"
@@ -235,12 +229,6 @@ Namespace Controls
             Me.flpStreams.Controls.Add(Me.lnkAway)
             Me.flpStreams.Controls.Add(Me.lnkNational)
             Me.flpStreams.Controls.Add(Me.lnkFrench)
-            Me.flpStreams.Controls.Add(Me.lnkThree)
-            Me.flpStreams.Controls.Add(Me.lnkSix)
-            Me.flpStreams.Controls.Add(Me.lnkEnd1)
-            Me.flpStreams.Controls.Add(Me.lnkEnd2)
-            Me.flpStreams.Controls.Add(Me.lnkRef)
-            Me.flpStreams.Controls.Add(Me.lnkStar)
             Me.flpStreams.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
             Me.flpStreams.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.flpStreams.Location = New System.Drawing.Point(1, 109)
@@ -251,7 +239,7 @@ Namespace Controls
             '
             'lnkHome
             '
-            Me.lnkHome.BackgroundImage = CType(resources.GetObject("lnkHome.BackgroundImage"), System.Drawing.Image)
+            Me.lnkHome.BackgroundImage = Global.MLBGames.My.Resources.Resources.mlb_l
             Me.lnkHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
             Me.lnkHome.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
             Me.lnkHome.FlatAppearance.BorderSize = 0
@@ -317,102 +305,6 @@ Namespace Controls
             Me.lnkFrench.UseVisualStyleBackColor = False
             Me.lnkFrench.Visible = False
             '
-            'lnkThree
-            '
-            Me.lnkThree.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-            Me.lnkThree.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkThree.FlatAppearance.BorderSize = 0
-            Me.lnkThree.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-            Me.lnkThree.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.lnkThree.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkThree.Location = New System.Drawing.Point(140, 6)
-            Me.lnkThree.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-            Me.lnkThree.Name = "lnkThree"
-            Me.lnkThree.Size = New System.Drawing.Size(26, 26)
-            Me.lnkThree.TabIndex = 29
-            Me.lnkThree.UseVisualStyleBackColor = False
-            Me.lnkThree.Visible = False
-            '
-            'lnkSix
-            '
-            Me.lnkSix.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-            Me.lnkSix.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkSix.FlatAppearance.BorderSize = 0
-            Me.lnkSix.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-            Me.lnkSix.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.lnkSix.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkSix.Location = New System.Drawing.Point(174, 6)
-            Me.lnkSix.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-            Me.lnkSix.Name = "lnkSix"
-            Me.lnkSix.Size = New System.Drawing.Size(26, 26)
-            Me.lnkSix.TabIndex = 29
-            Me.lnkSix.UseVisualStyleBackColor = False
-            Me.lnkSix.Visible = False
-            '
-            'lnkEnd1
-            '
-            Me.lnkEnd1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-            Me.lnkEnd1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkEnd1.FlatAppearance.BorderSize = 0
-            Me.lnkEnd1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-            Me.lnkEnd1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.lnkEnd1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkEnd1.Location = New System.Drawing.Point(208, 6)
-            Me.lnkEnd1.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-            Me.lnkEnd1.Name = "lnkEnd1"
-            Me.lnkEnd1.Size = New System.Drawing.Size(26, 26)
-            Me.lnkEnd1.TabIndex = 29
-            Me.lnkEnd1.UseVisualStyleBackColor = False
-            Me.lnkEnd1.Visible = False
-            '
-            'lnkEnd2
-            '
-            Me.lnkEnd2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-            Me.lnkEnd2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkEnd2.FlatAppearance.BorderSize = 0
-            Me.lnkEnd2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-            Me.lnkEnd2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.lnkEnd2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkEnd2.Location = New System.Drawing.Point(242, 6)
-            Me.lnkEnd2.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-            Me.lnkEnd2.Name = "lnkEnd2"
-            Me.lnkEnd2.Size = New System.Drawing.Size(26, 26)
-            Me.lnkEnd2.TabIndex = 29
-            Me.lnkEnd2.UseVisualStyleBackColor = False
-            Me.lnkEnd2.Visible = False
-            '
-            'lnkRef
-            '
-            Me.lnkRef.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-            Me.lnkRef.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkRef.FlatAppearance.BorderSize = 0
-            Me.lnkRef.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-            Me.lnkRef.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.lnkRef.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkRef.Location = New System.Drawing.Point(276, 6)
-            Me.lnkRef.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-            Me.lnkRef.Name = "lnkRef"
-            Me.lnkRef.Size = New System.Drawing.Size(26, 26)
-            Me.lnkRef.TabIndex = 29
-            Me.lnkRef.UseVisualStyleBackColor = False
-            Me.lnkRef.Visible = False
-            '
-            'lnkStar
-            '
-            Me.lnkStar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-            Me.lnkStar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lnkStar.FlatAppearance.BorderSize = 0
-            Me.lnkStar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
-            Me.lnkStar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.lnkStar.ForeColor = System.Drawing.Color.CornflowerBlue
-            Me.lnkStar.Location = New System.Drawing.Point(310, 6)
-            Me.lnkStar.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
-            Me.lnkStar.Name = "lnkStar"
-            Me.lnkStar.Size = New System.Drawing.Size(26, 26)
-            Me.lnkStar.TabIndex = 30
-            Me.lnkStar.UseVisualStyleBackColor = True
-            Me.lnkStar.Visible = False
-            '
             'lblNotInSeason
             '
             Me.lblNotInSeason.BackColor = System.Drawing.Color.Transparent
@@ -476,12 +368,6 @@ Namespace Controls
         Friend WithEvents lnkAway As Button
         Friend WithEvents lnkNational As Button
         Friend WithEvents lnkFrench As Button
-        Friend WithEvents lnkThree As Button
-        Friend WithEvents lnkSix As Button
-        Friend WithEvents lnkEnd2 As Button
-        Friend WithEvents lnkRef As Button
-        Friend WithEvents lnkStar As Button
-        Friend WithEvents lnkEnd1 As Button
         Friend WithEvents btnRecap As Button
     End Class
 End Namespace
