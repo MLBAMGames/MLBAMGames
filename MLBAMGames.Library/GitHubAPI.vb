@@ -7,9 +7,10 @@ Imports Newtonsoft.Json
 
 Public Class GitHubAPI
 
-    Private Shared ReadOnly _regexVersion As Regex = New Regex($"(\d+\.)(\d+\.)?(\d+\.)?(\*|\d+)")
-    Private Shared ReadOnly _regexTag As Regex = New Regex($"[^0-9.]")
-    Private Const _repoLink As String = "https://api.github.com/repos/NHLGames/NHLGames"
+    Private Shared ReadOnly Property _regexVersion As Regex = New Regex($"(\d+\.)(\d+\.)?(\d+\.)?(\*|\d+)")
+    Private Shared ReadOnly Property _regexTag As Regex = New Regex($"[^0-9.]")
+    Private Shared ReadOnly Property _project As String = Assembly.GetCallingAssembly().GetName().Name
+    Private Shared ReadOnly Property _repoLink As String = $"https://api.github.com/repos/MLBAMGames/{_project}"
 
     Public Shared Async Function GetVersion() As Task
         Dim request = GetGitHubApiRequest($"{_repoLink}/releases/latest")

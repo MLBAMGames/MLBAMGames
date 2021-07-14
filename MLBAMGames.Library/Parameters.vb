@@ -9,27 +9,27 @@ Public Class Parameters
     Public Const TotalTipCount As Integer = 10
     Public Const AnimateTipsEveryTick As Integer = 10000
 
-    Public Shared AnimateTipsTick As Integer = 0
-    Public Shared HostName As String = String.Empty
-    Public Shared IsDarkMode As Boolean = False
-    Public Shared IsServerUp As Boolean = Nothing
-    Public Shared IsProxyListening As Task(Of Boolean) = Nothing
-    Public Shared IsHostsRedirectionSet As Boolean = False
-    Public Shared ResizeDirection As Integer = -1
-    Public Shared UILoaded As Boolean = False
-    Public Shared TodayLiveGamesFirst As Boolean = False
-    Public Shared StreamStarted As Boolean = False
-    Public Shared MsgBoxVisible As Boolean = False
+    Public Shared Property AnimateTipsTick As Integer = 0
+    Public Shared Property HostName As String = String.Empty
+    Public Shared Property IsDarkMode As Boolean = False
+    Public Shared Property IsServerUp As Boolean = Nothing
+    Public Shared Property IsProxyListening As Task(Of Boolean) = Nothing
+    Public Shared Property IsHostsRedirectionSet As Boolean = False
+    Public Shared Property ResizeDirection As Integer = -1
+    Public Shared Property UILoaded As Boolean = False
+    Public Shared Property TodayLiveGamesFirst As Boolean = False
+    Public Shared Property StreamStarted As Boolean = False
+    Public Shared Property MsgBoxVisible As Boolean = False
 
-    Public Shared SpnLoadingValue As Integer = 0
-    Public Shared SpnLoadingMaxValue As Integer = 1000
-    Public Shared SpnLoadingVisible As Boolean = False
-    Public Shared SpnStreamingValue As Integer = 0
-    Public Shared SpnStreamingMaxValue As Integer = 1000
-    Public Shared SpnStreamingVisible As Boolean = False
+    Public Shared Property SpnLoadingValue As Integer = 0
+    Public Shared Property SpnLoadingMaxValue As Integer = 1000
+    Public Shared Property SpnLoadingVisible As Boolean = False
+    Public Shared Property SpnStreamingValue As Integer = 0
+    Public Shared Property SpnStreamingMaxValue As Integer = 1000
+    Public Shared Property SpnStreamingVisible As Boolean = False
 
-    Public Shared StartupPath As String = Nothing
+    Public Shared Property StartupPath As String = Nothing
 
-    Public Shared Tips As New Dictionary(Of Integer, String)
-    Public Shared WatchArgsParams As GameWatchArgumentsParameters = New GameWatchArgumentsParameters
+    Public Shared Property Tips As New Dictionary(Of Integer, String)
+    Public Shared Property WatchArgsParams As GameWatchArgumentsParameters = New GameWatchArgumentsParameters
 End Class
