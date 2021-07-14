@@ -83,4 +83,8 @@ Public Class NHLGameManager
         Dim code = Convert.ToInt16(If(status.statusCode, 0).ToString())
         Return If(code > 10, 11, code)
     End Function
+
+    Public Overrides Function GetGameType(game As API.Game) As GameTypeEnum
+        Return CType(Convert.ToInt16(GetChar(game.gamePk.ToString(), 6)) - 48, GameTypeEnum)
+    End Function
 End Class

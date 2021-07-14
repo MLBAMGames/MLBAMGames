@@ -12,6 +12,7 @@ Public MustInherit Class GameManager
     Public MustOverride ReadOnly Property DictStreamType As Dictionary(Of String, StreamTypeEnum)
     Public MustOverride Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
     Public MustOverride Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
+    Public MustOverride Function GetGameType(game As API.Game) As GameTypeEnum
     Public MustOverride Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item, streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
     Public MustOverride Async Function GetGameFeedUrlAsync(gameStream As GameStream) As Task(Of String)
 
@@ -102,7 +103,7 @@ Public MustInherit Class GameManager
         Dim currentGame = New Game With {
                 .GameDate = game.gameDate.ToUniversalTime(), ' Must use universal time to always get correct date for stream
                 .GameId = game.gamePk.ToString(),
-                .GameType = Convert.ToInt16(GetChar(game.gamePk.ToString(), 6)) - 48,
+                .GameType = GetGameType(game),
                 .Home = If(game.teams?.home?.team?.locationName, String.Empty),
                 .HomeAbbrev = If(game.teams?.home?.team?.abbreviation, String.Empty),
                 .HomeTeam = If(game.teams?.home?.team?.teamName, String.Empty),

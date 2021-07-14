@@ -92,4 +92,23 @@ Public Class MLBGameManager
                 Return GameStateEnum.ToBeDetermined
         End Select
     End Function
+
+    Public Overrides Function GetGameType(game As API.Game) As GameTypeEnum
+        Select Case game.gameType
+            Case "S" 'Summer training
+                Return GameTypeEnum.Preseason
+            Case "R" 'Regular
+                Return GameTypeEnum.Season
+            Case "F" 'Wild card game: still season
+                Return GameTypeEnum.Season
+            Case "D" 'Division series
+                Return GameTypeEnum.Series
+            Case "L" 'League series (Conference)
+                Return GameTypeEnum.Series
+            Case "W" 'World series (Final series)
+                Return GameTypeEnum.Series
+            Case Else
+                Return GameTypeEnum.Season
+        End Select
+    End Function
 End Class

@@ -56,6 +56,8 @@ Public Class MLBGamesMetro
         InitializeForm.SetWindow()
         Lang.GetLanguage()
 
+        ImageFetcher.ImagesPngFromSvg()
+
         CalendarControl.FlpCalendar = flpCalendarPanel
         InitializeForm.SetSettings()
 

@@ -50,7 +50,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>mlbgames.ico</ApplicationIcon>
+    <ApplicationIcon>mlbgames-alt.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
@@ -327,6 +327,91 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mlbgames.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="mlbgames-alt.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ari_d.png" />
+    <EmbeddedResource Include="Resources\ari_l.png" />
+    <EmbeddedResource Include="Resources\atl_d.png" />
+    <EmbeddedResource Include="Resources\atl_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\bal_d.png" />
+    <EmbeddedResource Include="Resources\bal_l.png" />
+    <EmbeddedResource Include="Resources\bos_d.png" />
+    <EmbeddedResource Include="Resources\bos_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\chc_d.png" />
+    <EmbeddedResource Include="Resources\chc_l.png" />
+    <EmbeddedResource Include="Resources\cin_d.png" />
+    <EmbeddedResource Include="Resources\cin_l.png" />
+    <EmbeddedResource Include="Resources\cle_d.png" />
+    <EmbeddedResource Include="Resources\cle_l.png" />
+    <EmbeddedResource Include="Resources\col_d.png" />
+    <EmbeddedResource Include="Resources\col_l.png" />
+    <EmbeddedResource Include="Resources\cws_d.png" />
+    <EmbeddedResource Include="Resources\cws_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\det_d.png" />
+    <EmbeddedResource Include="Resources\det_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\hou_d.png" />
+    <EmbeddedResource Include="Resources\hou_l.png" />
+    <EmbeddedResource Include="Resources\kc_d.png" />
+    <EmbeddedResource Include="Resources\kc_l.png" />
+    <EmbeddedResource Include="Resources\laa_d.png" />
+    <EmbeddedResource Include="Resources\laa_l.png" />
+    <EmbeddedResource Include="Resources\lad_d.png" />
+    <EmbeddedResource Include="Resources\lad_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\mia_l.png" />
+    <EmbeddedResource Include="Resources\mil_d.png" />
+    <EmbeddedResource Include="Resources\mil_l.png" />
+    <EmbeddedResource Include="Resources\min_d.png" />
+    <EmbeddedResource Include="Resources\min_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\nym_d.png" />
+    <EmbeddedResource Include="Resources\nym_l.png" />
+    <EmbeddedResource Include="Resources\nyy_d.png" />
+    <EmbeddedResource Include="Resources\nyy_l.png" />
+    <EmbeddedResource Include="Resources\oak_d.png" />
+    <EmbeddedResource Include="Resources\oak_l.png" />
+    <EmbeddedResource Include="Resources\phi_d.png" />
+    <EmbeddedResource Include="Resources\phi_l.png" />
+    <EmbeddedResource Include="Resources\pit_d.png" />
+    <EmbeddedResource Include="Resources\pit_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\sd_d.png" />
+    <EmbeddedResource Include="Resources\sd_l.png" />
+    <EmbeddedResource Include="Resources\sea_d.png" />
+    <EmbeddedResource Include="Resources\sea_l.png" />
+    <EmbeddedResource Include="Resources\sf_d.png" />
+    <EmbeddedResource Include="Resources\sf_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\stl_d.png" />
+    <EmbeddedResource Include="Resources\stl_l.png" />
+    <EmbeddedResource Include="Resources\tb_d.png" />
+    <EmbeddedResource Include="Resources\tb_l.png" />
+    <EmbeddedResource Include="Resources\tex_d.png" />
+    <EmbeddedResource Include="Resources\tex_l.png" />
+    <EmbeddedResource Include="Resources\tor_d.png" />
+    <EmbeddedResource Include="Resources\tor_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\wsh_d.png" />
+    <EmbeddedResource Include="Resources\wsh_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\mia_d.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
