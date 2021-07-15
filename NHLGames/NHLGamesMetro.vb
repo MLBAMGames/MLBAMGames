@@ -774,6 +774,7 @@ Public Class NHLGamesMetro
             My.Settings.Save()
         End If
         Proxy.StopProxy()
+        Environment.Exit(0)
     End Sub
 
     Private Sub tbLiveRewind_MouseUp(sender As Object, e As MouseEventArgs) Handles tbLiveRewind.MouseUp
