@@ -186,7 +186,7 @@ Namespace Modules
         End Function
 
         Private Sub ModuleSpotifyOff()
-            Instance.Form.tgMedia.SetPropertyThreadSafe(Function() Instance.Form.tgMedia.Checked = False)
+            Instance.Form.tgMedia.SetPropertyThreadSafe(Sub() Instance.Form.tgMedia.Checked = False)
         End Sub
 
     End Class

@@ -105,7 +105,7 @@ Namespace Modules
         End Sub
 
         Private Sub ModuleObsOff()
-            Instance.Form.tgOBS.SetPropertyThreadSafe(Function() Instance.Form.tgOBS.Checked = False)
+            Instance.Form.tgOBS.SetPropertyThreadSafe(Sub() Instance.Form.tgOBS.Checked = False)
         End Sub
     End Class
 End Namespace

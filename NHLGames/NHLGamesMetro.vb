@@ -65,7 +65,7 @@ Public Class NHLGamesMetro
             Proxy.MLBAMProxy = New Proxy()
         End If
 
-        lblStatus.SetPropertyThreadSafe(Function() lblStatus.Text = Lang.RmText.GetString("msgChekingRequirements"))
+        lblStatus.SetPropertyThreadSafe(Sub() lblStatus.Text = Lang.RmText.GetString("msgChekingRequirements"))
 
         Dim errorMessage = Await Web.CheckAppCanRun()
         If errorMessage <> String.Empty Then
@@ -92,11 +92,11 @@ Public Class NHLGamesMetro
 
         ClearGamePanel()
         Await Task.Run(Async Function() As Task
-                           lblStatus.SetPropertyThreadSafe(Function() lblStatus.Text = Lang.RmText.GetString("msgLoadingGames"))
+                           lblStatus.SetPropertyThreadSafe(Sub() lblStatus.Text = Lang.RmText.GetString("msgLoadingGames"))
                            If Await GameFetcher.LoadGames(gameDate, SportsEnum.NHL) Then
                                ClearGamePanel()
                                AddGamePanels(GameFetcher.Entries.Values.ToList())
-                               lblStatus.SetPropertyThreadSafe(Function() lblStatus.Text = String.Format(Lang.RmText.GetString("msgGamesFound"),
+                               lblStatus.SetPropertyThreadSafe(Sub() lblStatus.Text = String.Format(Lang.RmText.GetString("msgGamesFound"),
                                                            GameFetcher.Entries.Values.Count.ToString()))
                            End If
                        End Function).ConfigureAwait(False)
@@ -170,9 +170,9 @@ Public Class NHLGamesMetro
             GameFetcher.StreamingProgress()
         Else
             Dim gameTabEnabled = GameFetcher.LoadingProgress()
-            btnDate.SetPropertyThreadSafe(Function() btnDate.Enabled = gameTabEnabled)
-            btnTomorrow.SetPropertyThreadSafe(Function() btnTomorrow.Enabled = gameTabEnabled)
-            btnYesterday.SetPropertyThreadSafe(Function() btnYesterday.Enabled = gameTabEnabled)
+            btnDate.SetPropertyThreadSafe(Sub() btnDate.Enabled = gameTabEnabled)
+            btnTomorrow.SetPropertyThreadSafe(Sub() btnTomorrow.Enabled = gameTabEnabled)
+            btnYesterday.SetPropertyThreadSafe(Sub() btnYesterday.Enabled = gameTabEnabled)
         End If
         Parameters.AnimateTipsTick += tmr.Interval
         AnimateTips()
@@ -190,7 +190,7 @@ Public Class NHLGamesMetro
         Dim nextTip = Parameters.Tips.FirstOrDefault(Function(x) If(currentTip.Key + 1 > Parameters.TotalTipCount, x.Key = 1, x.Key = currentTip.Key + 1))
         If nextTip.Value Is Nothing Then Return
 
-        lblTip.SetPropertyThreadSafe(Function() lblTip.Text = nextTip.Value)
+        lblTip.SetPropertyThreadSafe(Sub() lblTip.Text = nextTip.Value)
     End Sub
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click

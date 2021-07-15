@@ -45,7 +45,7 @@ Public Class Proxy
             .EnableRaisingEvents = True
         }
 
-        Instance.Form.lblStatus.SetPropertyThreadSafe(Function() Instance.Form.lblStatus.Text = Lang.RmText.GetString("msgProxyGettingReady"))
+        Instance.Form.lblStatus.SetPropertyThreadSafe(Sub() Instance.Form.lblStatus.Text = Lang.RmText.GetString("msgProxyGettingReady"))
 
         If Not IsProxyFileFound() Then
             Console.WriteLine("Error: Can't find mitmproxy : mitmproxy is a https proxy that we shipped with NHLGames. You probably moved it or deleted it. Please go to our GitHub page to get it back, NHLGames needs it")
@@ -125,13 +125,13 @@ Public Class Proxy
 
     Public Shared Async Function WaitToBeReady() As Task(Of Boolean)
         If Await Ready() Then Return True
-        Instance.Form.lblStatus.SetPropertyThreadSafe(Function() Instance.Form.lblStatus.Text = Lang.RmText.GetString("msgProxyGettingReady"))
+        Instance.Form.lblStatus.SetPropertyThreadSafe(Sub() Instance.Form.lblStatus.Text = Lang.RmText.GetString("msgProxyGettingReady"))
 
         While Not Await Ready()
             Await Task.Delay(200)
         End While
 
-        Instance.Form.lblStatus.SetPropertyThreadSafe(Function() Instance.Form.lblStatus.Text = String.Format(Lang.RmText.GetString("msgGamesFound"),
+        Instance.Form.lblStatus.SetPropertyThreadSafe(Sub() Instance.Form.lblStatus.Text = String.Format(Lang.RmText.GetString("msgGamesFound"),
                                                            GameFetcher.Entries.Values.Count.ToString()))
         Return True
     End Function

@@ -260,7 +260,7 @@ Partial Class MLBGamesMetro
         Me.tabMenu.Location = New System.Drawing.Point(-1, 70)
         Me.tabMenu.Margin = New System.Windows.Forms.Padding(0)
         Me.tabMenu.Name = "tabMenu"
-        Me.tabMenu.SelectedIndex = 0
+        Me.tabMenu.SelectedIndex = 2
         Me.tabMenu.Size = New System.Drawing.Size(992, 550)
         Me.tabMenu.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.tabMenu.Style = MetroFramework.MetroColorStyle.Red
@@ -1591,6 +1591,7 @@ Partial Class MLBGamesMetro
         Me.tgShowStanding.TabIndex = 12
         Me.tgShowStanding.Text = "Off"
         Me.tgShowStanding.UseSelectable = True
+        Me.tgShowStanding.Visible = False
         '
         'tgShowTodayLiveGamesFirst
         '
@@ -1734,6 +1735,7 @@ Partial Class MLBGamesMetro
         Me.lblShowStanding.TabIndex = 13
         Me.lblShowStanding.Text = "SHOW_STANDING"
         Me.lblShowStanding.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblShowStanding.Visible = False
         '
         'lblPlayer
         '

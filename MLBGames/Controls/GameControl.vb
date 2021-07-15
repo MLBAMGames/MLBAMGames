@@ -184,13 +184,13 @@ Namespace Controls
             lblHomeTeam.Visible = showTeamCityAbr
             lblAwayTeam.Visible = showTeamCityAbr
 
-            If showStanding Then
-                Adorner.AddBadgeTo(picAway, Standing.GetCurrentStandings(StandingTypeEnum.League, API.Seasons.CurrentSeason.seasonId, _game.AwayTeam))
-                Adorner.AddBadgeTo(picHome, Standing.GetCurrentStandings(StandingTypeEnum.League, API.Seasons.CurrentSeason.seasonId, _game.HomeTeam))
-            Else
-                Adorner.RemoveBadgeFrom(picAway)
-                Adorner.RemoveBadgeFrom(picHome)
-            End If
+            'If showStanding Then
+            '    Adorner.AddBadgeTo(picAway, Standing.GetCurrentStandings(StandingTypeEnum.League, API.Seasons.CurrentSeason.seasonId, _game.AwayTeam))
+            '    Adorner.AddBadgeTo(picHome, Standing.GetCurrentStandings(StandingTypeEnum.League, API.Seasons.CurrentSeason.seasonId, _game.HomeTeam))
+            'Else
+            '    Adorner.RemoveBadgeFrom(picAway)
+            '    Adorner.RemoveBadgeFrom(picHome)
+            'End If
 
             tt.SetToolTip(picAway,
                           String.Format(Lang.RmText.GetString("lblAwayTeam"), _game.Away, _game.AwayTeam))
