@@ -19,11 +19,11 @@ End Class
 Public Class MLBAPIServiceURLs
     Public Shared scheduleGames As String = "http://statsapi.mlb.com/api/v1/schedule?sportId=1&date={0}&hydrate=team,linescore,game(content(summary,media(epg)))&language=en"
 
-    'Public Shared leagueStandings As String = "https://statsapi.mlb.com/api/v1/standings/byLeague?season={0}&expand=standings.record"
+    Public Shared leagueStandings As String = "https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&season=2017&standingsTypes=regularSeason&hydrate=division,conference,sport,league,team"
     'Public Shared conferenceStandings As String = "https://statsapi.mlb.com/api/v1/standings/byConference?season={0}&expand=standings.record"
     'Public Shared divisionStandings As String = "https://statsapi.mlb.com/api/v1/standings/byDivision?season={0}&expand=standings.record"
     'Public Shared wildCardStandings As String = "https://statsapi.mlb.com/api/v1/standings/wildCard?season={0}&expand=standings.record"
 
-    'Public Shared seasons As String = "https://statsapi.mlb.com/api/v1/seasons"
-    'Public Shared teams As String = "https://statsapi.mlb.com/api/v1/teams/"
+    Public Shared seasons As String = "https://statsapi.mlb.com/api/v1/seasons?sportId=1"
+    'Public Shared teams As String = "https://statsapi.mlb.com/api/v1/teams?sportId=1"
 End Class

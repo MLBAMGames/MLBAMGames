@@ -56,10 +56,10 @@ Public Class MLBGamesMetro
         InitializeForm.SetWindow()
         Lang.GetLanguage()
 
-        ImageFetcher.ImagesPngFromSvg()
-
         CalendarControl.FlpCalendar = flpCalendarPanel
         InitializeForm.SetSettings()
+
+        tabMenu.TabPages.Item(MainTabsEnum.Standings).Dispose()
 
         If Proxy.TestHostsEntry() Then
             Parameters.IsHostsRedirectionSet = True
@@ -79,14 +79,16 @@ Public Class MLBGamesMetro
             End If
         End If
 
+
         Parameters.UILoaded = True
         ResumeLayout(True)
 
         tmr.Enabled = True
         Await LoadGames(CalendarControl.GameDate)
 
-        LoadTeamsName()
-        LoadStandings()
+        'TODO: fixme
+        ' LoadTeamsName()
+        ' LoadStandings()
     End Sub
 
     Private Async Function LoadGames(gameDate As Date) As Task
@@ -135,7 +137,7 @@ Public Class MLBGamesMetro
 
     Private Sub LoadStandings()
         cbSeasons.SetPropertyThreadSafe(Sub()
-                                            cbSeasons.DataSource = API.Seasons.GetAllSeasons()
+                                            cbSeasons.DataSource = API.Seasons.GetAllMLBSeasons()
                                             cbSeasons.SelectedIndex = 0
                                         End Sub)
     End Sub

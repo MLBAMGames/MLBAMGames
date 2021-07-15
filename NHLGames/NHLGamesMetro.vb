@@ -134,7 +134,7 @@ Public Class NHLGamesMetro
 
     Private Sub LoadStandings()
         cbSeasons.SetPropertyThreadSafe(Sub()
-                                            cbSeasons.DataSource = API.Seasons.GetAllSeasons()
+                                            cbSeasons.DataSource = API.Seasons.GetAllNHLSeasons()
                                             cbSeasons.SelectedIndex = 0
                                         End Sub)
     End Sub
