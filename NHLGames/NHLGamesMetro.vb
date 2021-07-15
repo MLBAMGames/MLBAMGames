@@ -32,8 +32,9 @@ Public Class NHLGamesMetro
         Parameters.DomainNames = {"mf.svc.nhl.com"}
 
         Dim form As New NHLGamesMetro()
-        form.SuspendLayout()
         Instance.Form = form
+        InitializeForm.SetWindow()
+        form.SuspendLayout()
 
         Dim writer = New ConsoleRedirectStreamWriter(form.txtConsole)
         Console.SetOut(writer)
@@ -53,7 +54,6 @@ Public Class NHLGamesMetro
     End Sub
 
     Private Async Sub NHLGames_Load(sender As Object, e As EventArgs) Handles Me.Load
-        InitializeForm.SetWindow()
         Lang.GetLanguage()
 
         CalendarControl.FlpCalendar = flpCalendarPanel

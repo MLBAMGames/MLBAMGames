@@ -32,8 +32,9 @@ Public Class MLBGamesMetro
         Parameters.DomainNames = {"playback.svcs.mlb.com", "mlb-ws-mf.media.mlb.com"}
 
         Dim form As New MLBGamesMetro()
-        form.SuspendLayout()
         Instance.Form = form
+        InitializeForm.SetWindow()
+        form.SuspendLayout()
 
         Dim writer = New ConsoleRedirectStreamWriter(form.txtConsole)
         Console.SetOut(writer)
@@ -53,7 +54,7 @@ Public Class MLBGamesMetro
     End Sub
 
     Private Async Sub MLBGames_Load(sender As Object, e As EventArgs) Handles Me.Load
-        InitializeForm.SetWindow()
+
         Lang.GetLanguage()
 
         CalendarControl.FlpCalendar = flpCalendarPanel
