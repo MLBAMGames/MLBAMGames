@@ -538,7 +538,7 @@
     <comment>Settings tab</comment>
   </data>
   <data name="cbLiveReplayPuckDrop" xml:space="preserve">
-    <value>Quand le match commence (puck en jeu)</value>
+    <value>Quand le match commence (balle en jeu)</value>
     <comment>Settings tab</comment>
   </data>
   <data name="enumGameState0" xml:space="preserve">

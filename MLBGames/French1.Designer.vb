@@ -118,7 +118,7 @@ Friend Class French
     End Property
     
     '''<summary>
-    '''  Looks up a localized string similar to Quand le match commence (puck en jeu).
+    '''  Looks up a localized string similar to Quand le match commence (balle en jeu).
     '''</summary>
     Friend Shared ReadOnly Property cbLiveReplayPuckDrop() As String
         Get

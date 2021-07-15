@@ -586,7 +586,7 @@
     <comment>Settings tab</comment>
   </data>
   <data name="cbLiveReplayPuckDrop" xml:space="preserve">
-    <value>When the game starts (drops the puck)</value>
+    <value>When the game starts (play ball)</value>
     <comment>Settings tab</comment>
   </data>
   <data name="lblLiveReplay" xml:space="preserve">
