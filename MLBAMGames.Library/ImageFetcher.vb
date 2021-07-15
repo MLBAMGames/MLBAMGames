@@ -27,6 +27,7 @@ Public Class ImageFetcher
         End Using
         Return image
 #End If
+        Return Nothing
     End Function
 
     ' to recreate all png images in output (dev)
