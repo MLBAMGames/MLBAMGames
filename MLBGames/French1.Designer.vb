@@ -325,74 +325,20 @@ Friend Class French
     End Property
     
     '''<summary>
+    '''  Looks up a localized string similar to Bas.
+    '''</summary>
+    Friend Shared ReadOnly Property gameBottomInning() As String
+        Get
+            Return ResourceManager.GetString("gameBottomInning", resourceCulture)
+        End Get
+    End Property
+    
+    '''<summary>
     '''  Looks up a localized string similar to Entracte.
     '''</summary>
     Friend Shared ReadOnly Property gameIntermission() As String
         Get
             Return ResourceManager.GetString("gameIntermission", resourceCulture)
-        End Get
-    End Property
-    
-    '''<summary>
-    '''  Looks up a localized string similar to 1ière.
-    '''</summary>
-    Friend Shared ReadOnly Property gamePeriod1() As String
-        Get
-            Return ResourceManager.GetString("gamePeriod1", resourceCulture)
-        End Get
-    End Property
-    
-    '''<summary>
-    '''  Looks up a localized string similar to 2ième.
-    '''</summary>
-    Friend Shared ReadOnly Property gamePeriod2() As String
-        Get
-            Return ResourceManager.GetString("gamePeriod2", resourceCulture)
-        End Get
-    End Property
-    
-    '''<summary>
-    '''  Looks up a localized string similar to 3ième.
-    '''</summary>
-    Friend Shared ReadOnly Property gamePeriod3() As String
-        Get
-            Return ResourceManager.GetString("gamePeriod3", resourceCulture)
-        End Get
-    End Property
-    
-    '''<summary>
-    '''  Looks up a localized string similar to Terminé.
-    '''</summary>
-    Friend Shared ReadOnly Property gamePeriodFinal() As String
-        Get
-            Return ResourceManager.GetString("gamePeriodFinal", resourceCulture)
-        End Get
-    End Property
-    
-    '''<summary>
-    '''  Looks up a localized string similar to P.
-    '''</summary>
-    Friend Shared ReadOnly Property gamePeriodOt() As String
-        Get
-            Return ResourceManager.GetString("gamePeriodOt", resourceCulture)
-        End Get
-    End Property
-    
-    '''<summary>
-    '''  Looks up a localized string similar to {0}E P.
-    '''</summary>
-    Friend Shared ReadOnly Property gamePeriodOtMore() As String
-        Get
-            Return ResourceManager.GetString("gamePeriodOtMore", resourceCulture)
-        End Get
-    End Property
-    
-    '''<summary>
-    '''  Looks up a localized string similar to FUS.
-    '''</summary>
-    Friend Shared ReadOnly Property gamePeriodSo() As String
-        Get
-            Return ResourceManager.GetString("gamePeriodSo", resourceCulture)
         End Get
     End Property
     
@@ -420,6 +366,24 @@ Friend Class French
     Friend Shared ReadOnly Property gameSeriesWin() As String
         Get
             Return ResourceManager.GetString("gameSeriesWin", resourceCulture)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Looks up a localized string similar to Terminé.
+    '''</summary>
+    Friend Shared ReadOnly Property gameStateFinal() As String
+        Get
+            Return ResourceManager.GetString("gameStateFinal", resourceCulture)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Looks up a localized string similar to Haut.
+    '''</summary>
+    Friend Shared ReadOnly Property gameTopInning() As String
+        Get
+            Return ResourceManager.GetString("gameTopInning", resourceCulture)
         End Get
     End Property
     
@@ -982,7 +946,7 @@ Friend Class French
     End Property
     
     '''<summary>
-    '''  Looks up a localized string similar to Temps restant en direct.
+    '''  Looks up a localized string similar to État des manches en direct.
     '''</summary>
     Friend Shared ReadOnly Property lblShowLiveTime() As String
         Get

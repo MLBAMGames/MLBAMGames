@@ -51,38 +51,15 @@ Namespace Controls
                 lblHeader.BackColor = MetroColors.Red
                 lblHeader.ForeColor = Color.White
 
-                'If showLiveTime Then
-                '    Dim period = String.Empty
-                '    _game.GamePeriod.
-                '        Replace($"1st", Lang.RmText.GetString("gamePeriod1")).
-                '        Replace($"2nd", Lang.RmText.GetString("gamePeriod2")).
-                '        Replace($"3rd", Lang.RmText.GetString("gamePeriod3")).
-                '        Replace($"OT", Lang.RmText.GetString("gamePeriodOt")).
-                '        Replace($"SO", Lang.RmText.GetString("gamePeriodSo")).
-                '        ToUpper()
-                '    If _game.IsInIntermission Then
-                '        lblPeriod.Text = $"{period} {Lang.RmText.GetString("gameIntermission")} { _
-                '                _game.IntermissionTimeRemaining.ToString("mm:ss")}".ToUpper()
-                '    Else
-                '        lblPeriod.Text = $"{period}             {_game.GameTimeLeft.ToLower().Replace("end", "00:00")}".ToUpper() '1st 2nd 3rd OT SO... Final, 12:34, 20:00 
+                If showLiveTime Then
+                    Dim inningState = Lang.RmText.GetString(If(_game.GameIsTopInning, "gameTopInning", "gameBottomInning"))
+                    Dim inning = String.Format("{0} {1}", inningState, _game.GameCurrentInning).ToUpper()
 
-                '        If _game.GameTimeLeft.ToLower() = "final" Then
-                '            lblPeriod.Text = Lang.RmText.GetString("gamePeriodFinal").ToUpper()
-                '            If _game.HomeScore < _game.AwayScore Then
-                '                lblHomeScore.ForeColor = Color.Gray
-                '            Else
-                '                lblAwayScore.ForeColor = Color.Gray
-                '            End If
-                '        End If
-
-                '        If _game.GamePeriod.Contains(Lang.RmText.GetString("gamePeriodOt")) And
-                '            IsNumeric(_game.GamePeriod(0)) Then
-                '            lblPeriod.Text =
-                '                String.Format(Lang.RmText.GetString("gamePeriodOtMore"), _game.GamePeriod(0)).
-                '                    ToUpper() '2OT..
-                '        End If
-                '    End If
-                'End If
+                    Dim detail = If(_game.GameStateDetailed.ToLower() <> "in progress", $" - {_game.GameStateDetailed}", String.Empty)
+                    lblHeader.Text = inning & detail
+                Else
+                    lblHeader.Text = gameState
+                End If
 
                 If Not showLiveScores Then
                     lblCenter.Text = String.Format("{0}{1}{2}",
@@ -105,25 +82,13 @@ Namespace Controls
                 End If
 
                 If showScores Then
-                    lblHeader.Text = gameState
-                    If Not String.Equals(_game.GamePeriod, $"3rd", StringComparison.CurrentCultureIgnoreCase) And _game.GamePeriod <> String.Empty Then
-                        lblHeader.Text = (gameState & $"/" &
-                                          _game.GamePeriod.
-                                          Replace($"OT", Lang.RmText.GetString("gamePeriodOt")).
-                                          Replace($"SO", Lang.RmText.GetString("gamePeriodSo"))).
-                                          ToUpper() 'FINAL/SO.. OT.. 2OT
-                    End If
+                    Dim detail = If(_game.GameStateDetailed.ToLower() <> "final", $" - {_game.GameStateDetailed}", String.Empty)
+                    lblHeader.Text = Lang.RmText.GetString("gameStateFinal").ToUpper() & detail
                 Else
                     lblCenter.Text = String.Format("{0}{1}{2}",
                                                        _game.GameDate.ToLocalTime().ToString("h:mm tt"),
                                                        vbCrLf,
-                                                       gameState)
-                    If lblHeader.Text.Contains(Lang.RmText.GetString("gamePeriodOt")) Then
-                        lblCenter.Text = String.Format("{0}{1}{2}",
-                                                           _game.GameDate.ToLocalTime().ToString("h:mm tt"),
-                                                           vbCrLf,
-                                                           Lang.RmText.GetString("gamePeriodFinal").ToUpper())
-                    End If
+                                                       Lang.RmText.GetString("gameStateFinal").ToUpper())
                 End If
             ElseIf _game.GameState <= GameStateEnum.Pregame Then
                 lblDivider.Visible = False

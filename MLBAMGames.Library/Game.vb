@@ -13,6 +13,11 @@ Public NotInheritable Class Game
     Public Property GameStateDetailed As String
     Public Property GameStateDetailedReason As String
 
+    Public Property GameCurrentInning As Integer
+    Public Property GameScheduledInning As Integer
+    Public Property GameCurrentInningOrdinal As String
+    Public Property GameIsTopInning As Boolean
+
     Public Property GamePeriod As String '1st 2nd 3rd OT SO OT2..
     Public Property GameTimeLeft As String 'Final, 12:34, 20:00
     Public Property IsInIntermission As Boolean

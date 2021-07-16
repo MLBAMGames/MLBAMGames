@@ -2,6 +2,7 @@
 Namespace API
     Public Class Status
         Public Property abstractGameState As String
+        Public Property abstractGameCode As String
         Public Property codedGameState As String
         Public Property detailedState As String
         Public Property statusCode As String

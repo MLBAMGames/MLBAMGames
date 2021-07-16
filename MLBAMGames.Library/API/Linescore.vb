@@ -12,8 +12,9 @@ Namespace API
         Public Property intermissionInfo As IntermissionInfo
         Public Property powerPlayInfo As PowerPlayInfo
 
-        Public Property currentInning As String
+        Public Property currentInning As Integer
         Public Property currentInningOrdinal As String
+        Public Property scheduledInnings As Integer
         Public Property inningState As String
         Public Property inningHalf As String
         Public Property isTopInning As Boolean

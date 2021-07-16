@@ -22,7 +22,7 @@ Public MustInherit Class GameManager
         Dim schedule As Schedule = Await GetSchedule(gameDate)
 
         If schedule Is Nothing Then
-            Console.WriteLine("Error: Failed to fetch games schedule.")
+            Console.WriteLine("Warning: Failed to fetch games schedule. Please retry later or restart the app.")
             Return Nothing
         End If
 

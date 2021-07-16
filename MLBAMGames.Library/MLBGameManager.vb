@@ -84,19 +84,29 @@ Public Class MLBGameManager
         If status.startTimeTBD Then
             Return GameStateEnum.ToBeDetermined
         End If
-        Select Case status.statusCode
+        Select Case status.codedGameState
             Case "S"
                 Return GameStateEnum.Scheduled
             Case "P"
-                Return GameStateEnum.Pregame
-            Case "PW"
                 Return GameStateEnum.Pregame
             Case "I"
                 Return GameStateEnum.InProgress
             Case "F"
                 Return GameStateEnum.StreamEnded
+            Case "D"
+                Return GameStateEnum.Postponed
+            Case "C"
+                Return GameStateEnum.Cancelled
+        End Select
+        Select Case status.abstractGameCode
+            Case "P"
+                Return GameStateEnum.Scheduled
+            Case "L"
+                Return GameStateEnum.InProgress
+            Case "F"
+                Return GameStateEnum.StreamEnded
             Case Else
-                Return GameStateEnum.ToBeDetermined
+                Return GameStateEnum.Undefined
         End Select
     End Function
 
@@ -123,9 +133,10 @@ Public Class MLBGameManager
         currentGame.HomeScore = If(game.teams?.home?.score, 0).ToString()
         currentGame.AwayScore = If(game.teams?.away?.score, 0).ToString()
         If currentGame.IsLive Then
-            currentGame.GamePeriod = game.linescore.currentInningOrdinal
-            currentGame.GameTimeLeft = game.linescore.inningState
-            currentGame.IsInIntermission = False
+            currentGame.GameCurrentInning = game.linescore.currentInning
+            currentGame.GameScheduledInning = game.linescore.scheduledInnings
+            currentGame.GameCurrentInningOrdinal = game.linescore.currentInningOrdinal
+            currentGame.GameIsTopInning = game.linescore.isTopInning
         End If
 
         Return currentGame

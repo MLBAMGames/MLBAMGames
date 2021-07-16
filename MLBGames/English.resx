@@ -293,24 +293,8 @@
     <value>Settings</value>
     <comment>Main</comment>
   </data>
-  <data name="gamePeriod1" xml:space="preserve">
-    <value>1st</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriod2" xml:space="preserve">
-    <value>2nd</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriod3" xml:space="preserve">
-    <value>3rd</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriodFinal" xml:space="preserve">
+  <data name="gameStateFinal" xml:space="preserve">
     <value>Final</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriodOt" xml:space="preserve">
-    <value>OT</value>
     <comment>Game panel</comment>
   </data>
   <data name="gameSeriesLead" xml:space="preserve">
@@ -343,10 +327,6 @@
   </data>
   <data name="lblRefCam" xml:space="preserve">
     <value>Referee camera</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriodOtMore" xml:space="preserve">
-    <value>{0}OT</value>
     <comment>Game panel</comment>
   </data>
   <data name="msgServerSeemsDown" xml:space="preserve">
@@ -440,10 +420,6 @@
   <data name="msgObsChangingScene" xml:space="preserve">
     <value>Ad Detection: OBS is changing to {0} scene</value>
     <comment>Console</comment>
-  </data>
-  <data name="gamePeriodSo" xml:space="preserve">
-    <value>SO</value>
-    <comment>Game panel</comment>
   </data>
   <data name="lblModulesDesc" xml:space="preserve">
     <value>Detects ads and notify activated apps below</value>
@@ -599,7 +575,7 @@ Determined</value>
     <comment>Game panel</comment>
   </data>
   <data name="lblShowLiveTime" xml:space="preserve">
-    <value>Live remaining time</value>
+    <value>Live innings state</value>
     <comment>Game panel</comment>
   </data>
   <data name="lblDark" xml:space="preserve">
@@ -796,6 +772,14 @@ Determined</value>
   </data>
   <data name="lblSeries" xml:space="preserve">
     <value>Series</value>
+    <comment>Game panel</comment>
+  </data>
+  <data name="gameBottomInning" xml:space="preserve">
+    <value>Bottom</value>
+    <comment>Game panel</comment>
+  </data>
+  <data name="gameTopInning" xml:space="preserve">
+    <value>Top</value>
     <comment>Game panel</comment>
   </data>
 </root>

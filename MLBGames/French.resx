@@ -273,24 +273,8 @@
     <value>Paramètres</value>
     <comment>Main</comment>
   </data>
-  <data name="gamePeriod1" xml:space="preserve">
-    <value>1ière</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriod2" xml:space="preserve">
-    <value>2ième</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriod3" xml:space="preserve">
-    <value>3ième</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriodFinal" xml:space="preserve">
+  <data name="gameStateFinal" xml:space="preserve">
     <value>Terminé</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriodOt" xml:space="preserve">
-    <value>P</value>
     <comment>Game panel</comment>
   </data>
   <data name="gameSeriesLead" xml:space="preserve">
@@ -323,10 +307,6 @@
   </data>
   <data name="lblRefCam" xml:space="preserve">
     <value>Caméra de l'arbitre</value>
-    <comment>Game panel</comment>
-  </data>
-  <data name="gamePeriodOtMore" xml:space="preserve">
-    <value>{0}E P</value>
     <comment>Game panel</comment>
   </data>
   <data name="cbQualityGood" xml:space="preserve">
@@ -421,10 +401,6 @@
     <value>Se lier à Spotify</value>
     <comment>Settings tab</comment>
   </data>
-  <data name="gamePeriodSo" xml:space="preserve">
-    <value>FUS</value>
-    <comment>Game panel</comment>
-  </data>
   <data name="lblModulesDesc" xml:space="preserve">
     <value>Détecte les annonces et informe les applications activées ci-dessous</value>
     <comment>Settings tab</comment>
@@ -518,7 +494,7 @@
     <comment>Game panel</comment>
   </data>
   <data name="lblShowLiveTime" xml:space="preserve">
-    <value>Temps restant en direct</value>
+    <value>État des manches en direct</value>
     <comment>Game panel</comment>
   </data>
   <data name="cbEnglish" xml:space="preserve">
@@ -783,6 +759,14 @@
   </data>
   <data name="lblSeries" xml:space="preserve">
     <value>Séries</value>
+    <comment>Game panel</comment>
+  </data>
+  <data name="gameBottomInning" xml:space="preserve">
+    <value>Bas</value>
+    <comment>Game panel</comment>
+  </data>
+  <data name="gameTopInning" xml:space="preserve">
+    <value>Haut</value>
     <comment>Game panel</comment>
   </data>
 </root>

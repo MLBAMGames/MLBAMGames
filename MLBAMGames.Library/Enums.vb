@@ -35,6 +35,8 @@ Public Enum GameStateEnum
     StreamEnded = 7
     ToBeDetermined = 8
     Postponed = 9
+    Cancelled = 10
+    Delayed = 11
 End Enum
 
 Public Enum GameTypeEnum
