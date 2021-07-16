@@ -781,4 +781,8 @@
     <value>Réinitialiser aux paramètres par défaut et rédémarrer</value>
     <comment>Settings tab</comment>
   </data>
+  <data name="lblSeries" xml:space="preserve">
+    <value>Séries</value>
+    <comment>Game panel</comment>
+  </data>
 </root>

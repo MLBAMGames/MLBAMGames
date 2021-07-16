@@ -43,7 +43,7 @@ Public Class NHLGameManager
         If gs.Type = StreamTypeEnum.Unknown Then
             gs.StreamTypeSelected = streamTypeSelected
         End If
-        gs.GameUrl = $"http://{Parameters.HostName}/getM3U8.php?league={SportsEnum.NHL}&id={gs.PlayBackId}&cdn={gs.CdnParameter.ToString().ToLower()}&date={DateHelper.GetPacificTime(currentGame.GameDate).ToString("yyyy-MM-dd")}"
+        gs.GameUrl = $"http://{Parameters.HostName}/getM3U8.php?league={SportsEnum.NHL}&id={gs.PlayBackId}&cdn={gs.CdnParameter.ToString().ToLower()}&date={currentGame.GameDate.ToPacificTime().ToString("yyyy-MM-dd")}"
         gs.Title = $"{currentGame.AwayAbbrev} vs {currentGame.HomeAbbrev} on {gs.Network}"
 
         gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
@@ -71,9 +71,6 @@ Public Class NHLGameManager
             streamUrlReturned = $"{matches(1)}/ps01/{matches(4)}"
         End If
 
-#If DEBUG Then
-        Console.WriteLine("{0}", streamUrlReturned)
-#End If
         If streamUrlReturned.Equals(String.Empty) Then Return String.Empty
 
         Return If(Await Web.SendWebRequestAsync(streamUrlReturned), streamUrlReturned, String.Empty)
@@ -86,5 +83,28 @@ Public Class NHLGameManager
 
     Public Overrides Function GetGameType(game As API.Game) As GameTypeEnum
         Return CType(Convert.ToInt16(GetChar(game.gamePk.ToString(), 6)) - 48, GameTypeEnum)
+    End Function
+
+    Public Overrides Function SetGameProgressInfo(currentGame As Game, game As API.Game) As Game
+        currentGame.HomeScore = If(game.teams?.home?.score, 0).ToString()
+        currentGame.AwayScore = If(game.teams?.away?.score, 0).ToString()
+        If currentGame.IsLive Then
+            currentGame.GamePeriod = game.linescore.currentPeriodOrdinal
+            currentGame.GameTimeLeft = game.linescore.currentPeriodTimeRemaining
+            currentGame.IsInIntermission = If(game.linescore.intermissionInfo?.inIntermission, False)
+        End If
+
+        If currentGame.IsInIntermission Then
+            currentGame.IntermissionTimeRemaining = Date.MinValue.AddSeconds(game.linescore.intermissionInfo.intermissionTimeRemaining)
+        End If
+        Return currentGame
+    End Function
+
+    Public Overrides Function SetGameSeriesInfo(currentGame As Game, game As API.Game) As Game
+        If game.seriesSummary?.gameNumber IsNot Nothing Then
+            currentGame.SeriesGameNumber = game.seriesSummary?.gameNumber
+            currentGame.SeriesGameStatus = If(game.seriesSummary?.seriesStatusShort, String.Empty)
+        End If
+        Return currentGame
     End Function
 End Class

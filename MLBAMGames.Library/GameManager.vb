@@ -13,6 +13,8 @@ Public MustInherit Class GameManager
     Public MustOverride Async Function GetSchedule(gameDate As Date) As Task(Of Schedule)
     Public MustOverride Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
     Public MustOverride Function GetGameType(game As API.Game) As GameTypeEnum
+    Public MustOverride Function SetGameProgressInfo(currentGame As Game, game As API.Game) As Game
+    Public MustOverride Function SetGameSeriesInfo(currentGame As Game, game As API.Game) As Game
     Public MustOverride Async Function SetNewGameStream(currentGame As Game, innerStream As API.Item, streamType As StreamTypeEnum, streamTypeSelected As String) As Task(Of GameStream)
     Public MustOverride Async Function GetGameFeedUrlAsync(gameStream As GameStream) As Task(Of String)
 
@@ -111,12 +113,12 @@ Public MustInherit Class GameManager
                 .AwayAbbrev = If(game.teams?.away?.team?.abbreviation, String.Empty),
                 .AwayTeam = If(game.teams?.away?.team?.teamName, String.Empty),
                 .GameState = GetGameStateFromStatus(game.status),
-                .GameStateDetailed = game.status.detailedState
+                .GameStateDetailed = game.status.detailedState,
+                .GameStateDetailedReason = game.status.reason
             }
 
-        If currentGame.GameType = GameTypeEnum.Series AndAlso game.seriesSummary?.gameNumber IsNot Nothing Then
-            currentGame.SeriesGameNumber = game.seriesSummary?.gameNumber
-            currentGame.SeriesGameStatus = If(game.seriesSummary?.seriesStatusShort, String.Empty)
+        If currentGame.GameType = GameTypeEnum.Series Then
+            currentGame = SetGameSeriesInfo(currentGame, game)
         End If
 
         If currentGame.GameDate.AddDays(1) < Date.UtcNow AndAlso currentGame.GameState > 0 AndAlso currentGame.GameState < 7 Then
@@ -124,17 +126,7 @@ Public MustInherit Class GameManager
         End If
 
         If currentGame.IsStreamable Then
-            currentGame.HomeScore = game.teams.home.score.ToString()
-            currentGame.AwayScore = game.teams.away.score.ToString()
-            If currentGame.IsLive Then
-                currentGame.GamePeriod = game.linescore.currentPeriodOrdinal
-                currentGame.GameTimeLeft = game.linescore.currentPeriodTimeRemaining
-                currentGame.IsInIntermission = If(game.linescore.intermissionInfo?.inIntermission, False)
-            End If
-
-            If currentGame.IsInIntermission Then
-                currentGame.IntermissionTimeRemaining = Date.MinValue.AddSeconds(game.linescore.intermissionInfo.intermissionTimeRemaining)
-            End If
+            currentGame = SetGameProgressInfo(currentGame, game)
         End If
 
         Return currentGame

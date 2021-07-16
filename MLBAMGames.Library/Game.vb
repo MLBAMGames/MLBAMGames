@@ -1,4 +1,4 @@
-﻿<DebuggerDisplay("{HomeTeam} vs. {AwayTeam} at {[Date]}")>
+<DebuggerDisplay("{HomeTeam} vs. {AwayTeam} at {[Date]}")>
 Public NotInheritable Class Game
     Implements IDisposable
     Private _disposedValue As Boolean
@@ -11,6 +11,7 @@ Public NotInheritable Class Game
     Public Property GameDate As DateTime
     Public Property GameState As GameStateEnum
     Public Property GameStateDetailed As String
+    Public Property GameStateDetailedReason As String
 
     Public Property GamePeriod As String '1st 2nd 3rd OT SO OT2..
     Public Property GameTimeLeft As String 'Final, 12:34, 20:00
@@ -37,6 +38,12 @@ Public NotInheritable Class Game
     Public ReadOnly Property IsTodaysGame As Boolean
         Get
             Return GameState < GameStateEnum.StreamEnded AndAlso GameDate.ToLocalTime() <= Date.Today.AddDays(1)
+        End Get
+    End Property
+
+    Public ReadOnly Property IsArchive As Boolean
+        Get
+            Return GameDate.ToLocalTime() <= Date.Today.AddDays(-1)
         End Get
     End Property
 

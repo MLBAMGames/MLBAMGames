@@ -1,4 +1,4 @@
-﻿Imports System.Drawing
+Imports System.Drawing
 Imports System.Windows.Forms
 Imports MetroFramework
 Imports MLBAMGames.Library
@@ -36,8 +36,8 @@ Namespace Controls
                 gameUpdated.Dispose()
             End If
 
-            lblPeriod.Text = String.Empty
-            lblGameStatus.Text = String.Empty
+            lblHeader.Text = String.Empty
+            lblCenter.Text = String.Empty
             lblNotInSeason.Text = String.Empty
             lblStreamStatus.Text = String.Empty
             Dim gameState = Lang.RmText.GetString($"enumGameState{Convert.ToInt32(_game.GameState)}").ToUpper()
@@ -45,11 +45,11 @@ Namespace Controls
             If _game.IsLive Then
                 btnLiveReplay.Visible = True
                 tt.SetToolTip(btnLiveReplay, Lang.RmText.GetString("tipLiveGame"))
-                lblGameStatus.Visible = Not showLiveScores
+                lblCenter.Visible = Not showLiveScores
                 lblHomeScore.Visible = showLiveScores
                 lblAwayScore.Visible = showLiveScores
-                lblPeriod.BackColor = MetroColors.Red
-                lblPeriod.ForeColor = Color.White
+                lblHeader.BackColor = MetroColors.Red
+                lblHeader.ForeColor = Color.White
 
                 'If showLiveTime Then
                 '    Dim period = String.Empty
@@ -85,7 +85,7 @@ Namespace Controls
                 'End If
 
                 If Not showLiveScores Then
-                    lblGameStatus.Text = String.Format("{0}{1}{2}",
+                    lblCenter.Text = String.Format("{0}{1}{2}",
                                                        _game.GameDate.ToLocalTime().ToString("h:mm tt"),
                                                        vbCrLf,
                                                        gameState)
@@ -94,7 +94,7 @@ Namespace Controls
             ElseIf _game.GameState = GameStateEnum.StreamEnded Then
                 lblHomeScore.Visible = showScores
                 lblAwayScore.Visible = showScores
-                lblGameStatus.Visible = Not showScores
+                lblCenter.Visible = Not showScores
                 btnRecap.Visible = _game.Recap?.StreamUrl <> String.Empty
                 tt.SetToolTip(btnRecap, Lang.RmText.GetString("tipRecap"))
 
@@ -105,21 +105,21 @@ Namespace Controls
                 End If
 
                 If showScores Then
-                    lblPeriod.Text = gameState
+                    lblHeader.Text = gameState
                     If Not String.Equals(_game.GamePeriod, $"3rd", StringComparison.CurrentCultureIgnoreCase) And _game.GamePeriod <> String.Empty Then
-                        lblPeriod.Text = (gameState & $"/" &
+                        lblHeader.Text = (gameState & $"/" &
                                           _game.GamePeriod.
                                           Replace($"OT", Lang.RmText.GetString("gamePeriodOt")).
                                           Replace($"SO", Lang.RmText.GetString("gamePeriodSo"))).
                                           ToUpper() 'FINAL/SO.. OT.. 2OT
                     End If
                 Else
-                    lblGameStatus.Text = String.Format("{0}{1}{2}",
+                    lblCenter.Text = String.Format("{0}{1}{2}",
                                                        _game.GameDate.ToLocalTime().ToString("h:mm tt"),
                                                        vbCrLf,
                                                        gameState)
-                    If lblPeriod.Text.Contains(Lang.RmText.GetString("gamePeriodOt")) Then
-                        lblGameStatus.Text = String.Format("{0}{1}{2}",
+                    If lblHeader.Text.Contains(Lang.RmText.GetString("gamePeriodOt")) Then
+                        lblCenter.Text = String.Format("{0}{1}{2}",
                                                            _game.GameDate.ToLocalTime().ToString("h:mm tt"),
                                                            vbCrLf,
                                                            Lang.RmText.GetString("gamePeriodFinal").ToUpper())
@@ -127,47 +127,41 @@ Namespace Controls
                 End If
             ElseIf _game.GameState <= GameStateEnum.Pregame Then
                 lblDivider.Visible = False
-                lblGameStatus.Visible = True
-                lblGameStatus.Text = _game.GameDate.ToLocalTime().ToString("h:mm tt")
+                lblCenter.Visible = True
+                lblCenter.Text = _game.GameDate.ToLocalTime().ToString("h:mm tt")
 
                 If _game.GameState.Equals(GameStateEnum.Pregame) OrElse _game.AreAnyStreamsAvailable() Then
-                    lblPeriod.BackColor = MetroColors.Red
+                    lblHeader.BackColor = MetroColors.Red
                     If showLiveScores Then
-                        lblPeriod.ForeColor = Color.White
-                        lblPeriod.Text = gameState
+                        lblHeader.ForeColor = Color.White
+                        lblHeader.Text = gameState
                     Else
-                        lblGameStatus.Text &= String.Format("{0}{1}", vbCrLf, gameState)
+                        lblCenter.Text &= String.Format("{0}{1}", vbCrLf, gameState)
                     End If
                 End If
             ElseIf _game.IsUnplayable Then
+                Dim reason = If(_game.GameStateDetailedReason <> String.Empty, $" - {_game.GameStateDetailedReason}", "")
                 lblDivider.Visible = False
-                lblGameStatus.Visible = True
-                lblPeriod.Text = _game.GameStateDetailed.ToUpper()
-                lblGameStatus.Text = gameState
-                lblPeriod.BackColor = Color.FromKnownColor(KnownColor.DarkOrange)
+                lblHeader.Text = _game.GameStateDetailed.ToUpper() & reason
+                lblHeader.BackColor = Color.FromKnownColor(KnownColor.DarkOrange)
+                lblCenter.Visible = True
+                lblCenter.Text = gameState
 
                 If showLiveScores Then
-                    lblPeriod.ForeColor = Color.White
-                    lblPeriod.Text = _game.GameStateDetailed.ToUpper()
+                    lblHeader.ForeColor = Color.White
+                    lblHeader.Text = _game.GameStateDetailed.ToUpper()
                 End If
             End If
 
             If _game.GameType.Equals(GameTypeEnum.Preseason) Then
                 lblNotInSeason.Text = Lang.RmText.GetString("lblPreseason").ToUpper()
             ElseIf _game.GameType.Equals(GameTypeEnum.Series) AndAlso _game.SeriesGameNumber <> 0 Then
-                Dim seriesStatusShort =
-                        String.Format(Lang.RmText.GetString("lblGame"), _game.SeriesGameNumber.ToString()).
-                        ToUpper() 'Game 1
-                Dim seriesStatusLong = If(_game.SeriesGameNumber <> 1,
-                    String.Format(Lang.RmText.GetString("lblGameAbv"),
-                                  _game.SeriesGameNumber.ToString(), 'Game 2.. 7
-                                  _game.SeriesGameStatus.ToString().ToLower().
-                                  Replace("tied", Lang.RmText.GetString("gameSeriesTied")).
-                                  Replace("wins", Lang.RmText.GetString("gameSeriesWin")).
-                                  Replace("leads", Lang.RmText.GetString("gameSeriesLead"))).
-                                  ToUpper(), seriesStatusShort)
                 Dim isSeriesRecordVisible = showSeriesRecord AndAlso _game.SeriesGameStatus.Length > 0 AndAlso (showScores OrElse (_game.GameState < GameStateEnum.OffTheAir))
-                lblNotInSeason.Text = If(isSeriesRecordVisible, seriesStatusLong, seriesStatusShort)
+                lblNotInSeason.Text = If(isSeriesRecordVisible,
+                    String.Format(Lang.RmText.GetString("lblGameAbv"),
+                                  _game.SeriesGameNumber.ToString(),
+                                  Lang.RmText.GetString("lblSeries")),
+                    Lang.RmText.GetString("lblSeries")).ToUpper()
             End If
 
             If Not _game.AreAnyStreamsAvailable Then
@@ -457,7 +451,7 @@ Namespace Controls
                     End If
                     If tt IsNot Nothing Then tt.Dispose()
                     If btnLiveReplay IsNot Nothing Then btnLiveReplay.Dispose()
-                    If lblGameStatus IsNot Nothing Then lblGameStatus.Dispose()
+                    If lblCenter IsNot Nothing Then lblCenter.Dispose()
                     If lblDivider IsNot Nothing Then lblDivider.Dispose()
                     If picAway IsNot Nothing Then picAway.Dispose()
                     If lblHomeScore IsNot Nothing Then lblHomeScore.Dispose()
@@ -465,7 +459,7 @@ Namespace Controls
                     If lblAwayTeam IsNot Nothing Then lblAwayTeam.Dispose()
                     If picHome IsNot Nothing Then picHome.Dispose()
                     If lblHomeTeam IsNot Nothing Then lblHomeTeam.Dispose()
-                    If lblPeriod IsNot Nothing Then lblPeriod.Dispose()
+                    If lblHeader IsNot Nothing Then lblHeader.Dispose()
                     If flpStreams IsNot Nothing Then flpStreams.Dispose()
                     If lnkHome IsNot Nothing Then lnkHome.Dispose()
                     If lnkAway IsNot Nothing Then lnkAway.Dispose()
@@ -497,13 +491,13 @@ Namespace Controls
                 _themeChar = "d"
                 BackColor = Color.FromArgb(60, 60, 60)
                 flpStreams.BackColor = Color.FromArgb(80, 80, 80)
-                lblPeriod.BackColor = Color.FromArgb(80, 80, 80)
+                lblHeader.BackColor = Color.FromArgb(80, 80, 80)
                 lblStreamStatus.BackColor = Color.FromArgb(80, 80, 80)
                 lblStreamStatus.ForeColor = Color.LightGray
                 lblAwayTeam.Theme = MetroThemeStyle.Dark
                 lblHomeTeam.Theme = MetroThemeStyle.Dark
-                lblGameStatus.Theme = MetroThemeStyle.Dark
-                lblPeriod.ForeColor = Color.White
+                lblCenter.Theme = MetroThemeStyle.Dark
+                lblHeader.ForeColor = Color.White
                 lblAwayScore.ForeColor = Color.LightGray
                 lblHomeScore.ForeColor = Color.LightGray
                 lblNotInSeason.Theme = MetroThemeStyle.Dark

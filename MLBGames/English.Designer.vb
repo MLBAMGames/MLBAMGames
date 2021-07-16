@@ -307,7 +307,8 @@ Friend Class English
     End Property
     
     '''<summary>
-    '''  Looks up a localized string similar to TBD.
+    '''  Looks up a localized string similar to To Be
+    '''Determined.
     '''</summary>
     Friend Shared ReadOnly Property enumGameState8() As String
         Get
@@ -942,6 +943,15 @@ Friend Class English
     Friend Shared ReadOnly Property lblSeason() As String
         Get
             Return ResourceManager.GetString("lblSeason", resourceCulture)
+        End Get
+    End Property
+    
+    '''<summary>
+    '''  Looks up a localized string similar to Series.
+    '''</summary>
+    Friend Shared ReadOnly Property lblSeries() As String
+        Get
+            Return ResourceManager.GetString("lblSeries", resourceCulture)
         End Get
     End Property
     

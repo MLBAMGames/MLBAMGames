@@ -6,5 +6,6 @@ Namespace API
         Public Property detailedState As String
         Public Property statusCode As String
         Public Property startTimeTBD As Boolean
+        Public Property reason As String
     End Class
 End Namespace

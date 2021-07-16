@@ -13,6 +13,9 @@ Namespace API
         Public Property content As Content
         Public Property seriesSummary As SeriesSummary
 
+        Public Property seriesGameNumber As Integer?
+        Public Property seriesDescription As String
+
         Public ReadOnly Property isValidSeriesGame As Boolean
             Get
                 Dim hasGameNumber = seriesSummary?.gameNumber IsNot Nothing

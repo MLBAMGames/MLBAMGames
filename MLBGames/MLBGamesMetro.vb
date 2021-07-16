@@ -358,12 +358,12 @@ Public Class MLBGamesMetro
 
     Private Sub btnYesterday_Click(sender As Object, e As EventArgs) Handles btnYesterday.Click
         CalendarControl.GameDate = CalendarControl.GameDate.AddDays(-1)
-        lblDate.Text = DateHelper.GetFormattedDate(CalendarControl.GameDate)
+        lblDate.Text = CalendarControl.GameDate.ToFormattedDate()
     End Sub
 
     Private Sub btnTomorrow_Click(sender As Object, e As EventArgs) Handles btnTomorrow.Click
         CalendarControl.GameDate = CalendarControl.GameDate.AddDays(1)
-        lblDate.Text = DateHelper.GetFormattedDate(CalendarControl.GameDate)
+        lblDate.Text = CalendarControl.GameDate.ToFormattedDate()
     End Sub
 
     Private Sub lnkVLCDownload_Click(sender As Object, e As EventArgs) Handles lnkGetVlc.Click

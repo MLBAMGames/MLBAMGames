@@ -215,7 +215,7 @@ Namespace Utilities
             Form.spnLoading.Maximum = Parameters.SpnLoadingMaxValue
             Form.spnStreaming.Value = Parameters.SpnStreamingValue
             Form.spnStreaming.Maximum = Parameters.SpnStreamingMaxValue
-            Form.lblDate.Text = DateHelper.GetFormattedDate(Controls.CalendarControl.GameDate)
+            Form.lblDate.Text = Controls.CalendarControl.GameDate.ToFormattedDate()
 
             Controls.CalendarControl.LabelDate = Form.lblDate
         End Sub

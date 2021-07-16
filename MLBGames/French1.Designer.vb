@@ -946,6 +946,15 @@ Friend Class French
     End Property
     
     '''<summary>
+    '''  Looks up a localized string similar to Séries.
+    '''</summary>
+    Friend Shared ReadOnly Property lblSeries() As String
+        Get
+            Return ResourceManager.GetString("lblSeries", resourceCulture)
+        End Get
+    End Property
+    
+    '''<summary>
     '''  Looks up a localized string similar to Serveur indisponible.
     '''</summary>
     Friend Shared ReadOnly Property lblServerDown() As String

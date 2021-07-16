@@ -23,7 +23,7 @@ Namespace Controls
             Me.bpGameControl = New MLBGames.Controls.BorderPanel()
             Me.btnRecap = New System.Windows.Forms.Button()
             Me.btnLiveReplay = New System.Windows.Forms.Button()
-            Me.lblGameStatus = New MetroFramework.Controls.MetroLabel()
+            Me.lblCenter = New MetroFramework.Controls.MetroLabel()
             Me.lblDivider = New MetroFramework.Controls.MetroLabel()
             Me.picAway = New System.Windows.Forms.PictureBox()
             Me.lblHomeScore = New MetroFramework.Controls.MetroLabel()
@@ -31,7 +31,7 @@ Namespace Controls
             Me.lblAwayTeam = New MetroFramework.Controls.MetroLabel()
             Me.picHome = New System.Windows.Forms.PictureBox()
             Me.lblHomeTeam = New MetroFramework.Controls.MetroLabel()
-            Me.lblPeriod = New MetroFramework.Controls.MetroLabel()
+            Me.lblHeader = New MetroFramework.Controls.MetroLabel()
             Me.flpStreams = New System.Windows.Forms.FlowLayoutPanel()
             Me.lnkHome = New System.Windows.Forms.Button()
             Me.lnkAway = New System.Windows.Forms.Button()
@@ -59,7 +59,7 @@ Namespace Controls
             Me.bpGameControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             Me.bpGameControl.Controls.Add(Me.btnRecap)
             Me.bpGameControl.Controls.Add(Me.btnLiveReplay)
-            Me.bpGameControl.Controls.Add(Me.lblGameStatus)
+            Me.bpGameControl.Controls.Add(Me.lblCenter)
             Me.bpGameControl.Controls.Add(Me.lblDivider)
             Me.bpGameControl.Controls.Add(Me.picAway)
             Me.bpGameControl.Controls.Add(Me.lblHomeScore)
@@ -67,7 +67,7 @@ Namespace Controls
             Me.bpGameControl.Controls.Add(Me.lblAwayTeam)
             Me.bpGameControl.Controls.Add(Me.picHome)
             Me.bpGameControl.Controls.Add(Me.lblHomeTeam)
-            Me.bpGameControl.Controls.Add(Me.lblPeriod)
+            Me.bpGameControl.Controls.Add(Me.lblHeader)
             Me.bpGameControl.Controls.Add(Me.flpStreams)
             Me.bpGameControl.Controls.Add(Me.lblNotInSeason)
             Me.bpGameControl.Controls.Add(Me.lblStreamStatus)
@@ -111,18 +111,18 @@ Namespace Controls
             Me.btnLiveReplay.UseVisualStyleBackColor = False
             Me.btnLiveReplay.Visible = False
             '
-            'lblGameStatus
+            'lblCenter
             '
-            Me.lblGameStatus.BackColor = System.Drawing.Color.Transparent
-            Me.lblGameStatus.FontWeight = MetroFramework.MetroLabelWeight.Regular
-            Me.lblGameStatus.Location = New System.Drawing.Point(97, 35)
-            Me.lblGameStatus.Name = "lblGameStatus"
-            Me.lblGameStatus.Size = New System.Drawing.Size(116, 50)
-            Me.lblGameStatus.TabIndex = 25
-            Me.lblGameStatus.Text = "GAME_STATUS"
-            Me.lblGameStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            Me.lblGameStatus.UseCustomBackColor = True
-            Me.lblGameStatus.Visible = False
+            Me.lblCenter.BackColor = System.Drawing.Color.Transparent
+            Me.lblCenter.FontWeight = MetroFramework.MetroLabelWeight.Regular
+            Me.lblCenter.Location = New System.Drawing.Point(97, 35)
+            Me.lblCenter.Name = "lblCenter"
+            Me.lblCenter.Size = New System.Drawing.Size(116, 50)
+            Me.lblCenter.TabIndex = 25
+            Me.lblCenter.Text = "GAME_STATUS"
+            Me.lblCenter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            Me.lblCenter.UseCustomBackColor = True
+            Me.lblCenter.Visible = False
             '
             'lblDivider
             '
@@ -205,20 +205,20 @@ Namespace Controls
             Me.lblHomeTeam.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
             Me.lblHomeTeam.UseCustomBackColor = True
             '
-            'lblPeriod
+            'lblHeader
             '
-            Me.lblPeriod.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-            Me.lblPeriod.FontSize = MetroFramework.MetroLabelSize.Small
-            Me.lblPeriod.FontWeight = MetroFramework.MetroLabelWeight.Bold
-            Me.lblPeriod.ForeColor = System.Drawing.Color.Black
-            Me.lblPeriod.Location = New System.Drawing.Point(1, 1)
-            Me.lblPeriod.Name = "lblPeriod"
-            Me.lblPeriod.Size = New System.Drawing.Size(307, 20)
-            Me.lblPeriod.TabIndex = 11
-            Me.lblPeriod.Text = "PERIOD_STATUS"
-            Me.lblPeriod.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            Me.lblPeriod.UseCustomBackColor = True
-            Me.lblPeriod.UseCustomForeColor = True
+            Me.lblHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+            Me.lblHeader.FontSize = MetroFramework.MetroLabelSize.Small
+            Me.lblHeader.FontWeight = MetroFramework.MetroLabelWeight.Bold
+            Me.lblHeader.ForeColor = System.Drawing.Color.Black
+            Me.lblHeader.Location = New System.Drawing.Point(1, 1)
+            Me.lblHeader.Name = "lblHeader"
+            Me.lblHeader.Size = New System.Drawing.Size(307, 20)
+            Me.lblHeader.TabIndex = 11
+            Me.lblHeader.Text = "PERIOD_STATUS"
+            Me.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+            Me.lblHeader.UseCustomBackColor = True
+            Me.lblHeader.UseCustomForeColor = True
             '
             'flpStreams
             '
@@ -354,13 +354,13 @@ Namespace Controls
         Friend WithEvents lblHomeTeam As MetroLabel
         Friend WithEvents bpGameControl As BorderPanel
         Friend WithEvents tt As MetroToolTip
-        Friend WithEvents lblPeriod As MetroLabel
+        Friend WithEvents lblHeader As MetroLabel
         Friend WithEvents lblNotInSeason As MetroLabel
         Friend WithEvents picHome As PictureBox
         Friend WithEvents lblHomeScore As MetroLabel
         Friend WithEvents lblAwayScore As MetroLabel
         Friend WithEvents lblStreamStatus As MetroLabel
-        Friend WithEvents lblGameStatus As MetroLabel
+        Friend WithEvents lblCenter As MetroLabel
         Friend WithEvents lblDivider As MetroLabel
         Friend WithEvents btnLiveReplay As Button
         Friend WithEvents flpStreams As FlowLayoutPanel

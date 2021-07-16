@@ -21,6 +21,10 @@ Public Class MLBGameManager
         Console.WriteLine("{0}: Game schedule for {1} from MLB.tv", "Fetching",
                           startDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
 
+#If DEBUG Then
+        Console.WriteLine($"Schedule of: {url}")
+#End If
+
         Dim data = Await Web.SendWebRequestAndGetContentAsync(url)
         If data.Equals(String.Empty) OrElse data.Equals("{}") Then Return Nothing
 
@@ -40,11 +44,14 @@ Public Class MLBGameManager
         If gs.Type = StreamTypeEnum.Unknown Then
             gs.StreamTypeSelected = streamTypeSelected
         End If
-        gs.GameUrl = $"http://{Parameters.HostName}/getM3U8.php?league={SportsEnum.MLB}&id={gs.PlayBackId}&cdn={gs.CdnParameter.ToString().ToLower()}&date={DateHelper.GetPacificTime(currentGame.GameDate).ToString("yyyy-MM-dd")}"
+        gs.GameUrl = $"http://{Parameters.HostName}/getM3U8.php?league={SportsEnum.MLB}&id={gs.PlayBackId}&cdn={gs.CdnParameter.ToString().ToLower()}&date={currentGame.GameDate.ToPacificTime().ToString("yyyy-MM-dd")}"
         gs.Title = $"{currentGame.AwayAbbrev} vs {currentGame.HomeAbbrev} on {gs.Network}"
 
-
         gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
+
+#If DEBUG Then
+        Console.WriteLine($"m3u8 of: {gs.GameUrl}, resolved to: {gs.StreamUrl}")
+#End If
 
         If gs.StreamUrl.Equals(String.Empty) Then
             Console.WriteLine("Game stream: {0} not found or unavailable on the server", gs.Title)
@@ -68,15 +75,15 @@ Public Class MLBGameManager
             streamUrlReturned = $"{matches(1)}/ps01/{matches(4)}"
         End If
 
-#If DEBUG Then
-        Console.WriteLine("{0}", streamUrlReturned)
-#End If
         If streamUrlReturned.Equals(String.Empty) Then Return String.Empty
 
         Return If(Await Web.SendWebRequestAsync(streamUrlReturned), streamUrlReturned, String.Empty)
     End Function
 
     Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
+        If status.startTimeTBD Then
+            Return GameStateEnum.ToBeDetermined
+        End If
         Select Case status.statusCode
             Case "S"
                 Return GameStateEnum.Scheduled
@@ -110,5 +117,25 @@ Public Class MLBGameManager
             Case Else
                 Return GameTypeEnum.Season
         End Select
+    End Function
+
+    Public Overrides Function SetGameProgressInfo(currentGame As Game, game As API.Game) As Game
+        currentGame.HomeScore = If(game.teams?.home?.score, 0).ToString()
+        currentGame.AwayScore = If(game.teams?.away?.score, 0).ToString()
+        If currentGame.IsLive Then
+            currentGame.GamePeriod = game.linescore.currentInningOrdinal
+            currentGame.GameTimeLeft = game.linescore.inningState
+            currentGame.IsInIntermission = False
+        End If
+
+        Return currentGame
+    End Function
+
+    Public Overrides Function SetGameSeriesInfo(currentGame As Game, game As API.Game) As Game
+        If game.seriesGameNumber IsNot Nothing Then
+            currentGame.SeriesGameNumber = game.seriesGameNumber
+            currentGame.SeriesGameStatus = If(game.seriesDescription, String.Empty)
+        End If
+        Return currentGame
     End Function
 End Class

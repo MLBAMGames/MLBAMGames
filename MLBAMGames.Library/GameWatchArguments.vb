@@ -178,7 +178,7 @@ Public Class GameWatchArguments
 
     Private Function OutputArgs() As String
         Dim outputPath As String = PlayerOutputPath.
-                Replace("(DATE)", DateHelper.GetPacificTime(Stream.Game.GameDate).ToString("yyyy-MM-dd")).
+                Replace("(DATE)", Stream.Game.GameDate.ToPacificTime().ToString("yyyy-MM-dd")).
                 Replace("(HOME)", Stream.Game.HomeAbbrev).
                 Replace("(AWAY)", Stream.Game.AwayAbbrev).
                 Replace("(TYPE)", Stream.Type.ToString()).

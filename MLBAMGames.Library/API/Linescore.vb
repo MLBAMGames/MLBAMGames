@@ -11,5 +11,11 @@ Namespace API
         Public Property hasShootout As Boolean
         Public Property intermissionInfo As IntermissionInfo
         Public Property powerPlayInfo As PowerPlayInfo
+
+        Public Property currentInning As String
+        Public Property currentInningOrdinal As String
+        Public Property inningState As String
+        Public Property inningHalf As String
+        Public Property isTopInning As Boolean
     End Class
 End Namespace

@@ -90,7 +90,7 @@
     <Compile Include="ConsoleRedirectStreamWriter.vb" />
     <Compile Include="ControlExtensions.vb" />
     <Compile Include="CustomExceptions.vb" />
-    <Compile Include="DateHelper.vb" />
+    <Compile Include="DateExtensions.vb" />
     <Compile Include="Enums.vb" />
     <Compile Include="FileAccess.vb" />
     <Compile Include="Game.vb" />

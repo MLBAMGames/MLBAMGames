@@ -5,13 +5,13 @@ Namespace API
 
         Public ReadOnly Property numberOfFeeds As Integer
             Get
-                Return epg.Sum(Function(x) x.numberOfFeeds)
+                Return If(epg IsNot Nothing, epg?.Sum(Function(x) x.numberOfFeeds), 0)
             End Get
         End Property
 
         Public ReadOnly Property numberOfRecapFeeds As Integer
             Get
-                Return epg.Sum(Function(x) x.numberOfRecapFeeds)
+                Return If(epg IsNot Nothing, epg?.Sum(Function(x) x.numberOfRecapFeeds), 0)
             End Get
         End Property
     End Class

@@ -10,7 +10,7 @@ Namespace Controls
 
         Public Shared LabelDate As Label
         Public Shared FlpCalendar As FlowLayoutPanel
-        Public Shared GameDate As Date = DateHelper.GetPacificTime()
+        Public Shared GameDate As Date = DateExtensions.NewDateToPacificTime()
 
         Private _currentDate As Date
         Private ReadOnly _arrayButtons(,) As Button
@@ -27,13 +27,13 @@ Namespace Controls
             Clearall()
             lblDate.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(ldate.Month) & $" " &
                            ldate.Year.ToString
-            Sun.Text = DateHelper.GetFormattedWeek(0)
-            Mon.Text = DateHelper.GetFormattedWeek(1)
-            Tue.Text = DateHelper.GetFormattedWeek(2)
-            Wed.Text = DateHelper.GetFormattedWeek(3)
-            Thu.Text = DateHelper.GetFormattedWeek(4)
-            Fri.Text = DateHelper.GetFormattedWeek(5)
-            Sat.Text = DateHelper.GetFormattedWeek(6)
+            Sun.Text = DateExtensions.GetFormattedWeek(0)
+            Mon.Text = DateExtensions.GetFormattedWeek(1)
+            Tue.Text = DateExtensions.GetFormattedWeek(2)
+            Wed.Text = DateExtensions.GetFormattedWeek(3)
+            Thu.Text = DateExtensions.GetFormattedWeek(4)
+            Fri.Text = DateExtensions.GetFormattedWeek(5)
+            Sat.Text = DateExtensions.GetFormattedWeek(6)
             Dim fdate As DayOfWeek = GetFirstOfMonthDay(ldate)
             Dim idate = 1
             Dim row = 0
@@ -154,7 +154,7 @@ Namespace Controls
         Private Sub btnToday_Click(sender As Object, e As EventArgs) Handles lnkToday.Click
             ReloadCal(Date.Today, Date.Today.Day)
             GameDate = Date.Today
-            LabelDate.Text = DateHelper.GetFormattedDate(Date.Today)
+            LabelDate.Text = Date.Today.ToFormattedDate()
             FlpCalendar.Visible = False
         End Sub
 
@@ -168,7 +168,7 @@ Namespace Controls
             btn = sender
             Dim myDate = _currentDate.AddDays(-_currentDate.Day + btn.Text)
             GameDate = _currentDate.AddDays(-_currentDate.Day + btn.Text)
-            LabelDate.Text = DateHelper.GetFormattedDate(myDate)
+            LabelDate.Text = myDate.ToFormattedDate()
             FlpCalendar.Visible = False
         End Sub
 

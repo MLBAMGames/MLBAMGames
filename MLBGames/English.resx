@@ -570,7 +570,8 @@
     <comment>Game State Enum</comment>
   </data>
   <data name="enumGameState8" xml:space="preserve">
-    <value>TBD</value>
+    <value>To Be
+Determined</value>
     <comment>Game State Enum</comment>
   </data>
   <data name="enumGameState0" xml:space="preserve">
@@ -792,5 +793,9 @@
   <data name="lblResetDesc" xml:space="preserve">
     <value>Reset settings to default and restart</value>
     <comment>Settings tab</comment>
+  </data>
+  <data name="lblSeries" xml:space="preserve">
+    <value>Series</value>
+    <comment>Game panel</comment>
   </data>
 </root>
