@@ -779,7 +779,7 @@ Public Class MLBGamesMetro
             My.Settings.Save()
         End If
         Proxy.StopProxy()
-        Environment.Exit(0)
+        Application.Exit()
     End Sub
 
     Private Sub tbLiveRewind_MouseUp(sender As Object, e As MouseEventArgs) Handles tbLiveRewind.MouseUp
@@ -835,8 +835,6 @@ Public Class MLBGamesMetro
         My.Settings.Save()
         _writeToConsoleSettingToggleChanged(lblDarkMode.Text, tgDarkMode.Checked)
     End Sub
-
-
 
     Private Sub RestartMLBGames()
         Dim exeName = Process.GetCurrentProcess().MainModule.FileName
