@@ -81,7 +81,7 @@ Public Class MLBGameManager
     End Function
 
     Public Overrides Function GetGameStateFromStatus(status As API.Status) As GameStateEnum
-        If status.startTimeTBD Then
+        If status.startTimeTBD AndAlso status.abstractGameCode = "P" Then
             Return GameStateEnum.ToBeDetermined
         End If
         Select Case status.codedGameState
