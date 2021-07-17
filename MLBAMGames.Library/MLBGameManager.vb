@@ -50,7 +50,7 @@ Public Class MLBGameManager
         gs.StreamUrl = Await GetGameFeedUrlAsync(gs)
 
 #If DEBUG Then
-        Console.WriteLine($"m3u8 of: {gs.GameUrl}, resolved to: {gs.StreamUrl}")
+        Console.WriteLine($"m3u8 of {gs.Game.Home} {gs.Game.Away}: {gs.GameUrl}, resolved to: {gs.StreamUrl}")
 #End If
 
         If gs.StreamUrl.Equals(String.Empty) Then
@@ -65,6 +65,8 @@ Public Class MLBGameManager
 
         Dim streamUrlReturned = Await Web.SendWebRequestAndGetContentAsync(gameStream.GameUrl)
 
+        If streamUrlReturned.Equals(String.Empty) OrElse streamUrlReturned.ToLower().Equals("not available yet") Then Return String.Empty
+
         ' Recover old streams
         If gameStream.Game.GameDate.ToLocalTime() < DateTime.Today.AddDays(-2) And streamUrlReturned.StartsWith("https://hlslive") Then
             Dim network = gameStream.CdnParameter.ToString().ToLower()
@@ -74,8 +76,6 @@ Public Class MLBGameManager
             If matches.Count < 5 Then Return streamUrlReturned
             streamUrlReturned = $"{matches(1)}/ps01/{matches(4)}"
         End If
-
-        If streamUrlReturned.Equals(String.Empty) Then Return String.Empty
 
         Return If(Await Web.SendWebRequestAsync(streamUrlReturned), streamUrlReturned, String.Empty)
     End Function
