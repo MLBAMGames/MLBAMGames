@@ -62,10 +62,7 @@ Namespace Controls
                 End If
 
                 If Not showLiveScores Then
-                    lblCenter.Text = String.Format("{0}{1}{2}",
-                                                       _game.GameDate.ToLocalTime().ToString("h:mm tt"),
-                                                       vbCrLf,
-                                                       gameState)
+                    lblCenter.Text = String.Format("{0}{1}{2}", GetGameTime(), vbCrLf, gameState)
                 End If
 
             ElseIf _game.GameState = GameStateEnum.StreamEnded Then
@@ -85,15 +82,12 @@ Namespace Controls
                     Dim detail = If(_game.GameStateDetailed.ToLower() <> "final", $" - {_game.GameStateDetailed}", String.Empty)
                     lblHeader.Text = Lang.RmText.GetString("gameStateFinal").ToUpper() & detail
                 Else
-                    lblCenter.Text = String.Format("{0}{1}{2}",
-                                                       _game.GameDate.ToLocalTime().ToString("h:mm tt"),
-                                                       vbCrLf,
-                                                       Lang.RmText.GetString("gameStateFinal").ToUpper())
+                    lblCenter.Text = String.Format("{0}{1}{2}", GetGameTime(), vbCrLf, Lang.RmText.GetString("gameStateFinal").ToUpper())
                 End If
             ElseIf _game.GameState <= GameStateEnum.Pregame Then
                 lblDivider.Visible = False
                 lblCenter.Visible = True
-                lblCenter.Text = _game.GameDate.ToLocalTime().ToString("h:mm tt")
+                lblCenter.Text = GetGameTime()
 
                 If _game.GameState.Equals(GameStateEnum.Pregame) OrElse _game.AreAnyStreamsAvailable() Then
                     lblHeader.BackColor = MetroColors.Red
@@ -268,6 +262,10 @@ Namespace Controls
 
             UpdateGameStreams()
         End Sub
+        Private Function GetGameTime() As String
+            If _game.GameStartTimeTDB Then Return String.Empty
+            Return _game.GameDate.ToLocalTime().ToString("h:mm tt")
+        End Function
 
         Private Sub SetStreamButtonLink(stream As GameStream, btnLink As Button, tooltip As String)
             If stream Is Nothing Then Return

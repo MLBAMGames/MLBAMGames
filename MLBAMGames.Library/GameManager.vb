@@ -102,8 +102,9 @@ Public MustInherit Class GameManager
     End Function
 
     Private Function NewGameWithStats(game As API.Game)
+        Dim gameTime = game.gameDate.ToUniversalTime() ' Must use universal time to always get correct date for stream
         Dim currentGame = New Game With {
-                .GameDate = game.gameDate.ToUniversalTime(), ' Must use universal time to always get correct date for stream
+                .GameDate = If(game.status.startTimeTBD, gameTime.AddHours(12), gameTime),
                 .GameId = game.gamePk.ToString(),
                 .GameType = GetGameType(game),
                 .Home = If(game.teams?.home?.team?.locationName, String.Empty),
@@ -114,7 +115,8 @@ Public MustInherit Class GameManager
                 .AwayTeam = If(game.teams?.away?.team?.teamName, String.Empty),
                 .GameState = GetGameStateFromStatus(game.status),
                 .GameStateDetailed = game.status.detailedState,
-                .GameStateDetailedReason = game.status.reason
+                .GameStateDetailedReason = game.status.reason,
+                .GameStartTimeTDB = game.status.startTimeTBD
             }
 
         If currentGame.GameType = GameTypeEnum.Series Then

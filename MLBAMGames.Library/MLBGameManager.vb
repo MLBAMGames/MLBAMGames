@@ -65,7 +65,7 @@ Public Class MLBGameManager
 
         Dim streamUrlReturned = Await Web.SendWebRequestAndGetContentAsync(gameStream.GameUrl)
 
-        If streamUrlReturned.Equals(String.Empty) OrElse streamUrlReturned.ToLower().Equals("not available yet") Then Return String.Empty
+        If streamUrlReturned.Equals(String.Empty) OrElse streamUrlReturned.ToLower().Contains("not") Then Return String.Empty
 
         ' Recover old streams
         If gameStream.Game.GameDate.ToLocalTime() < DateTime.Today.AddDays(-2) And streamUrlReturned.StartsWith("https://hlslive") Then

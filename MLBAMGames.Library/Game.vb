@@ -12,6 +12,7 @@ Public NotInheritable Class Game
     Public Property GameState As GameStateEnum
     Public Property GameStateDetailed As String
     Public Property GameStateDetailedReason As String
+    Public Property GameStartTimeTDB As Boolean
 
     Public Property GameCurrentInning As Integer
     Public Property GameScheduledInning As Integer

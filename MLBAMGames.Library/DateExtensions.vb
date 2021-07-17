@@ -23,4 +23,5 @@ Public Module DateExtensions
                   CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(number).Substring(0, 2),
                   CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(number).ToString())
     End Function
+
 End Module
