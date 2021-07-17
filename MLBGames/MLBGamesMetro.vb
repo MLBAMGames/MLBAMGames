@@ -461,7 +461,7 @@ Public Class MLBGamesMetro
     End Sub
 
     Private Shared Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
-        Dim sInfo = New ProcessStartInfo("https://github.com/MLBGames/MLBGames/wiki")
+        Dim sInfo = New ProcessStartInfo("https://github.com/MLBAMGames/MLBGames/wiki")
         Process.Start(sInfo)
     End Sub
 
