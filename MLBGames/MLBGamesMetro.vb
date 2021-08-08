@@ -506,13 +506,25 @@ Public Class MLBGamesMetro
                 defaultPlayerArgs = GameWatchArguments.SavedPlayerArgs(PlayerTypeEnum.Mpc)
         End Select
 
-        SetDefaultArgs(defaultPlayerArgs.ToDictionary(Function(x) x.Split("=").First(), Function(y) y.Substring(y.IndexOf("=") + 1)), txtPlayerArgs, overwrite)
+        SetDefaultArgs(defaultPlayerArgs.ToDictionary(
+                       Function(x)
+                           Return x.Split("=").First()
+                       End Function,
+                       Function(y)
+                           Return If(y.Contains("="), y.Substring(y.IndexOf("=") + 1), Nothing)
+                       End Function), txtPlayerArgs, overwrite)
     End Sub
 
     Private Sub SetDefaultArgs(args As Dictionary(Of String, String), txt As TextBox, Optional overwrite As Boolean = False)
         If overwrite Then txt.Text = ""
         For Each arg In args
-            If Not txt.Text.Contains(arg.Key) Then txt.Text &= $" {arg.Key}={arg.Value}"
+            If Not txt.Text.Contains(arg.Key) Then
+                If arg.Value IsNot Nothing Then
+                    txt.Text &= $" {arg.Key}={arg.Value}"
+                Else
+                    txt.Text &= $" {arg.Key}"
+                End If
+            End If
         Next
         txt.Text = txt.Text.Trim()
     End Sub
