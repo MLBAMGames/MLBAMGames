@@ -413,7 +413,7 @@ Public Class NHLGamesMetro
     End Sub
 
     Private Sub lnkReddit_Click(sender As Object, e As EventArgs) Handles lnkReddit.Click
-        Dim sInfo As ProcessStartInfo = New ProcessStartInfo(Parameters.SubredditLink)
+        Dim sInfo As ProcessStartInfo = New ProcessStartInfo("https://www.reddit.com/r/nhl_games/")
         Process.Start(sInfo)
     End Sub
 
