@@ -5,7 +5,7 @@
         Public assets_url As String
         Public upload_url As String
         Public html_url As String
-        Public id As Integer
+        Public id As Long
         Public node_id As String
         Public tag_name As String
         Public target_commitish As String

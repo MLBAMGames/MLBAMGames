@@ -1,7 +1,7 @@
 ﻿Namespace GitHub
 
     Public Class Label
-        Public id As Integer
+        Public id As Long
         Public node_id As String
         Public url As String
         Public name As String

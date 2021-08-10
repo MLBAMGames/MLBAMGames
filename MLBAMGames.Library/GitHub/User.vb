@@ -2,7 +2,7 @@
 
     Public Class User
         Public login As String
-        Public id As Integer
+        Public id As Long
         Public node_id As String
         Public avatar_url As String
         Public gravatar_id As String

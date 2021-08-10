@@ -898,7 +898,7 @@ Public Class NHLGamesMetro
         _writeToConsoleSettingToggleChanged(lblPlayerArgs.Text, tgPlayer.Checked)
     End Sub
 
-    Private Sub tgReset_CheckedChanged(sender As Object, e As EventArgs) Handles tgReset.
+    Private Sub tgReset_CheckedChanged(sender As Object, e As EventArgs) Handles tgReset.CheckedChanged
         If tgReset.Checked = False Then Return
 
         If Instance.Form.MsgBox(

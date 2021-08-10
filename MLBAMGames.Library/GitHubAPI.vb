@@ -54,7 +54,7 @@ Public Class GitHubAPI
     End Function
 
     Public Shared Async Function GetAccouncement() As Task
-        Dim request = GetGitHubApiRequest($"{_repoLink}/issues?state=open&labels=announcement")
+        Dim request = GetGitHubApiRequest($"{_repoLink}/issues?state=open&labels=invalid")
 
         If request Is Nothing Then Return
 

@@ -5,7 +5,7 @@
         Public url As String
         Public html_url As String
         Public labels_url As String
-        Public id As Integer
+        Public id As Long
         Public node_id As String
         Public number As Integer
         Public state As String

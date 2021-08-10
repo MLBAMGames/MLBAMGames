@@ -126,13 +126,13 @@
     <EmbeddedResource Include="mlbgames.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="mlbgames-alt.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\MLBAMGames.Library\MLBAMGames.Library.vbproj">
       <Project>{2d251417-09ce-429d-bbe3-7111318266f4}</Project>
       <Name>MLBAMGames.Library</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="mlbgames-alt.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

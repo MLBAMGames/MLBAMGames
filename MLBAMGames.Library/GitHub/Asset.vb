@@ -2,7 +2,7 @@
 
     Public Class Asset
         Public url As String
-        Public id As Integer
+        Public id As Long
         Public node_id As String
         Public name As String
         Public label As String
