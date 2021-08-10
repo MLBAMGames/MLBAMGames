@@ -1,4 +1,4 @@
-﻿Imports MLBAMGames.Library.API
+﻿Imports System.Reflection
 
 Public Class Parameters
     Public Const ResizeBorderWidth As Integer = 8
@@ -27,6 +27,7 @@ Public Class Parameters
     Public Shared Property SpnStreamingVisible As Boolean = False
 
     Public Shared Property StartupPath As String = Nothing
+    Public Shared Property AssemblyName As AssemblyName = Nothing
 
     Public Shared Property Tips As New Dictionary(Of Integer, String)
     Public Shared Property WatchArgsParams As GameWatchArgumentsParameters = New GameWatchArgumentsParameters

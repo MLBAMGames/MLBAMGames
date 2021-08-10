@@ -8,9 +8,7 @@ Imports Newtonsoft.Json
 Public Class GitHubAPI
 
     Private Shared ReadOnly Property _regexVersion As Regex = New Regex($"(\d+\.)(\d+\.)?(\d+\.)?(\*|\d+)")
-    Private Shared ReadOnly Property _regexTag As Regex = New Regex($"[^0-9.]")
-    Private Shared ReadOnly Property _project As String = Assembly.GetCallingAssembly().GetName().Name
-    Private Shared ReadOnly Property _repoLink As String = $"https://api.github.com/repos/MLBAMGames/{_project}"
+    Private Shared ReadOnly Property _repoLink As String = $"https://api.github.com/repos/MLBAMGames/{Parameters.AssemblyName.Name}"
 
     Public Shared Async Function GetVersion() As Task
         Dim request = GetGitHubApiRequest($"{_repoLink}/releases/latest")
@@ -27,7 +25,7 @@ Public Class GitHubAPI
         If Not _regexVersion.IsMatch(versionTag) Then Return
 
         Dim gitHubTagVersion = New Version(versionTag)
-        Dim assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version
+        Dim assemblyVersion = Parameters.AssemblyName.Version
 
         If gitHubTagVersion <= assemblyVersion Then Return
 
@@ -46,8 +44,7 @@ Public Class GitHubAPI
         Dim dialogResult = Instance.Form.MsgBox(
                 dialogMessage,
                 dialogTitle,
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Information)
+                MessageBoxButtons.OKCancel)
 
         If dialogResult = DialogResult.OK Then
             Update()
@@ -75,8 +72,7 @@ Public Class GitHubAPI
         Dim dialogResult = Instance.Form.MsgBox(
                 dialogMessage,
                 Lang.RmText.GetString("msgAnnouncement"),
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information)
+                MessageBoxButtons.OK)
     End Function
 
     Private Shared Function GetGitHubApiRequest(url As String) As HttpWebRequest
@@ -100,11 +96,11 @@ Public Class GitHubAPI
     End Function
 
     Private Shared Function ParseTagToVersionString(tag As String) As String
-        Return If(String.IsNullOrEmpty(tag), String.Empty, _regexTag.Replace(tag, String.Empty))
+        Return If(String.IsNullOrEmpty(tag), String.Empty, New Regex("\d+(\.\d+){0,3}").Match(tag)?.Value)
     End Function
 
     Public Shared Sub Update()
-        Process.Start(New ProcessStartInfo(Application.StartupPath + "/Updater/Updater.exe"))
+        Process.Start(New ProcessStartInfo(Parameters.StartupPath + "/updater/Updater.exe"))
         Application.Exit()
     End Sub
 

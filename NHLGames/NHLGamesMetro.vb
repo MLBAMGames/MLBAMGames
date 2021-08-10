@@ -11,6 +11,7 @@ Imports NHLGames.Utilities
 Imports NHLGames.Controls
 Imports MLBAMGames.Library.Modules
 Imports MetroFramework
+Imports System.Reflection
 
 Public Class NHLGamesMetro
     Implements IMLBAMForm
@@ -21,7 +22,7 @@ Public Class NHLGamesMetro
         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException)
         AddHandler AppDomain.CurrentDomain.UnhandledException, AddressOf CurrentDomain_UnhandledException
 
-        Updater.UpgradeSettings()
+        Updater.UpgradeSettings(New Action(AddressOf UpgradeSettings))
 
         Lang.FrenchRmText = French.ResourceManager
         Lang.EnglishRmText = English.ResourceManager
@@ -29,6 +30,7 @@ Public Class NHLGamesMetro
 
         Parameters.IsDarkMode = My.Settings.UseDarkMode
         Parameters.StartupPath = Application.StartupPath
+        Parameters.AssemblyName = Assembly.GetExecutingAssembly.GetName()
         Parameters.DomainNames = {"mf.svc.nhl.com"}
 
         Dim form As New NHLGamesMetro()
@@ -113,7 +115,7 @@ Public Class NHLGamesMetro
 
     End Sub
 
-    Public Function MsgBox(message As String, title As String, buttons As MessageBoxButtons, type As MessageBoxIcon) As DialogResult Implements IMLBAMForm.MsgBox
+    Public Function MsgBox(message As String, title As String, buttons As MessageBoxButtons, Optional type As MessageBoxIcon? = Nothing) As DialogResult Implements IMLBAMForm.MsgBox
         Dim DialogResult As New DialogResult
         If Parameters.MsgBoxVisible Then Return DialogResult
         Parameters.MsgBoxVisible = True
@@ -122,7 +124,7 @@ Public Class NHLGamesMetro
                                         message,
                                         title,
                                         buttons,
-                                        type)
+                                        If(type, MessageBoxIcon.Information))
                                      Return True
                                  End Function)
         If type = MessageBoxIcon.Error Then
@@ -131,6 +133,11 @@ Public Class NHLGamesMetro
         Parameters.MsgBoxVisible = False
         Return DialogResult
     End Function
+
+    Private Shared Sub UpgradeSettings()
+        My.Settings.Upgrade()
+        My.Settings.Save()
+    End Sub
 
     Private Sub LoadStandings()
         cbSeasons.SetPropertyThreadSafe(Sub()
@@ -891,7 +898,7 @@ Public Class NHLGamesMetro
         _writeToConsoleSettingToggleChanged(lblPlayerArgs.Text, tgPlayer.Checked)
     End Sub
 
-    Private Sub tgReset_CheckedChanged(sender As Object, e As EventArgs) Handles tgReset.CheckedChanged
+    Private Sub tgReset_CheckedChanged(sender As Object, e As EventArgs) Handles tgReset.
         If tgReset.Checked = False Then Return
 
         If Instance.Form.MsgBox(

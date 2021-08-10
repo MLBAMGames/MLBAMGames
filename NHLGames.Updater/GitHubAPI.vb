@@ -35,10 +35,10 @@ Public Class GitHubAPI
     End Function
 
     Public Shared Function GetZipAssetFromRelease(release As Release) As Asset
-        Dim asset = release.assets.Where(Function(a) Regex.IsMatch(a.name, "^NHLGames(-|\.)(v?)(\.)?\d+(\.\d+)?(\.\d+)?(-simplified)?.zip$")).FirstOrDefault()
+        Dim asset = release.assets.Where(Function(a) Regex.IsMatch(a.name, "^NHLGames(-|\.)(v?)(\.)?\d+(\.\d+){0,3}?(-simplified)?.zip$")).FirstOrDefault()
         If asset Is Nothing Then
             Console.WriteLine("This Release did not have any suitable asset to download. Try again later.")
-            Throw New ReleaseAssetNotFoundException()
+            Throw New ReleaseAssetNotFoundException("This Release did not have any suitable asset to download. Try again later.")
         Else
             Console.WriteLine("Release asset found: {0}", asset.name)
         End If

@@ -2,7 +2,7 @@
 
 Public Class AssemblyInfo
     Public Shared Function IsNewerVersionThanCurrent(name As String, appFullPath As String) As Boolean
-        Dim m As Match = Regex.Match(name, "v(\.)?((?:\d+\.)*\d+?)")
+        Dim m As Match = Regex.Match(name, "v?(\.)?((?:\d+\.)*\d+?)")
         Dim version = m.Groups(m.Groups.Count - 1)
 
         If version.Success Then

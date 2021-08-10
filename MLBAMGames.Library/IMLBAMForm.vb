@@ -68,6 +68,6 @@ Public Interface IMLBAMForm
 #Region "Methods"
     Function GetSetting(name As String) As Object
     Sub SetSetting(name As String, value As Object)
-    Function MsgBox(message As String, title As String, buttons As MessageBoxButtons, type As MessageBoxIcon) As DialogResult
+    Function MsgBox(message As String, title As String, buttons As MessageBoxButtons, Optional type As MessageBoxIcon? = Nothing) As DialogResult
 #End Region
 End Interface
