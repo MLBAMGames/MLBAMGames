@@ -8,7 +8,7 @@ Imports MLBAMGames.Library.GitHub
 
 Public Class GitHubAPI
 
-    Public Const API_LATEST_RELEASES_LINK As String = "https://api.github.com/repos/MBLAMGames/MLBGames/releases"
+    Public Const API_LATEST_RELEASES_LINK As String = "https://api.github.com/repos/MLBAMGames/MLBGames/releases"
     Public Const LATEST_RELEASE_LINK As String = "https://github.com/MLBAMGames/MLBGames/releases/latest"
 
     Public Shared Async Function GetReleases() As Task(Of Release())
@@ -35,10 +35,10 @@ Public Class GitHubAPI
     End Function
 
     Public Shared Function GetZipAssetFromRelease(release As Release) As Asset
-        Dim asset = release.assets.Where(Function(a) Regex.IsMatch(a.name, "^NHLGames(-|\.)(v?)(\.)?\d+(\.\d+)?(\.\d+)?(-simplified)?.zip$")).FirstOrDefault()
+        Dim asset = release.assets.Where(Function(a) Regex.IsMatch(a.name, "^MLBGames(-|\.)(v?)(\.)?\d+(\.\d+){0,3}?(-simplified)?.zip$")).FirstOrDefault()
         If asset Is Nothing Then
             Console.WriteLine("This Release did not have any suitable asset to download. Try again later.")
-            Throw New ReleaseAssetNotFoundException()
+            Throw New ReleaseAssetNotFoundException("This Release did not have any suitable asset to download. Try again later.")
         Else
             Console.WriteLine("Release asset found: {0}", asset.name)
         End If

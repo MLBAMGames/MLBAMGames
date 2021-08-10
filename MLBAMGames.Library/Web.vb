@@ -27,6 +27,7 @@ Public Class Web
     End Function
 
     Public Shared Function SetHttpWebRequest(address As String) As HttpWebRequest
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
         Dim defaultHttpWebRequest = CType(WebRequest.Create(New Uri(address)), HttpWebRequest)
         defaultHttpWebRequest.UserAgent = UserAgent
         defaultHttpWebRequest.Method = WebRequestMethods.Http.Head

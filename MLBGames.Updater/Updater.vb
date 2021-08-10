@@ -42,7 +42,7 @@ Public Class Updater
             Dim asset = GitHubAPI.GetZipAssetFromRelease(release)
             Return Await Web.DownloadFileAsync(asset.browser_download_url, release.tag_name)
         Catch ex As ReleaseAssetNotFoundException
-            Return String.Empty
+            Throw ex
         Catch ex As UnauthorizedAccessException
             Console.WriteLine($"Something went wrong during the download. Make sure it was not blocked by your Antivirus Software.")
             Console.WriteLine("Error Message: {0}", ex.Message)

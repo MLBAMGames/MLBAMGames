@@ -7,7 +7,7 @@ Public Class ImageFetcher
     Public Shared Function GetEmbeddedImage(fileName As String) As Image
         Dim image As Image = Nothing
         Dim assembly As Assembly = Assembly.GetCallingAssembly()
-        Using s As Stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{fileName.ToLower()}.png")
+        Using s As Stream = assembly.GetManifestResourceStream($"{Parameters.AssemblyName.Name}.{fileName.ToLower()}.png")
             If s Is Nothing Then Return Nothing
             s.Position = 0
             image = Image.FromStream(s)
@@ -20,7 +20,7 @@ Public Class ImageFetcher
 #If DEBUG Then
         Dim image As Bitmap = Nothing
         Dim assembly As Assembly = Assembly.GetCallingAssembly()
-        Using s As Stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{fileName.ToLower()}.svg")
+        Using s As Stream = assembly.GetManifestResourceStream($"{Parameters.AssemblyName.Name}.{fileName.ToLower()}.svg")
             If s Is Nothing Then Return Nothing
             s.Position = 0
             image = (SvgDocument.Open(Of SvgDocument)(s)).Draw()

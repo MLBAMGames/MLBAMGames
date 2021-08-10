@@ -9,10 +9,9 @@ Public Class Updater
     Public Shared UpdaterExtractedContentDirectoryPath = $"{UpdaterExtractedTempDirectoryPath}\{UPDATER_DIRECTORY}"
     Public Shared UpdaterDirectoryPath = $"{ProjectDirectory}{UPDATER_DIRECTORY}"
 
-    Public Shared Sub UpgradeSettings()
+    Public Shared Sub UpgradeSettings(UpgradeSettings As Action)
         If Directory.Exists(UpdaterExtractedContentDirectoryPath) Then
-            My.Settings.Upgrade()
-            My.Settings.Save()
+            UpgradeSettings()
             UpdateDirectoryContent()
         End If
     End Sub
