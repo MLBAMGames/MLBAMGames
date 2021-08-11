@@ -83,7 +83,7 @@ Public Class GitHubAPI
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
         Dim request = CType(WebRequest.Create(uriGitHub), HttpWebRequest)
         request.Method = WebRequestMethods.Http.Get
-        request.UserAgent = "NHLGames"
+        request.UserAgent = "MLBAMGames"
 
         Return request
     End Function

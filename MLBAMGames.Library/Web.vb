@@ -34,6 +34,7 @@ Public Class Web
         defaultHttpWebRequest.Proxy = WebRequest.DefaultWebProxy
         defaultHttpWebRequest.CookieContainer = New CookieContainer()
         defaultHttpWebRequest.CookieContainer.Add(New Cookie("mediaAuth", GetRandomString(240), String.Empty, "nhl.com"))
+        defaultHttpWebRequest.CookieContainer.Add(New Cookie("mediaAuth", GetRandomString(240), String.Empty, "mlb.com"))
 
         Return defaultHttpWebRequest
     End Function

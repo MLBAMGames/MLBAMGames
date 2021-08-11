@@ -48,7 +48,7 @@ Public Class Proxy
         Instance.Form.lblStatus.SetPropertyThreadSafe(Sub() Instance.Form.lblStatus.Text = Lang.RmText.GetString("msgProxyGettingReady"))
 
         If Not IsProxyFileFound() Then
-            Console.WriteLine("Error: Can't find mitmproxy : mitmproxy is a https proxy that we shipped with NHLGames. You probably moved it or deleted it. Please go to our GitHub page to get it back, NHLGames needs it")
+            Console.WriteLine("Error: Can't find mitmproxy : mitmproxy is a https proxy that we shipped with the app. You probably moved it or deleted it. Please go to our GitHub page to get it back, it needs it")
             Return
         End If
 

@@ -10,11 +10,11 @@ Public Class Player
 
         If args.PlayerPath.Equals(String.Empty) OrElse args.StreamerPath.Equals(String.Empty) Then
             If form.txtStreamerPath.Text.Equals(String.Empty) Then
-                Console.WriteLine("Error:  Can't find the specified streamer. The streamer is used to send streams to your media player, please select the one that comes with NHLGames or select a valid path of Livestreamer.exe or Streamlink.exe")
+                Console.WriteLine("Error:  Can't find the specified streamer. The streamer is used to send streams to your media player, please select the one that comes with the app or select a valid path of Livestreamer.exe or Streamlink.exe")
             ElseIf _
                 form.txtMpvPath.Text.Equals(String.Empty) AndAlso form.txtVLCPath.Text.Equals(String.Empty) AndAlso
                 form.txtMPCPath.Text.Equals(String.Empty) Then
-                Console.WriteLine("Error: Can't find mpv.exe : mpv is a media player that we shipped with NHLGames. You probably moved it or deleted it. Please set a player, NHLGames needs one.")
+                Console.WriteLine("Error: Can't find mpv.exe : mpv is a media player that we shipped with the app. You probably moved it or deleted it. Please set a player, it needs one.")
             Else
                 Console.WriteLine("Error: No media player selected in settings.")
             End If
