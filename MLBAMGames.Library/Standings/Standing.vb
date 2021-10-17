@@ -29,6 +29,10 @@ Namespace Standings
         Public Shared Function GetCurrentStandings(ByVal standingType As StandingTypeEnum, ByVal season As String, ByVal teamName As String) As String
 
             Dim standing As Standing = GetCurrentStandings(standingType, season)
+            If (standing?.records?.FirstOrDefault()?.teamRecords Is Nothing) Then
+                Return 0
+            End If
+
             Dim teamRecord As TeamRecord = standing.records.First().teamRecords.FirstOrDefault(Function(n) n.team.name.Contains(teamName))
 
             If (standingType = StandingTypeEnum.League) Then
