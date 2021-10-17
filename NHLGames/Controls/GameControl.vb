@@ -183,7 +183,7 @@ Namespace Controls
             lblHomeTeam.Visible = showTeamCityAbr
             lblAwayTeam.Visible = showTeamCityAbr
 
-            If showStanding Then
+            If showStanding And API.Seasons.CurrentSeason IsNot Nothing Then
                 Dim standingBadge = Sub(pic, team)
                                         Dim teamStanding = Standing.GetCurrentStandings(StandingTypeEnum.League, API.Seasons.CurrentSeason.seasonId, team)
 

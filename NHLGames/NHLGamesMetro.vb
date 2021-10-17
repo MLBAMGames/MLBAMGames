@@ -83,10 +83,11 @@ Public Class NHLGamesMetro
         ResumeLayout(True)
 
         tmr.Enabled = True
-        Await LoadGames(CalendarControl.GameDate)
 
         LoadTeamsName()
         LoadStandings()
+
+        Await LoadGames(CalendarControl.GameDate)
     End Sub
 
     Private Async Function LoadGames(gameDate As Date) As Task
